@@ -10,7 +10,8 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { HeaderComponent } from './components/header/header.component'
+import { HeaderComponent } from './components/header/header.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HeaderComponent } from './components/header/header.component'
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    HeaderComponent
+    HeaderComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

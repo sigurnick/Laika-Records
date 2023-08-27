@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
       confirmPassword &&
       password.value !== confirmPassword.value
     ) {
-      console.log('password non corrisponde');
+      console.log('Passwords do not match');
       return { passwordNotMatch: true };
     }
 
@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
   submitForm() {
     if (this.form.valid) {
       this.isLoading = true
-      console.log(this.form);
+      console.log('form',this.form.value);
 
       this.authService.singup(this.form.value).subscribe(resData =>{
         console.log(resData);

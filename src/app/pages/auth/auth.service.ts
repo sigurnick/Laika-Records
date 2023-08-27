@@ -11,7 +11,7 @@ import {
   Subject,
 } from 'rxjs';
 import { IRegister } from './interfaces/register';
-import { IAuthRespondeData } from './interfaces/auth-responde-data';
+import { IAuthResponseData } from './interfaces/auth-responde-data';
 import { ILogin } from './interfaces/login';
 import { User } from 'src/app/models/user.model';
 
@@ -25,19 +25,21 @@ export class AuthService {
     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBAwh6LWkC08EkU7_YhlYSh-D_iVVbnGn4';
 
   private jwtHelper: JwtHelperService = new JwtHelperService();
-  private authSubject = new BehaviorSubject<null | IAuthRespondeData>(null); //null = utente non loggato
+  private authSubject = new BehaviorSubject<null | IAuthResponseData>(null); //null = utente non loggato
   user$ = this.authSubject.asObservable(); //dati utente loggato
   isLoggedIn$ = this.user$.pipe(map((user) => !!user)); //restituisce true o false se l'utente è loggato o meno
   autoLogoutTimer: any;
 
   constructor(private http: HttpClient, private router: Router) { this.restoreUser()}
 
+
+
   //----------------------SingUp]--------------------
   singup(data: IRegister) {
     data.returnSecureToken = true;
-    return this.http.post<IAuthRespondeData>(this.singupUrl, data).pipe(
+    return this.http.post<IAuthResponseData>(this.singupUrl, data).pipe(
       catchError((errorRes) => {
-        let errorMessage = "C'è un errore!";
+        let errorMessage = "Error";
         if (!errorRes.error || !errorRes.error.error) {
           return throwError(errorMessage);
         }
@@ -45,7 +47,7 @@ export class AuthService {
         //casi di errore nella registrazione
         switch (errorRes.error.error.message) {
           case 'EMAIL_EXISTS':
-            errorMessage = 'Email esistente';
+            errorMessage = 'Email already exists';
         }
         return throwError(errorMessage);
       }),
@@ -56,7 +58,7 @@ export class AuthService {
 
   //-----------------------[Login]---------------------
   login(data: ILogin) {
-    return this.http.post<IAuthRespondeData>(this.loginUrl, data).pipe(
+    return this.http.post<IAuthResponseData>(this.loginUrl, data).pipe(
 
       tap(data => {
 
@@ -115,7 +117,7 @@ export class AuthService {
     const userJson:string|null = localStorage.getItem('accessData');//recupero i dati di accesso
     if(!userJson) return//se i dati non ci sono blocco la funzione
 
-    const accessData:IAuthRespondeData = JSON.parse(userJson);//se viene eseguita questa riga significa che i dati ci sono, quindi converto la stringa(che conteneva un json) in oggetto
+    const accessData:IAuthResponseData = JSON.parse(userJson);//se viene eseguita questa riga significa che i dati ci sono, quindi converto la stringa(che conteneva un json) in oggetto
     if(this.jwtHelper.isTokenExpired(accessData.idToken)) return //ora controllo se il token è scaduto, se lo è fermiamo la funzione
 
     //se nessun return viene eseguito proseguo

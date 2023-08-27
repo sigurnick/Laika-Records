@@ -1,4 +1,4 @@
-export interface IAuthRespondeData {
+export interface IAuthResponseData {
   idToken: string;
   email: string;
   refreshToken: string;
