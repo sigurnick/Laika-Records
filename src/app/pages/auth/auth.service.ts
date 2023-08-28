@@ -8,27 +8,30 @@ import {
   throwError,
   map,
   tap,
-  Subject,
 } from 'rxjs';
 import { IRegister } from './interfaces/register';
 import { IAuthResponseData } from './interfaces/auth-responde-data';
 import { ILogin } from './interfaces/login';
-import { User } from 'src/app/models/user.model';
+import { firebaseConfig } from 'src/app/environments/firebase-config';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  apiKey= firebaseConfig.apiKey
   singupUrl: string =
-    'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBAwh6LWkC08EkU7_YhlYSh-D_iVVbnGn4';
+    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
   loginUrl: string =
-    'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBAwh6LWkC08EkU7_YhlYSh-D_iVVbnGn4';
+    `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`;
 
   private jwtHelper: JwtHelperService = new JwtHelperService();
   private authSubject = new BehaviorSubject<null | IAuthResponseData>(null); //null = utente non loggato
   user$ = this.authSubject.asObservable(); //dati utente loggato
   isLoggedIn$ = this.user$.pipe(map((user) => !!user)); //restituisce true o false se l'utente è loggato o meno
   autoLogoutTimer: any;
+
+
 
   constructor(private http: HttpClient, private router: Router) { this.restoreUser()}
 
@@ -37,7 +40,9 @@ export class AuthService {
   //----------------------SingUp]--------------------
   singup(data: IRegister) {
     data.returnSecureToken = true;
-    return this.http.post<IAuthResponseData>(this.singupUrl, data).pipe(
+    return this.http
+    .post<IAuthResponseData>(this.singupUrl, data)
+    .pipe(
       catchError((errorRes) => {
         let errorMessage = "Error";
         if (!errorRes.error || !errorRes.error.error) {
@@ -51,10 +56,20 @@ export class AuthService {
         }
         return throwError(errorMessage);
       }),
-
     );
   }
   //--------------------------------------------------------
+
+  //Inserisci dati dell' utente nel db
+   writeUserData(userId:string, email:string, name?:string, surname?:string) {
+    const userData = {
+      userId: userId,
+      name: name,
+      surname: surname,
+      email: email
+    }
+    return this.http.put(`https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}.json`,userData)
+  }
 
   //-----------------------[Login]---------------------
   login(data: ILogin) {
@@ -124,3 +139,11 @@ export class AuthService {
     this.authSubject.next(accessData);//invio i dati dell'utente al behaviorsubject
 }
 }
+function getDatabase() {
+  throw new Error('Function not implemented.');
+}
+
+function ref(db: void, arg1: string): any {
+  throw new Error('Function not implemented.');
+}
+

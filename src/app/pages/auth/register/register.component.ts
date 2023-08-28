@@ -67,8 +67,17 @@ export class RegisterComponent implements OnInit {
       this.isLoading = true
       console.log('form',this.form.value);
 
+
       this.authService.singup(this.form.value).subscribe(resData =>{
         console.log(resData);
+
+        //inserisco i dati utendi nel db
+        this.authService.writeUserData(resData.localId,this.form.value.email, this.form.value.name, this.form.value.surname).subscribe(res => {
+          console.log(res);
+        this.form.reset()
+
+        })
+
         this.isLoading = false
 
 
@@ -81,7 +90,6 @@ export class RegisterComponent implements OnInit {
 
       })
 
-      this.form.reset()
 
     }
   }
