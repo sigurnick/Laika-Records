@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,10 +16,14 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
-  isLoading: boolean = false
-  error:string = ''
+  isLoading: boolean = false;
+  error: string = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.form = this.fb.group(
       {
         name: this.fb.control(''),
@@ -41,7 +46,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {}
 
-//---------------------------[Validazione password]-------------------------
+  //---------------------------[Validazione password]-------------------------
   passwordMatchValidator(
     control: AbstractControl
   ): { [key: string]: boolean } | null {
@@ -61,38 +66,36 @@ export class RegisterComponent implements OnInit {
   }
   //--------------------------------------------
 
-
   submitForm() {
     if (this.form.valid) {
-      this.isLoading = true
-      console.log('form',this.form.value);
+      this.isLoading = true;
+      console.log('form', this.form.value);
 
+      this.authService.singup(this.form.value).subscribe(
+        (resData) => {
+          console.log(resData);
 
-      this.authService.singup(this.form.value).subscribe(resData =>{
-        console.log(resData);
-
-        //inserisco i dati utendi nel db
-        this.authService.writeUserData(resData.localId,this.form.value.email, this.form.value.name, this.form.value.surname).subscribe(res => {
-          console.log(res);
-        this.form.reset()
-
-        })
-
-        this.isLoading = false
-
-
-      },
-      errorMessage => {
-        console.log('errore',errorMessage);
-        this.error = errorMessage
-        this.isLoading = false
-
-
-      })
-
-
+          //inserisco i dati utendi nel db
+          this.authService
+            .writeUserData(
+              resData.localId,
+              this.form.value.email,
+              this.form.value.name,
+              this.form.value.surname
+            )
+            .subscribe((res) => {
+              console.log(res);
+              this.form.reset();
+              this.isLoading = false;
+              this.router.navigate(['/home']);
+            });
+        },
+        (errorMessage) => {
+          console.log('errore', errorMessage);
+          this.error = errorMessage;
+          this.isLoading = false;
+        }
+      );
     }
   }
-
-
 }

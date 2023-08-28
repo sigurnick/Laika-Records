@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Auth, getAuth } from "firebase/auth";
+import { AuthService } from '../auth/auth.service';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -11,40 +13,33 @@ import { Auth, getAuth } from "firebase/auth";
 export class ProfileComponent implements OnInit{
 
   id!: string
+  isRouteOpen: boolean = false
 
-  constructor(private actRouter: ActivatedRoute) { }
+  constructor(private actRouter: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.isRouteOpen=false
 
       //prendo l'id parametro
       this.actRouter.paramMap.subscribe((params) => {
         this.id = params.get('id')!;
       });
-
-
-
-
-
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/auth.user
-          const uid = user.uid;
-          console.log(user);
-
-          // ...
-        } else {
-          // User is signed out
-          // ...
-        }
-      });
-
-
   }
 
+  openRoute() {
+    this.isRouteOpen = true
+
+    // quando cambio rotta rimette isRouteOpen a false
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+
+      this.isRouteOpen = false
+    });
+  }
+
+
+
 }
-function onAuthStateChanged(auth: Auth, arg1: (user: any) => void) {
-  throw new Error('Function not implemented.');
-}
+
 

@@ -11,7 +11,12 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component'
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MyordersComponent } from './pages/profile/myorders/myorders/myorders.component';
+import { MyprofileComponent } from './pages/profile/myprofile/myprofile/myprofile.component';
+import { MyfavouriteComponent } from './pages/profile/myfavourite/myfavourite/myfavourite.component';
+import { AddressComponent } from './pages/profile/address/address/address.component';
+import { PaymentComponent } from './pages/profile/payment/payment/payment.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component'
     LoginComponent,
     ProfileComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    MyordersComponent,
+    MyprofileComponent,
+    MyfavouriteComponent,
+    AddressComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
