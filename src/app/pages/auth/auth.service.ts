@@ -12,7 +12,7 @@ import {
 import { IRegister } from './interfaces/register';
 import { IAuthResponseData } from './interfaces/auth-responde-data';
 import { ILogin } from './interfaces/login';
-import { firebaseConfig } from 'src/app/environments/firebase-config';
+import { firebaseConfig } from 'src/environments/firebase-config';
 
 
 @Injectable({
