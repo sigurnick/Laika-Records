@@ -16,7 +16,9 @@ import { MyordersComponent } from './pages/profile/myorders/myorders/myorders.co
 import { MyprofileComponent } from './pages/profile/myprofile/myprofile/myprofile.component';
 import { MyfavouriteComponent } from './pages/profile/myfavourite/myfavourite/myfavourite.component';
 import { AddressComponent } from './pages/profile/address/address/address.component';
-import { PaymentComponent } from './pages/profile/payment/payment/payment.component'
+import { PaymentComponent } from './pages/profile/payment/payment/payment.component';
+import { DatabaseComponent } from './pages/dashboard/database/database/database.component';
+import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { PaymentComponent } from './pages/profile/payment/payment/payment.compon
     MyprofileComponent,
     MyfavouriteComponent,
     AddressComponent,
-    PaymentComponent
+    PaymentComponent,
+    DatabaseComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FireDBService } from './services/fire-db.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Laika-Records';
+  isAdminLogged:boolean = true
+
+  constructor(private firebaseService: FireDBService) { }
+
+  ngOnInit() {
+
+  }
 }

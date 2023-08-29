@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router, RouterLinkActive } from '@angular/router';
+import { FireDBService } from 'src/app/services/fire-db.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private firedbService: FireDBService
   ) {
     this.form = this.fb.group(
       {
@@ -76,9 +78,10 @@ export class RegisterComponent implements OnInit {
           console.log(resData);
 
           //inserisco i dati utendi nel db
-          this.authService
+          this.firedbService
             .writeUserData(
               resData.localId,
+              resData.idToken,
               this.form.value.email,
               this.form.value.name,
               this.form.value.surname

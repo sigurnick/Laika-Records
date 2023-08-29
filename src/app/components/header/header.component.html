@@ -1,4 +1,4 @@
-<header class="px-3 py-3 max-w-[1600px] mx-auto">
+<header *ngIf="!isDashboardOpen == true" class="px-3 py-3 max-w-[1600px] mx-auto">
   <!-- TOP Header -->
   <div class="flex justify-between items-center">
     <!-- Logo e Navbar -->
@@ -7,26 +7,28 @@
         <img src="assets/LaikaRecords-logo.jpg" alt="logo" class="w-[250px]" />
       </a>
 
-      <nav>
-        <ul class="flex items-center gap-3">
-          <li
-            class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
-          >
-            <a routerLink="/dashboard" routerLinkActive="linkActive"
-              >Dashboard</a
-            >
-          </li>
-          <li
-            class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
-          >
-            <a routerLink="/home" routerLinkActive="linkActive">Home</a>
-          </li>
-          <li
-            class="hidden md:block text-xl tracking-wider font-light text-gray-700 hover:text-black"
-          >
-            <a routerLink="/products" routerLinkActive="linkActive">Products</a>
-          </li>
-        </ul>
+      <nav class="flex items-center gap-3">
+        <a
+         (click)="switchDasboardVar()"
+          routerLink="/dashboard"
+          routerLinkActive="linkActive"
+          class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
+          >Dashboard</a
+        >
+
+        <a
+          routerLink="/home"
+          routerLinkActive="linkActive"
+          class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
+          >Home</a
+        >
+
+        <a
+          routerLink="/products"
+          routerLinkActive="linkActive"
+          class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
+          >Products</a
+        >
       </nav>
     </div>
 

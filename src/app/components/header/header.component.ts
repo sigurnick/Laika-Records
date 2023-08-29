@@ -1,7 +1,10 @@
 import { IAuthResponseData } from './../../pages/auth/interfaces/auth-responde-data';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IUser } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/pages/auth/auth.service';
+import { FireDBService } from 'src/app/services/fire-db.service';
 
 @Component({
   selector: 'app-header',
@@ -11,36 +14,44 @@ import { AuthService } from 'src/app/pages/auth/auth.service';
 export class HeaderComponent {
   isMenuOpen: boolean = false;
   isLogged: boolean = false;
-  user!:IAuthResponseData | null;
+  isDashboardOpen: boolean = false;
+  user!: IAuthResponseData | null;
+  userData!:IUser |  null
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private firebaseService:FireDBService, private router: Router) {}
 
   ngOnInit(): void {
+    this.isDashboardOpen = false
+    //controllo se l'utente è loggato
     this.authService.isLoggedIn$.subscribe((res) => {
       if (res) {
         this.isLogged = true;
         this.authService.user$.subscribe((res) => {
-          this.user = res
+          this.user = res;
           console.log(this.user);
-          if(this.user){
-            console.log('userid',this.user.localId);
+          if (this.user) {
+            console.log('userid', this.user.localId);
           }
+        });
 
+        //prendo dati utente
+        this.firebaseService.userData$.subscribe((user) => {
+          console.log(user);
 
+          this.userData = user;
+          console.log(this.userData);
         })
       } else {
         this.isLogged = false;
       }
 
-      console.log(this.isLogged);
+      console.log('loggato:',this.isLogged);
+
     });
-
-
   }
 
-  onSubmit(form:NgForm) {
-
-  }
+  //?barra di ricerca da implementare
+  onSubmit(form: NgForm) {}
 
   openMenu() {
     this.isMenuOpen = true;
@@ -52,5 +63,9 @@ export class HeaderComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  switchDasboardVar() {
+    this.isDashboardOpen = true
   }
 }

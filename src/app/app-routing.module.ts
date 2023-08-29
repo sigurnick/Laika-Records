@@ -11,11 +11,17 @@ import { MyfavouriteComponent } from './pages/profile/myfavourite/myfavourite/my
 import { MyprofileComponent } from './pages/profile/myprofile/myprofile/myprofile.component';
 import { AddressComponent } from './pages/profile/address/address/address.component';
 import { PaymentComponent } from './pages/profile/payment/payment/payment.component';
+import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component';
+import { DatabaseComponent } from './pages/dashboard/database/database/database.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home',  pathMatch:'full'},
   { path: 'home', component: HomeComponent},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent, children:[
+    { path: 'overview', component: OverviewComponent},
+    { path: 'database', component: DatabaseComponent},
+
+  ]},
   { path: 'singup', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: 'profile', component: ProfileComponent},

@@ -12,13 +12,17 @@ import {
 import { IRegister } from './interfaces/register';
 import { IAuthResponseData } from './interfaces/auth-responde-data';
 import { ILogin } from './interfaces/login';
+import { environment } from 'src/environments/environment';
 import { firebaseConfig } from 'src/environments/firebase-config';
+
+
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
   apiKey= firebaseConfig.apiKey
   singupUrl: string =
     `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
@@ -60,16 +64,7 @@ export class AuthService {
   }
   //--------------------------------------------------------
 
-  //Inserisci dati dell' utente nel db
-   writeUserData(userId:string, email:string, name?:string, surname?:string) {
-    const userData = {
-      userId: userId,
-      name: name,
-      surname: surname,
-      email: email
-    }
-    return this.http.put(`https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}.json`,userData)
-  }
+
 
   //-----------------------[Login]---------------------
   login(data: ILogin) {
