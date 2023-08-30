@@ -14,14 +14,14 @@ import { FireDBService } from 'src/app/services/fire-db.service';
 export class HeaderComponent {
   isMenuOpen: boolean = false;
   isLogged: boolean = false;
-  isDashboardOpen: boolean = false;
+  isAdminLogged: boolean = false;
   user!: IAuthResponseData | null;
   userData!:IUser |  null
 
   constructor(private authService: AuthService, private firebaseService:FireDBService, private router: Router) {}
 
   ngOnInit(): void {
-    this.isDashboardOpen = false
+
     //controllo se l'utente è loggato
     this.authService.isLoggedIn$.subscribe((res) => {
       if (res) {
@@ -35,11 +35,11 @@ export class HeaderComponent {
         });
 
         //prendo dati utente
-        this.firebaseService.userData$.subscribe((user) => {
-          console.log(user);
-
-          this.userData = user;
-          console.log(this.userData);
+        this.firebaseService.userData$.subscribe((userData)=> {
+          this.userData = userData;
+          if(this.userData?.isAdmin) {
+            this.isAdminLogged = true;
+          }
         })
       } else {
         this.isLogged = false;
@@ -65,7 +65,5 @@ export class HeaderComponent {
     this.authService.logout();
   }
 
-  switchDasboardVar() {
-    this.isDashboardOpen = true
-  }
+
 }

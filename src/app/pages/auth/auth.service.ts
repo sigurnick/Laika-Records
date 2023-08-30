@@ -105,11 +105,12 @@ export class AuthService {
 
   //-------------------------LogOut e AutoLogOut-------------------
   logout() {
-    console.log('logout');
     this.authSubject.next(null); //comunico al behaviorsubject che il valore da propagare è null
     localStorage.removeItem('accessData'); //elimino i dati salvati in localstorage
     this.router.navigate(['/login']); //redirect al login
   }
+
+
   //---------------------------------------------
   autoLogout(expDate: number) {
     expDate = expDate * 1000; //converto in millisecondi
