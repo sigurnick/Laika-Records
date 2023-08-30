@@ -18,7 +18,8 @@ import { MyfavouriteComponent } from './pages/profile/myfavourite/myfavourite/my
 import { AddressComponent } from './pages/profile/address/address/address.component';
 import { PaymentComponent } from './pages/profile/payment/payment/payment.component';
 import { DatabaseComponent } from './pages/dashboard/database/database/database.component';
-import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component'
+import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component';
+import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component'
 
 @NgModule({
   declarations: [
@@ -36,14 +37,16 @@ import { OverviewComponent } from './pages/dashboard/overview/overview/overview.
     AddressComponent,
     PaymentComponent,
     DatabaseComponent,
-    OverviewComponent
+    OverviewComponent,
+    DiscogsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

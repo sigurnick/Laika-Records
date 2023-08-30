@@ -13,33 +13,38 @@ import { AddressComponent } from './pages/profile/address/address/address.compon
 import { PaymentComponent } from './pages/profile/payment/payment/payment.component';
 import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component';
 import { DatabaseComponent } from './pages/dashboard/database/database/database.component';
+import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home',  pathMatch:'full'},
-  { path: 'home', component: HomeComponent},
-  { path: 'dashboard', component: DashboardComponent, children:[
-    { path: 'overview', component: OverviewComponent},
-    { path: 'database', component: DatabaseComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'overview', component: OverviewComponent },
+  { path: 'database', component: DatabaseComponent },
+  { path: 'discogs', component: DiscogsComponent },
+  { path: 'orders', component: DatabaseComponent },
+  { path: 'clients', component: DatabaseComponent },
+  { path: 'finances', component: DatabaseComponent },
 
-  ]},
-  { path: 'singup', component: RegisterComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: 'profile/:id', component: ProfileComponent, canActivate: [authGuard] , children: [
-    { path: 'orders', component: MyordersComponent},
-    { path: 'favourites', component: MyfavouriteComponent},
-    { path: 'editprofile', component: MyprofileComponent},
-    { path: 'address', component: AddressComponent},
-    { path: 'payment', component: PaymentComponent},
-  ]},
-
-
-
-
+  { path: 'singup', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: 'orders', component: MyordersComponent },
+      { path: 'favourites', component: MyfavouriteComponent },
+      { path: 'editprofile', component: MyprofileComponent },
+      { path: 'address', component: AddressComponent },
+      { path: 'payment', component: PaymentComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

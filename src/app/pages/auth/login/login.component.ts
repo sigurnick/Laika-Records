@@ -43,7 +43,7 @@ export class LoginComponent {
       if(data) {
         this.firebaseService.getUserData(data.localId,data.idToken).subscribe((userData)=>{
           if(userData.isAdmin == true) {
-      this.router.navigate(['/dashboard'])
+      this.router.navigate(['/database'])
 
           }
 

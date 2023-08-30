@@ -12,7 +12,7 @@ class="container mx-auto  p-7 flex justify-center mt-24 max-w-[800px]">
      type="email"
      name="email"
      placeholder="Email"
-     class="border-2  p-1 w-full focus:outline-none focus:border-gray-900"
+     class="border-2  p-1 w-full focus:outline-none rounded-md focus:border-gray-900"
      required
      #email="ngModel"
      ngModel
@@ -26,7 +26,7 @@ class="container mx-auto  p-7 flex justify-center mt-24 max-w-[800px]">
      type="password"
      name="password"
      placeholder="*******"
-     class="border-2  p-1 w-full focus:outline-none focus:border-gray-900"
+     class="border-2  p-1 w-full rounded-md focus:outline-none  focus:border-gray-900"
      required
      #passworde="ngModel"
      ngModel
@@ -37,7 +37,7 @@ class="container mx-auto  p-7 flex justify-center mt-24 max-w-[800px]">
   <div>
     <button
 
-    class="mt-6 mx-auto bg-black text-white py-2 px-4 flex items-center justify-center w-5/12 md:w-3/12"
+    class="mt-6 mx-auto bg-coolBlack rounded-md text-white py-2 px-4 flex items-center justify-center w-5/12 md:w-3/12 hover:bg-black"
       >
         <svg
         *ngIf="isLoading"
