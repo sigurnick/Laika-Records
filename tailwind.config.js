@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,ts}"],
+  content: ["./src/**/*.{html,ts}",
+  "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
       colors: {
@@ -14,7 +15,11 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+
+
+    require('flowbite/plugin')
+  ],
 }
 
 
@@ -24,10 +29,5 @@ module.exports = {
 // tertiary: '#B25068',
 // quartiary: '#E7AB79',
 
-// primary: '#0a1828',
-// secondary: '#178582',
-// tertiary: '#bfa181',
-// xgray: '#9BA4B5',
-// transparentBg: 'rgba(23,133,130, 0.9)',
-// primaryTransparent: 'rgba(10,24,40, 0.9)'
+
 

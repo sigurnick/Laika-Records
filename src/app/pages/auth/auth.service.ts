@@ -23,7 +23,8 @@ import { firebaseConfig } from 'src/environments/firebase-config';
 })
 export class AuthService {
 
-  apiKey= firebaseConfig.apiKey
+  // apiKey= firebaseConfig.apiKey
+    apiKey= environment.apiKey
   singupUrl: string =
     `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
   loginUrl: string =

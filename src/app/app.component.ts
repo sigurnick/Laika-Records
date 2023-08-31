@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FireDBService } from './services/fire-db.service';
 import { IUser } from './interfaces/user';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent {
   constructor(private firebaseService: FireDBService) {}
 
   ngOnInit() {
+    initFlowbite();
+
     this.firebaseService.userData$.subscribe((data) => {
       console.log('data', data);
 

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { discogsConfig } from 'src/environments/discogs';
-import { IBarcodeDiscogsRes } from '../interfaces/barcodeDiscogsRes'
+import { IBarcodeDiscogsRes } from '../interfaces/barcodeDiscogsRes';
+import { IRecordInfo} from '../interfaces/record-id-res';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,9 @@ export class DiscogsService {
   }
 
 
+  getRecordInfoById(id:number) {
+   return this.http.get<IRecordInfo>(`https://api.discogs.com/releases/${id}`)
+  }
 
   //------------------------------------------------------------------
 
