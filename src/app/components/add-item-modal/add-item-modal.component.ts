@@ -23,6 +23,8 @@ export class AddItemModalComponent {
   //invio dati item per inserimento nel database
   submitItem(form: NgForm) {
 
+
+
     //modello record
    const record = new Record(
     this.recordInfo.id,
@@ -51,5 +53,8 @@ export class AddItemModalComponent {
       console.log(res);
 
     })
+    form.reset()
   }
+
+
 }

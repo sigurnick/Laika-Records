@@ -1,29 +1,87 @@
-<div class="p-5 container mx-auto">
+<div class="p-5  mx-auto">
   <div>
+    <h1 class="text-2xl font-semibold text-center mb-5">
+      Search records on Discogs' API
+    </h1>
 
-    <h1 class="text-2xl font-semibold text-center">Search records on Discogs' API</h1>
+    <div class="flex  items-center gap-5  justify-center ">
+      <!-- Form ricerca tramite barcode o catno -->
+      <form
+        #searchDiscogsForm="ngForm"
+        (ngSubmit)="searchRecords(searchDiscogsForm)"
+        class="bg-white rounded-md p-4 flex flex-col gap-2 xl:flex-row xl:gap-1"
+      >
+      <label class="text-xl mr-1" for="type">Search by type: </label>
+        <input
+          class="border-2 rounded-md p-1 focus:outline-none focus:border-gray-900 mr-1 focus:ring-0"
+          type="text"
+          name="type"
+          placeholder="Insert {{selectedOption}}"
+          ngModel
+          required
+        />
 
-    <form #discogsSearchForm="ngForm" (ngSubmit)="searchRecords(discogsSearchForm)">
+        <select
+          id="selectField"
+          name="selectField"
+          [(ngModel)]="selectedOption"
+          class="border-2 rounded-md p-1 focus:outline-none focus:border-gray-900 mr-1 focus:ring-0"
+          required
+        >
+          <option value="" disabled>Select search type</option>
+          <option value="barcode">Barcode</option>
+          <option value="catno">Catno</option>
+        </select>
+        <button
+          type="submit"
+          class="bg-[rgb(66,66,66)] text-white py-1 px-2 rounded-md"
+        >
+          Search
+        </button>
+      </form>
 
+      <!-- Form ricerca tramite titolo -->
+      <form
+        #searchDiscogsFormByTitle="ngForm"
+        (ngSubmit)="searchRecordsByTitle(searchDiscogsFormByTitle)"
+        class="bg-white rounded-md p-4 flex flex-col gap-2 xl:flex-row xl:gap-1"
+      >
+      <label class="text-xl mr-1 " for="type">Search by title: </label>
+        <input
+          class="border-2 rounded-md p-1 focus:outline-none focus:border-gray-900 mr-1 focus:ring-0"
+          type="text"
+          name="artist"
+          placeholder="Insert artist"
+          ngModel
+          required
+        />
+        <input
+          class="border-2 rounded-md p-1 focus:outline-none focus:border-gray-900 mr-1 focus:ring-0"
+          type="text"
+          name="title"
+          placeholder="Insert title"
+          ngModel
+          required
+        />
 
-      <input class="border-2 rounded-md  p-1  focus:outline-none focus:border-gray-900 mr-1 focus:ring-0" type="text"  name="barcode" placeholder="Insert barcode..." ngModel required/>
-
-    <button type="submit" class="bg-[rgb(66,66,66)] text-white py-1 px-2 rounded-md"> Search </button>
-
-    </form>
+        <button
+          type="submit"
+          class="bg-[rgb(66,66,66)] text-white py-1 px-2 rounded-md"
+        >
+          Search
+        </button>
+      </form>
+    </div>
   </div>
-
 
   <!-- Search result -->
   <div *ngIf="searchResult.length > 0" class="mt-10">
-
     <div class="flex flex-col">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
           <div class="overflow-hidden">
             <table class="min-w-full text-left text-sm font-light">
-              <thead
-                class="border-b bg-[rgb(66,66,66)] text-white font-medium ">
+              <thead class="border-b bg-[rgb(66,66,66)] text-white font-medium">
                 <tr>
                   <th scope="col" class="px-6 py-4 text-center">Cover</th>
                   <th scope="col" class="px-6 py-4 text-center">ID</th>
@@ -34,52 +92,89 @@
                   <th scope="col" class="px-6 py-4 text-center">Country</th>
                   <th scope="col" class="px-6 py-4 text-center">Year</th>
                   <th scope="col" class="px-6 py-4 text-center">Community</th>
-                  <th scope="col" class="px-6 py-4 text-center">Add to Databse</th>
-
-
-
+                  <th scope="col" class="px-6 py-4 text-center">
+                    Add to Databse
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of searchResult; index as i"
-                  class="border-b bg-neutral-100 hover:bg-gray-300">
-
-                  <td class="whitespace-nowrap px-6 py-4 font-medium text-center"><img class="max-w-[100px] max-h-[100px]" src="{{item.thumb}}"></td>
-                  <td class="whitespace-nowrap px-6 py-4 font-medium text-center">{{item.id}}</td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">{{item.barcode[0]}}</td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">{{item.catno}}</td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">{{item.title}}</td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">{{item.label[0]}}</td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">{{item.country}}</td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">{{item.year}}</td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center"><div><span class="font-semibold">H: </span>{{item.community.have}}</div><div><span class="font-semibold">W: </span>{{item.community.want}}</div></td>
+                <tr
+                  *ngFor="let item of searchResult; index as i"
+                  class="border-b bg-white hover:bg-gray-300"
+                >
+                  <td
+                    class="whitespace-nowrap px-6 py-4 font-medium text-center"
+                  >
+                    <img
+                      class="max-w-[100px] max-h-[100px]"
+                      src="{{ item.thumb }}"
+                    />
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-6 py-4 font-medium text-center"
+                  >
+                    {{ item.id }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                    {{ item.barcode[0] }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                    {{ item.catno }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                    {{ item.title }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                    {{ item.label[0] }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                    {{ item.country }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                    {{ item.year }}
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                    <div>
+                      <span class="font-semibold">H: </span
+                      >{{ item.community.have }}
+                    </div>
+                    <div>
+                      <span class="font-semibold">W: </span
+                      >{{ item.community.want }}
+                    </div>
+                  </td>
 
                   <td class="whitespace-nowrap px-6 py-4 text-center">
-                    <button onclick="my_modal_1.showModal()"  (click)="addToDatabase(item.id)" class="bg-[rgb(66,66,66)] text-white py-2 px-4 rounded-md">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    <button
+                      onclick="my_modal_1.showModal()"
+                      (click)="addToDatabase(item.id)"
+                      class="bg-[rgb(66,66,66)] text-white py-2 px-4 rounded-md hover:bg-black"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-7 h-7"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
                       </svg>
-
-                    </button></td>
-
-
-
-
+                    </button>
+                  </td>
                 </tr>
-
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
-
-<app-add-item-modal [recordInfo]="recordInfo"></app-add-item-modal>
-
-
-
-
+  <!-- Modal insert price -->
+  <app-add-item-modal [recordInfo]="recordInfo"></app-add-item-modal>
 </div>

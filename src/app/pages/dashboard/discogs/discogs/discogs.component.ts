@@ -12,30 +12,46 @@ import { DiscogsService } from 'src/app/services/discogs.service';
   styleUrls: ['./discogs.component.scss'],
 })
 export class DiscogsComponent {
-  @ViewChild('discogsSearchForm') discogsSearchForm!: NgForm;
+  @ViewChild('searchDiscogsForm') searchDiscogsForm!: NgForm;
   barcode!: string;
   modalIsOpen: boolean = false;
   searchResult: Result[] = [];
   recordInfo!: IRecordInfo;
+  selectedOption: string = '';
   constructor(private discogsService: DiscogsService) {}
 
   ngOnInit() {}
 
-  //ricerca tramite barcode
+  //ricerca album in discogs tramite barcode o catno
   searchRecords(form: NgForm) {
-    this.barcode = form.value.barcode;
+    if (this.selectedOption === 'barcode') {
+      //ricerca tramite barcode
+      this.barcode = form.value.type;
 
-    this.discogsService
-      .getRecordsByBarcode(this.barcode)
-      .subscribe((resData) => {
-        this.searchResult = resData.results;
+      this.discogsService
+        .getRecordsByBarcode(this.barcode)
+        .subscribe((resData) => {
+          this.searchResult = resData.results;
+          form.reset();
 
-        //prendo solo i risultati con il barcode corretto
-        this.searchResult = this.searchResult.filter((item) => {
-          return item.barcode[0] === this.barcode;
+          //prendo solo i risultati con il barcode corretto
+          this.searchResult = this.searchResult.filter((item) => {
+            return item.barcode[0] === this.barcode;
+          });
+          console.log(this.searchResult);
         });
-        console.log(this.searchResult);
-      });
+    } else if (this.selectedOption === 'catno') {
+      //ricerca tramite catno
+    }
+  }
+
+  //ricerca album in discogs tramite artista e titolo
+  searchRecordsByTitle(form: NgForm) {
+    this.discogsService.getRecordsByTitle(form.value.artist, form.value.title).subscribe((resData) => {
+      console.log(resData.results);
+      this.searchResult = resData.results;
+
+    })
   }
 
   //prendo info di un album specifico
@@ -48,8 +64,8 @@ export class DiscogsComponent {
   }
 
   //aggiungi item al databse
-  addToDatabase(id:number) {
-this.getRecordInfo(id)
-this.modalIsOpen = true
+  addToDatabase(id: number) {
+    this.getRecordInfo(id);
+    this.modalIsOpen = true;
   }
 }
