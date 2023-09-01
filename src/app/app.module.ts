@@ -19,7 +19,8 @@ import { AddressComponent } from './pages/profile/address/address/address.compon
 import { PaymentComponent } from './pages/profile/payment/payment/payment.component';
 import { DatabaseComponent } from './pages/dashboard/database/database/database.component';
 import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component';
-import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component'
+import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component';
+import { AddItemModalComponent } from './components/add-item-modal/add-item-modal.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.comp
     PaymentComponent,
     DatabaseComponent,
     OverviewComponent,
-    DiscogsComponent
+    DiscogsComponent,
+    AddItemModalComponent
   ],
   imports: [
     BrowserModule,

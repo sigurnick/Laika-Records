@@ -2,10 +2,12 @@ import { IUser } from './../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { firebaseConfig } from 'src/environments/firebase-config';
 import { tap } from 'rxjs/internal/operators/tap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { IRecordInfo } from '../interfaces/record-id-res';
+import { environment } from 'src/environments/environment';
+import { IRecordOnDatabase } from '../interfaces/recordOnDatabase';
 
 
 @Injectable({
@@ -13,9 +15,10 @@ import { Router } from '@angular/router';
 })
 export class FireDBService {
   //firebase key/url
-  fireKey: string = firebaseConfig.apiKey;
+  fireKey: string = environment.apiKey
   urlUsers: string =
     'https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/users';
+    urlItems: string = `https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/items`
 
 
   //variabili gestione utenti
@@ -79,5 +82,13 @@ export class FireDBService {
   }
   //------------------------------------------------------------------
 
+
+  //Inserimento item nel database
+  additemintoDB(item:IRecordOnDatabase) {
+    return this.http.put(
+      `${this.urlItems}/${item.id}.json`,
+      item
+    );
+  }
 
 }
