@@ -1,3 +1,5 @@
+import { AngularFireModule } from '@angular/fire/compat';
+import { firebaseConfig } from './../environments/firebase-config';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -21,6 +23,15 @@ import { DatabaseComponent } from './pages/dashboard/database/database/database.
 import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component';
 import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component';
 import { AddItemModalComponent } from './components/add-item-modal/add-item-modal.component'
+
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+
+import { Component, inject } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { FireDBService } from './services/fire-db.service';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +59,18 @@ import { AddItemModalComponent } from './components/add-item-modal/add-item-moda
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+
+
+    // provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    // provideStorage(() => getStorage()),
+
+
+
+
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

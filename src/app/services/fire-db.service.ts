@@ -1,13 +1,14 @@
 import { IUser } from './../interfaces/user';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { tap } from 'rxjs/internal/operators/tap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import { IRecordInfo } from '../interfaces/record-id-res';
 import { environment } from 'src/environments/environment';
 import { IRecordOnDatabase } from '../interfaces/recordOnDatabase';
+
+
 
 
 @Injectable({
@@ -25,6 +26,8 @@ export class FireDBService {
   private jwtHelper: JwtHelperService = new JwtHelperService();
   private authSubject = new BehaviorSubject<null | IUser>(null); //null = utente non loggato
   userData$ = this.authSubject.asObservable(); //dati utente loggato
+
+
 
   constructor(private http: HttpClient, private router: Router) {
     this.restoreUser();
@@ -90,5 +93,20 @@ export class FireDBService {
       item
     );
   }
+
+
+  // async uploadFiles(files: File[]) {
+  //   for (const file of files) {
+  //     const filePath = `path_del_tuo_file/${file.name}`;
+  //     const storageRef = this.storage.ref(filePath);
+
+  //     try {
+  //       await storageRef.put(file);
+  //       console.log(`File ${file.name} caricato con successo.`);
+  //     } catch (error) {
+  //       console.error(`Errore durante il caricamento del file ${file.name}:`, error);
+  //     }
+  //   }
+  // }
 
 }

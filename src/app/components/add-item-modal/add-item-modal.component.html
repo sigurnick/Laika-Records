@@ -20,6 +20,11 @@
         ngModel
       />
     </div>
+     <!-- Upload img -->
+     <div class="flex justify-center items-center mb-5">
+      <label for="price" class="text-xl mr-1">Insert picture:</label>
+      <input type="file" (change)="onFilesSelected($event)" name="fileInput" multiple/>
+    </div>
     <!-- Buttons -->
     <div class="modal-action flex justify-center items-center gap-3">
       <button
