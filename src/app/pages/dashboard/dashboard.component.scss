@@ -3,4 +3,36 @@
   color: white;
 }
 
+.containerX {
+  --topbar-height: 100px;
+  --sidebar-width: 240px;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+}
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
 
+.scrolled {
+  background-color: white;
+}
+
+
+@media (min-width: 1024px) {
+  .topbar {
+    height: var(--topbar-height);
+    margin-left: var(--sidebar-width);
+  }
+
+  .scrollable-content {
+    margin-top: var(--topbar-height);
+    margin-left: var(--sidebar-width);
+  }
+}

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { IRecordOnDatabase } from '../interfaces/recordOnDatabase';
 
-
+import { Storage } from '@angular/fire/storage';
 
 
 @Injectable({
@@ -27,8 +27,7 @@ export class FireDBService {
   private authSubject = new BehaviorSubject<null | IUser>(null); //null = utente non loggato
   userData$ = this.authSubject.asObservable(); //dati utente loggato
 
-
-
+  // private storage: Storage = inject(Storage);
   constructor(private http: HttpClient, private router: Router) {
     this.restoreUser();
   }
