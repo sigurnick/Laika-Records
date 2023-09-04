@@ -23,6 +23,7 @@ export class MyordersComponent {
 
   goBack() {
     this.router.navigate([`/profile/${this.id}`]);
+    window.location.reload()
   }
 
 

@@ -15,14 +15,13 @@ export class MyfavouriteComponent {
   ngOnInit() {
     this.authService.user$.subscribe((user) => {
       this.id = user!.localId;
-      console.log(
-        '🚀 ~ file: myorders.component.ts:23 ~ MyordersComponent ~ ngOnInit ~ this.id:',
-        this.id
-      );
+
     });
   }
 
   goBack() {
     this.router.navigate([`/profile/${this.id}`]);
+    window.location.reload()
+
   }
 }
