@@ -10,7 +10,8 @@ import { FireDBService } from 'src/app/services/fire-db.service';
 export class DatabaseComponent implements OnInit {
   items: any[] = [];
 
-  constructor(private firebaseDatabaseService: FireDBService) {}
+
+  constructor(private firebaseDatabaseService: FireDBService) { }
 
   ngOnInit() {
     this.firebaseDatabaseService.getAllItems().subscribe((data) => {
@@ -37,14 +38,25 @@ export class DatabaseComponent implements OnInit {
         }
       });
 
+      // rimuove i duplicati dall'array
+      const uniqueArray = this.items.reduce((result, item) => {
+        if (!result.some((existingItem: IRecordOnDatabase) => existingItem.id === item.id)) {
+          result.push(item);
+        }
+        return result;
+      }, []);
+
+      this.items = uniqueArray;
       console.log(this.items);
+
+
     });
   }
 
-
+  //---------------------------[Gestione Items nel Database]-------------------------
   //aggiunge una quantità all' oggetto nel db
   addQuantity(item: IRecordOnDatabase) {
-    if(item.quantity){
+    if (item.quantity) {
 
       item.quantity++
 
@@ -61,11 +73,11 @@ export class DatabaseComponent implements OnInit {
   //rimuove una quantità all' oggetto nel db
   removeQuantity(item: IRecordOnDatabase) {
     //se la quantità è uguale a zero rimuove l'oggetto dal db
-    if(item.quantity === 1){
+    if (item.quantity === 1) {
       this.eliminateItem(item)
       return
     }
-    if(item.quantity){
+    if (item.quantity) {
 
       item.quantity--
 
@@ -89,4 +101,5 @@ export class DatabaseComponent implements OnInit {
         });
     });
   }
+  //------------------------------------------------------------------
 }
