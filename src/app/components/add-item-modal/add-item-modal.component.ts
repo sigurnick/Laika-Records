@@ -13,11 +13,11 @@ import { FireDBService } from 'src/app/services/fire-db.service';
 export class AddItemModalComponent {
   recordToSendOnDatabase!: IRecordOnDatabase;
   imgFiles: File[] = [];
-  record!: IRecordOnDatabase
+  record!: IRecordOnDatabase;
 
   @Input() recordInfo!: IRecordInfo;
-  @Input () barcode!: string
-  @Input () catno!: string
+  @Input() barcode!: string;
+  @Input() catno!: string;
   @ViewChild('form') form!: NgForm;
 
   constructor(private fireBaseService: FireDBService) {}
@@ -36,47 +36,42 @@ export class AddItemModalComponent {
   submitItem(form: NgForm) {
     if (this.imgFiles.length > 0) {
       //?immagine caricata- da implementare.....
-
     }
-    console.log('info',this.recordInfo);
+    console.log('info', this.recordInfo);
 
-
-
-      //modello record
-      this.record =  new Record(
-        this.recordInfo.id,
-        this.barcode,
-        this.catno,
-        form.value.price,
-        this.recordInfo.year,
-        this.recordInfo.artists,
-        this.recordInfo.labels,
-        this.recordInfo.series,
-        this.recordInfo.formats,
-        this.recordInfo.title,
-        this.recordInfo.country,
-        this.recordInfo.released,
-        this.recordInfo.notes,
-        this.recordInfo.released_formatted,
-        this.recordInfo.videos,
-        this.recordInfo.genres,
-        this.recordInfo.styles,
-        this.recordInfo.tracklist,
-        this.recordInfo.extraartists,
-        new Date()
-      );
-
-
-
+    //modello record
+    this.record = new Record(
+      this.recordInfo.id,
+      this.barcode,
+      this.catno,
+      form.value.price,
+      this.recordInfo.year,
+      this.recordInfo.artists,
+      this.recordInfo.labels,
+      this.recordInfo.series,
+      this.recordInfo.formats,
+      this.recordInfo.title,
+      this.recordInfo.country,
+      this.recordInfo.released,
+      this.recordInfo.notes,
+      this.recordInfo.released_formatted,
+      this.recordInfo.videos,
+      this.recordInfo.genres,
+      this.recordInfo.styles,
+      this.recordInfo.tracklist,
+      this.recordInfo.extraartists,
+      new Date()
+    );
+if(!this.record.price){return}
     console.log(this.record);
 
-
     this.record.genres.forEach((genre) => {
-      this.fireBaseService.additemintoDB(this.record,genre).subscribe((res) => {
-        console.log('aggiunto:',res);
-      });
-    })
-
+      this.fireBaseService
+        .additemintoDB(this.record, genre)
+        .subscribe((res) => {
+          console.log('aggiunto:', res);
+        });
+    });
 
     form.reset();
   }

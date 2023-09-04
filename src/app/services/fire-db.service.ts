@@ -92,30 +92,6 @@ export class FireDBService {
       genre = genre.replace('/', '');
     }
 
-    // this.http
-    //   .get<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`)
-    //   .subscribe((resData) => {
-    //     if (resData && resData.quantity) {
-    //       //oggetto già presente nel database quindi incremento la quantità
-    //       resData.quantity++;
-    //       return this.http
-    //         .put<IRecordOnDatabase>(
-    //           `${this.urlItems}/${genre}/${item.id}.json`,
-    //           resData
-    //         )
-    //         .subscribe((data) => {
-    //           console.log(data);
-    //         });
-    //     } else {
-    //       //oggetto non presente nel database quindi lo inserisco
-    //       item.quantity = 1;
-    //       return this.http.put<IRecordOnDatabase>(
-    //         `${this.urlItems}/${genre}/${item.id}.json`,
-    //         item
-    //       );
-    //     }
-    //   });
-
 
     return this.http.get<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`)
     .pipe(
@@ -133,8 +109,27 @@ export class FireDBService {
     );
   }
 
+  //recupera tutti gli oggetti in vendita
   getAllItems() {
     return this.http.get<IRecordOnDatabase[]>(`${this.urlItems}.json`);
+  }
+
+  //aggiunge di uno la quantità di un oggetto nel database
+  addQuantityToItem(item:IRecordOnDatabase, genre: string) {
+
+    return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`,item);
+  }
+
+  //rimuove di uno la quantità di un oggetto nel database
+  removeQuantityToItem(item:IRecordOnDatabase, genre: string) {
+
+    return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`,item);
+  }
+
+  //elimina un oggetto dal database
+  eliminateItem(item:IRecordOnDatabase, genre: string) {
+
+    return this.http.delete<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`);
   }
   //------------------------------------------------------------------
 

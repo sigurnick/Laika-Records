@@ -59,7 +59,6 @@ export class DiscogsComponent {
         console.log(resData.results);
         this.searchResult = resData.results;
 
-        // form.reset();
       });
   }
   //------------------------------------------------------------------

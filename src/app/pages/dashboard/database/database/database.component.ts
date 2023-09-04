@@ -40,4 +40,53 @@ export class DatabaseComponent implements OnInit {
       console.log(this.items);
     });
   }
+
+
+  //aggiunge una quantità all' oggetto nel db
+  addQuantity(item: IRecordOnDatabase) {
+    if(item.quantity){
+
+      item.quantity++
+
+      item.genres.forEach((element) => {
+        this.firebaseDatabaseService
+          .addQuantityToItem(item, element)
+          .subscribe((resData) => {
+            console.log(resData);
+          });
+      });
+    }
+  }
+
+  //rimuove una quantità all' oggetto nel db
+  removeQuantity(item: IRecordOnDatabase) {
+    //se la quantità è uguale a zero rimuove l'oggetto dal db
+    if(item.quantity === 1){
+      this.eliminateItem(item)
+      return
+    }
+    if(item.quantity){
+
+      item.quantity--
+
+      item.genres.forEach((element) => {
+        this.firebaseDatabaseService
+          .addQuantityToItem(item, element)
+          .subscribe((resData) => {
+            console.log(resData);
+          });
+      });
+    }
+  }
+
+  //rimuove completamente oggeto nel db
+  eliminateItem(item: IRecordOnDatabase) {
+    item.genres.forEach((element) => {
+      this.firebaseDatabaseService
+        .eliminateItem(item, element)
+        .subscribe((resData) => {
+          console.log(resData);
+        });
+    });
+  }
 }
