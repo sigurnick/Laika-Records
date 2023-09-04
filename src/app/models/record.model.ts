@@ -6,6 +6,7 @@ export class Record implements IRecordOnDatabase{
   constructor(
      public id:number,
      public barcode: string,
+     public catno:string,
      public price : number  ,
      public year:number,
      public artists : Artist[],

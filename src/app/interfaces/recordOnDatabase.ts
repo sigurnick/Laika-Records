@@ -3,6 +3,7 @@ export interface IRecordOnDatabase {
   id: number
   price:number
   barcode:string
+  catno: string
   sale?:number
   priceDiscounted?:number
   year: number

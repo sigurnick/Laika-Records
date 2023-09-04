@@ -9,20 +9,18 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-
 import { Storage } from '@angular/fire/storage';
-
+import { Observable, catchError, map, mergeMap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FireDBService {
   //firebase key/url
-  fireKey: string = environment.apiKey
+  fireKey: string = environment.apiKey;
   urlUsers: string =
     'https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/users';
-    urlItems: string = `https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/items`
-
+  urlItems: string = `https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/items`;
 
   //variabili gestione utenti
   private jwtHelper: JwtHelperService = new JwtHelperService();
@@ -86,31 +84,59 @@ export class FireDBService {
   }
   //------------------------------------------------------------------
 
-
-
   //---------------------------[Gestione Database Items]-------------------------
   //Inserimento item nel database
-  additemintoDB(item:IRecordOnDatabase,genre:string) {
-
-
-
+  additemintoDB(item: IRecordOnDatabase, genre: string) {
     //controllo genre contiene "/" e lo tolgo se c'è
     if (genre.includes('/')) {
       genre = genre.replace('/', '');
     }
 
-    return this.http.put(
-      `${this.urlItems}/${genre}/${item.id}.json`,
-      item
+    // this.http
+    //   .get<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`)
+    //   .subscribe((resData) => {
+    //     if (resData && resData.quantity) {
+    //       //oggetto già presente nel database quindi incremento la quantità
+    //       resData.quantity++;
+    //       return this.http
+    //         .put<IRecordOnDatabase>(
+    //           `${this.urlItems}/${genre}/${item.id}.json`,
+    //           resData
+    //         )
+    //         .subscribe((data) => {
+    //           console.log(data);
+    //         });
+    //     } else {
+    //       //oggetto non presente nel database quindi lo inserisco
+    //       item.quantity = 1;
+    //       return this.http.put<IRecordOnDatabase>(
+    //         `${this.urlItems}/${genre}/${item.id}.json`,
+    //         item
+    //       );
+    //     }
+    //   });
+
+
+    return this.http.get<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`)
+    .pipe(
+      mergeMap((resData) => {
+        if (resData && resData.quantity) {
+          // Oggetto già presente nel database quindi incremento la quantità
+          resData.quantity++;
+          return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, resData);
+        } else {
+          // Oggetto non presente nel database quindi lo inserisco
+          item.quantity = 1;
+          return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
+        }
+      })
     );
   }
-
 
   getAllItems() {
     return this.http.get<IRecordOnDatabase[]>(`${this.urlItems}.json`);
   }
   //------------------------------------------------------------------
-
 
   // async uploadFiles(files: File[]) {
   //   for (const file of files) {
@@ -125,5 +151,4 @@ export class FireDBService {
   //     }
   //   }
   // }
-
 }

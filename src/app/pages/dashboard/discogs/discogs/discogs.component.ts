@@ -13,7 +13,8 @@ import { DiscogsService } from 'src/app/services/discogs.service';
 })
 export class DiscogsComponent {
   @ViewChild('searchDiscogsForm') searchDiscogsForm!: NgForm;
-
+  barcode!: string;
+  catno!: string;
   modalIsOpen: boolean = false;
   searchResult: Result[] = [];
   recordInfo!: IRecordInfo;
@@ -40,13 +41,12 @@ export class DiscogsComponent {
       });
     } else if (this.selectedOption === 'catno') {
       //ricerca tramite catno
-      const catno = form.value.type
+      const catno = form.value.type;
 
       this.discogsService.getRecordsByCatno(catno).subscribe((resData) => {
         this.searchResult = resData.results;
         console.log(this.searchResult);
-      })
-
+      });
     }
   }
   //------------------------------------------------------------------
@@ -58,7 +58,8 @@ export class DiscogsComponent {
       .subscribe((resData) => {
         console.log(resData.results);
         this.searchResult = resData.results;
-        form.reset();
+
+        // form.reset();
       });
   }
   //------------------------------------------------------------------
@@ -68,12 +69,14 @@ export class DiscogsComponent {
     this.discogsService.getRecordInfoById(id).subscribe((resData) => {
       this.recordInfo = resData;
 
-      console.log('record info',this.recordInfo);
+      console.log('record info', this.recordInfo);
     });
   }
 
   //aggiungi item al databse
-  addToDatabase(id: number) {
+  addToDatabase(id: number, barcode: string, catno: string) {
+    this.barcode = barcode;
+    this.catno = catno;
     this.getRecordInfo(id);
     this.modalIsOpen = true;
   }

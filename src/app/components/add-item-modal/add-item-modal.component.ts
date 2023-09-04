@@ -16,6 +16,8 @@ export class AddItemModalComponent {
   record!: IRecordOnDatabase
 
   @Input() recordInfo!: IRecordInfo;
+  @Input () barcode!: string
+  @Input () catno!: string
   @ViewChild('form') form!: NgForm;
 
   constructor(private fireBaseService: FireDBService) {}
@@ -43,7 +45,8 @@ export class AddItemModalComponent {
       //modello record
       this.record =  new Record(
         this.recordInfo.id,
-        this.recordInfo.identifiers[0].value,
+        this.barcode,
+        this.catno,
         form.value.price,
         this.recordInfo.year,
         this.recordInfo.artists,
@@ -70,7 +73,7 @@ export class AddItemModalComponent {
 
     this.record.genres.forEach((genre) => {
       this.fireBaseService.additemintoDB(this.record,genre).subscribe((res) => {
-        console.log(res);
+        console.log('aggiunto:',res);
       });
     })
 
