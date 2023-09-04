@@ -23,6 +23,11 @@ export class DiscogsService {
     return this.http.get<IBarcodeDiscogsRes>(`https://api.discogs.com/database/search?barcode=${barcode}&key=${this.discogsKey}&secret=${this.discogsSecret}`)
   }
 
+   //cerca album con catno
+   getRecordsByCatno(catno: string) {
+    return this.http.get<IBarcodeDiscogsRes>(`https://api.discogs.com/database/search?barcode=${catno}&key=${this.discogsKey}&secret=${this.discogsSecret}`)
+  }
+
    //cerca album con titole e artista
    getRecordsByTitle(artist:string, title: string) {
     return this.http.get<IBarcodeDiscogsRes>(`https://api.discogs.com/database/search?artist=${artist}&title=${title}&format=vinyl&key=${this.discogsKey}&secret=${this.discogsSecret}`)
@@ -30,6 +35,7 @@ export class DiscogsService {
 
 
   //prende le info di uno specifico album
+
   getRecordInfoById(id:number) {
    return this.http.get<IRecordInfo>(`https://api.discogs.com/releases/${id}`)
   }

@@ -1,3 +1,5 @@
+import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
+import { IRecordInfo } from 'src/app/interfaces/record-id-res';
 import { IUser } from './../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
@@ -6,7 +8,7 @@ import { tap } from 'rxjs/internal/operators/tap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { IRecordOnDatabase } from '../interfaces/recordOnDatabase';
+
 
 import { Storage } from '@angular/fire/storage';
 
@@ -85,13 +87,29 @@ export class FireDBService {
   //------------------------------------------------------------------
 
 
+
+  //---------------------------[Gestione Database Items]-------------------------
   //Inserimento item nel database
-  additemintoDB(item:IRecordOnDatabase) {
+  additemintoDB(item:IRecordOnDatabase,genre:string) {
+
+
+
+    //controllo genre contiene "/" e lo tolgo se c'è
+    if (genre.includes('/')) {
+      genre = genre.replace('/', '');
+    }
+
     return this.http.put(
-      `${this.urlItems}/${item.id}.json`,
+      `${this.urlItems}/${genre}/${item.id}.json`,
       item
     );
   }
+
+
+  getAllItems() {
+    return this.http.get<IRecordOnDatabase[]>(`${this.urlItems}.json`);
+  }
+  //------------------------------------------------------------------
 
 
   // async uploadFiles(files: File[]) {

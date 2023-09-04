@@ -4,12 +4,15 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnChanges,
+  OnInit,
   Output,
   Renderer2,
 } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { FireDBService } from 'src/app/services/fire-db.service';
+import { IUser } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,13 +24,26 @@ export class DashboardComponent {
   @Output() childLogOutEven = new EventEmitter();
   currentDay: Date = new Date();
   isScrolled = false;
+  userData!: IUser
 
   constructor(
     private authService: AuthService,
     private firebaseService: FireDBService,
     private renderer: Renderer2,
     private el: ElementRef
-  ) {}
+  ) {
+
+  }
+
+
+  ngOnInit() {
+
+    this.firebaseService.userData$.subscribe((data) => {
+      if(data)
+      this.userData = data;
+    })
+
+  }
 
   //cambia la variabile allo scroll del mouse in basso
   @HostListener('window:scroll', [])

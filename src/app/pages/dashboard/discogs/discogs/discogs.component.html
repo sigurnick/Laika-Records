@@ -1,7 +1,7 @@
 <div class="p-5 mx-auto">
   <div>
-    <h1 class="text-2xl font-semibold text-center mb-5">
-      Search records on Discogs' API
+    <h1 class="text-3xl font-semibold text-left mb-12 tracking-wide">
+      Discogs
     </h1>
 
     <div class="flex  items-center gap-5  justify-center ">
@@ -75,24 +75,23 @@
   </div>
 
   <!-- Search result -->
-  <div *ngIf="searchResult.length > 0" class="mt-10">
+  <div *ngIf="searchResult.length > 0" class="mt-10 ">
     <div class="flex flex-col">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-          <div class="overflow-hidden">
+          <div class=" overflow-x-auto">
             <table class="min-w-full text-left text-sm font-light">
               <thead class="border-b bg-[rgb(66,66,66)] text-white font-medium">
                 <tr>
-                  <th scope="col" class="px-6 py-4 text-center">Cover</th>
-                  <th scope="col" class="px-6 py-4 text-center">ID</th>
-                  <th scope="col" class="px-6 py-4 text-center">Barcode</th>
-                  <th scope="col" class="px-6 py-4 text-center">Catno</th>
-                  <th scope="col" class="px-6 py-4 text-center">Title</th>
-                  <th scope="col" class="px-6 py-4 text-center">Label</th>
-                  <th scope="col" class="px-6 py-4 text-center">Country</th>
-                  <th scope="col" class="px-6 py-4 text-center">Year</th>
-                  <th scope="col" class="px-6 py-4 text-center">Community</th>
-                  <th scope="col" class="px-6 py-4 text-center">
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Cover</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Barcode</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Catno</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Title</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Label</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Country</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Year</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Community</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">
                     Add to Databse
                   </th>
                 </tr>
@@ -103,37 +102,33 @@
                   class="border-b bg-white hover:bg-gray-300"
                 >
                   <td
-                    class="whitespace-nowrap px-6 py-4 font-medium text-center"
+                    class="px-3 py-2 xl:px-6 xl:py-4 font-medium text-center"
                   >
                     <img
-                      class="max-w-[100px] max-h-[100px]"
+                      class="w-[60px] h-[60px] xl:w-[100px] xl:h-[100px]"
                       src="{{ item.thumb }}"
                     />
                   </td>
-                  <td
-                    class="whitespace-nowrap px-6 py-4 font-medium text-center"
-                  >
-                    {{ item.id }}
-                  </td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">
+
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
                     {{ item.barcode[0] }}
                   </td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
                     {{ item.catno }}
                   </td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
                     {{ item.title }}
                   </td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
                     {{ item.label[0] }}
                   </td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
                     {{ item.country }}
                   </td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
                     {{ item.year }}
                   </td>
-                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
                     <div>
                       <span class="font-semibold">H: </span
                       >{{ item.community.have }}
@@ -144,11 +139,11 @@
                     </div>
                   </td>
 
-                  <td class="whitespace-nowrap px-6 py-4 text-center">
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
                     <button
                       onclick="my_modal_1.showModal()"
                       (click)="addToDatabase(item.id)"
-                      class="bg-[rgb(66,66,66)] text-white py-2 px-4 rounded-md hover:bg-black"
+                      class="bg-[rgb(66,66,66)] text-white py-1 px-2 xl:py-2 xl:px-4 rounded-md hover:bg-black"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +151,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-7 h-7"
+                        class="w-5 h-5 xl:w-7 xl:h-7"
                       >
                         <path
                           stroke-linecap="round"

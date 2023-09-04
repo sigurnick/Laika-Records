@@ -13,7 +13,7 @@ import { DiscogsService } from 'src/app/services/discogs.service';
 })
 export class DiscogsComponent {
   @ViewChild('searchDiscogsForm') searchDiscogsForm!: NgForm;
-  barcode!: string;
+
   modalIsOpen: boolean = false;
   searchResult: Result[] = [];
   recordInfo!: IRecordInfo;
@@ -22,44 +22,53 @@ export class DiscogsComponent {
 
   ngOnInit() {}
 
-  //ricerca album in discogs tramite barcode o catno
+  //---------------------------[ricerca album in discogs tramite barcode o catno]-------------------------
   searchRecords(form: NgForm) {
     if (this.selectedOption === 'barcode') {
       //ricerca tramite barcode
-      this.barcode = form.value.type;
+      const barcode = form.value.type;
 
-      this.discogsService
-        .getRecordsByBarcode(this.barcode)
-        .subscribe((resData) => {
-          this.searchResult = resData.results;
-          form.reset();
+      this.discogsService.getRecordsByBarcode(barcode).subscribe((resData) => {
+        this.searchResult = resData.results;
+        form.reset();
 
-          //prendo solo i risultati con il barcode corretto
-          this.searchResult = this.searchResult.filter((item) => {
-            return item.barcode[0] === this.barcode;
-          });
-          console.log(this.searchResult);
+        //prendo solo i risultati con il barcode corretto
+        this.searchResult = this.searchResult.filter((item) => {
+          return item.barcode[0] === barcode;
         });
+        console.log(this.searchResult);
+      });
     } else if (this.selectedOption === 'catno') {
       //ricerca tramite catno
+      const catno = form.value.type
+
+      this.discogsService.getRecordsByCatno(catno).subscribe((resData) => {
+        this.searchResult = resData.results;
+        console.log(this.searchResult);
+      })
+
     }
   }
+  //------------------------------------------------------------------
 
-  //ricerca album in discogs tramite artista e titolo
+  //---------------------------[ricerca album in discogs tramite artista e titolo]-------------------------
   searchRecordsByTitle(form: NgForm) {
-    this.discogsService.getRecordsByTitle(form.value.artist, form.value.title).subscribe((resData) => {
-      console.log(resData.results);
-      this.searchResult = resData.results;
-
-    })
+    this.discogsService
+      .getRecordsByTitle(form.value.artist, form.value.title)
+      .subscribe((resData) => {
+        console.log(resData.results);
+        this.searchResult = resData.results;
+        form.reset();
+      });
   }
+  //------------------------------------------------------------------
 
   //prendo info di un album specifico
   getRecordInfo(id: number) {
     this.discogsService.getRecordInfoById(id).subscribe((resData) => {
       this.recordInfo = resData;
 
-      console.log(this.recordInfo);
+      console.log('record info',this.recordInfo);
     });
   }
 

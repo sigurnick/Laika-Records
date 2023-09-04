@@ -13,6 +13,7 @@ import { FireDBService } from 'src/app/services/fire-db.service';
 export class AddItemModalComponent {
   recordToSendOnDatabase!: IRecordOnDatabase;
   imgFiles: File[] = [];
+  record!: IRecordOnDatabase
 
   @Input() recordInfo!: IRecordInfo;
   @ViewChild('form') form!: NgForm;
@@ -32,37 +33,48 @@ export class AddItemModalComponent {
   //invio dati item per inserimento nel database
   submitItem(form: NgForm) {
     if (this.imgFiles.length > 0) {
-      //immagine caricata
+      //?immagine caricata- da implementare.....
 
     }
+    console.log('info',this.recordInfo);
 
-    //modello record
-    const record = new Record(
-      this.recordInfo.id,
-      form.form.value.price,
-      form.form.value.year,
-      this.recordInfo.artists,
-      this.recordInfo.artists_sort,
-      this.recordInfo.labels,
-      this.recordInfo.series,
-      this.recordInfo.formats,
-      this.recordInfo.title,
-      this.recordInfo.country,
-      this.recordInfo.released,
-      this.recordInfo.notes,
-      this.recordInfo.released_formatted,
-      this.recordInfo.videos,
-      this.recordInfo.genres,
-      this.recordInfo.styles,
-      this.recordInfo.tracklist,
-      this.recordInfo.extraartists
-    );
 
-    console.log(record);
 
-    this.fireBaseService.additemintoDB(record).subscribe((res) => {
-      console.log(res);
-    });
+      //modello record
+      this.record =  new Record(
+        this.recordInfo.id,
+        this.recordInfo.identifiers[0].value,
+        form.value.price,
+        this.recordInfo.year,
+        this.recordInfo.artists,
+        this.recordInfo.labels,
+        this.recordInfo.series,
+        this.recordInfo.formats,
+        this.recordInfo.title,
+        this.recordInfo.country,
+        this.recordInfo.released,
+        this.recordInfo.notes,
+        this.recordInfo.released_formatted,
+        this.recordInfo.videos,
+        this.recordInfo.genres,
+        this.recordInfo.styles,
+        this.recordInfo.tracklist,
+        this.recordInfo.extraartists,
+        new Date()
+      );
+
+
+
+    console.log(this.record);
+
+
+    this.record.genres.forEach((genre) => {
+      this.fireBaseService.additemintoDB(this.record,genre).subscribe((res) => {
+        console.log(res);
+      });
+    })
+
+
     form.reset();
   }
 }

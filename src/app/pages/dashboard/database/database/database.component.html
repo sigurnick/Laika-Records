@@ -1,1 +1,108 @@
-<p>database works!</p>
+<div class="p-5 mx-auto">
+
+  <h1 class="text-3xl font-semibold text-left mb-12 tracking-wide">
+    Database
+  </h1>
+
+
+  <!-- Search result -->
+
+  <div *ngIf="items.length > 0"  class="mt-10 ">
+    <div class="flex flex-col">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class=" overflow-x-auto">
+            <table class="min-w-full text-left text-sm font-light">
+              <thead class="border-b bg-[rgb(66,66,66)] text-white font-medium">
+                <tr>
+
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Cover</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Barcode/Catno</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Title</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Artist</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Label</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Date added</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Price</th>
+                  <th scope="col" class="px-3 py-2 xl:px-6 lg:xl-4 text-center">Quantity</th>
+
+
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let item of items"
+
+
+                  class="border-b bg-white hover:bg-gray-300"
+                >
+                  <td
+                    class="px-3 py-2 xl:px-6 xl:py-4 font-medium text-center"
+                  >
+                    <img
+                      class="w-[40px] h-[40px] xl:w-[60px] xl:h-[60px]"
+                      src=""
+                    />
+                  </td>
+
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
+                   <div>
+                   {{item.barcode}}
+                   </div>
+                   <div>
+                    {{item.catno}}
+
+                   </div>
+                  </td>
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
+                    {{ item.title }}
+                  </td>
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
+                    {{ item.artists[0].name}}
+                  </td>
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
+                    {{ item.labels[0].name }}
+                  </td>
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
+                    {{ item.dateAdded }}
+                  </td>
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
+                    {{ item.price }}
+                  </td>
+                  <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
+                    {{ item.quantity }}
+                  </td>
+
+
+
+                  <!-- <td class="px-3 py-2 xl:px-6 xl:py-4 text-center">
+                    <button
+
+
+                      class="bg-[rgb(66,66,66)] text-white py-1 px-2 xl:py-2 xl:px-4 rounded-md hover:bg-black"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-5 h-5 xl:w-7 xl:h-7"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                    </button>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

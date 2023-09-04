@@ -1,12 +1,12 @@
 export interface IRecordOnDatabase {
-
+  quantity?:number
   id: number
   price:number
+  barcode:string
   sale?:number
   priceDiscounted?:number
   year: number
   artists: Artist[]
-  artists_sort: string
   labels: Label[]
   series: any[]
   formats: Format[]
@@ -20,6 +20,7 @@ export interface IRecordOnDatabase {
   styles: string[]
   tracklist: Tracklist[]
   extraartists: Extraartist2[]
+  dateAdded: Date
 }
 
 export interface Artist {

@@ -1,6 +1,5 @@
 <div class="containerX">
   <!-- Left navbar Dextop -->
-
   <div class="hidden sidebar px-2 lg:flex flex-col justify-between">
     <div>
       <a routerLink="/overview" class="p-2">
@@ -334,9 +333,8 @@
 
   <!-- Top Bar -->
   <div
-
-  class="hidden topbar px-4 py-2 bg-xgray lg:flex justify-between items-center"
-  [ngClass]="{'scrolled': isScrolled}"
+    class="hidden topbar px-4 py-2 bg-xgray lg:flex justify-between items-center"
+    [ngClass]="{ scrolled: isScrolled }"
   >
     <!-- Date -->
     <div class="flex items-center gap-2">
@@ -390,8 +388,8 @@
         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
       >
         <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-          <div>Bonnie Green</div>
-          <div class="font-medium truncate">name@flowbite.com</div>
+          <div>{{userData.name}} {{userData.surname}}</div>
+          <div class="font-medium truncate">{{userData.email}}</div>
         </div>
         <ul
           class="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -404,26 +402,15 @@
               >Dashboard</a
             >
           </li>
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >Settings</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >Earnings</a
-            >
-          </li>
+
+
         </ul>
         <div class="py-1">
-          <a
-            href="#"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-            >Sign out</a
+          <button
+          (click)="modifyParentVariable()"
+
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white w-full text-left"
+            >Log out</button
           >
         </div>
       </div>
@@ -591,7 +578,7 @@
     </nav>
   </div>
 
-  <div class="bg-xgray scrollable-content">
+  <div class="bg-xgray scrollable-content overflow-hidden">
     <router-outlet></router-outlet>
   </div>
 </div>

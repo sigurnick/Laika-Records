@@ -36,6 +36,7 @@ export interface IRecordInfo {
   thumb: string
   estimated_weight: number
   blocked_from_sale: boolean
+
 }
 
 export interface Artist {

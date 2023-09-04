@@ -5,10 +5,10 @@ import { Artist, Format, IRecordOnDatabase, Label, Video } from "../interfaces/r
 export class Record implements IRecordOnDatabase{
   constructor(
      public id:number,
-     public price : number,
+     public barcode: string,
+     public price : number  ,
      public year:number,
      public artists : Artist[],
-     public artists_sort: string,
      public labels: Label[],
      public series : any[],
      public formats :Format[],
@@ -21,6 +21,8 @@ export class Record implements IRecordOnDatabase{
      public genres : string[],
      public styles : string[],
      public tracklist : Tracklist[],
-     public extraartists: Extraartist2[]
-  ){}
+     public extraartists: Extraartist2[],
+     public dateAdded: Date ,
+     public quantity?:number
+  ){ }
 }
