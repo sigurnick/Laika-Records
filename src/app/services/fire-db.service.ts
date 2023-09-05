@@ -116,19 +116,26 @@ export class FireDBService {
 
   //aggiunge di uno la quantità di un oggetto nel database
   addQuantityToItem(item:IRecordOnDatabase, genre: string) {
-
+    if (genre.includes('/')) {
+      genre = genre.replace('/', '');
+    }
     return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`,item);
   }
 
   //rimuove di uno la quantità di un oggetto nel database
   removeQuantityToItem(item:IRecordOnDatabase, genre: string) {
+    if (genre.includes('/')) {
+      genre = genre.replace('/', '');
+    }
 
     return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`,item);
   }
 
   //elimina un oggetto dal database
   eliminateItem(item:IRecordOnDatabase, genre: string) {
-
+    if (genre.includes('/')) {
+      genre = genre.replace('/', '');
+    }
     return this.http.delete<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`);
   }
   //------------------------------------------------------------------

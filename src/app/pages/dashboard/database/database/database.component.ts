@@ -74,25 +74,31 @@ export class DatabaseComponent implements OnInit {
   removeQuantity(item: IRecordOnDatabase) {
     //se la quantità è uguale a zero rimuove l'oggetto dal db
     if (item.quantity === 1) {
+      console.log(item.quantity);
+
       this.eliminateItem(item)
-      return
-    }
-    if (item.quantity) {
 
-      item.quantity--
+    }else {
 
-      item.genres.forEach((element) => {
-        this.firebaseDatabaseService
-          .addQuantityToItem(item, element)
-          .subscribe((resData) => {
-            console.log(resData);
-          });
-      });
+      if (item.quantity) {
+
+        item.quantity--
+
+        item.genres.forEach((element) => {
+          this.firebaseDatabaseService
+            .addQuantityToItem(item, element)
+            .subscribe((resData) => {
+              console.log(resData);
+            });
+        });
+      }
     }
   }
 
   //rimuove completamente oggeto nel db
   eliminateItem(item: IRecordOnDatabase) {
+    console.log(item);
+
     item.genres.forEach((element) => {
       this.firebaseDatabaseService
         .eliminateItem(item, element)
