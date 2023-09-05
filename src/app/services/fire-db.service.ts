@@ -28,7 +28,7 @@ export class FireDBService {
   userData$ = this.authSubject.asObservable(); //dati utente loggato
 
   // private storage: Storage = inject(Storage);
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, ) {
     this.restoreUser();
   }
 
