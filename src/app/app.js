@@ -6,3 +6,12 @@ app.controller("SampleCtrl", function($scope, $firebaseObject) {
   $scope.data = $firebaseObject(ref);
   // putting a console.log here won't work, see below
 });
+
+
+window.addEventListener('phx:page-loading-stop', (event) => {
+  // trigger flowbite events
+  window.document.dispatchEvent(new Event("DOMContentLoaded", {
+    bubbles: true,
+    cancelable: true
+  }));
+});

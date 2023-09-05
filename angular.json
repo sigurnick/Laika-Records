@@ -32,7 +32,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["../node_modules/flowbite/dist/flowbite.min.js",
+          "node_modules/preline/dist/preline.js",
+        "src/app/app.js"]
           },
           "configurations": {
             "production": {
