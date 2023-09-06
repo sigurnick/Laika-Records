@@ -1,13 +1,11 @@
-
+import { NgModule } from '@angular/core';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 import { firebaseConfig } from './../environments/firebase-config';
 
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getStorage, provideStorage } from '@angular/fire/storage';
-
-
-import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -28,7 +26,9 @@ import { DatabaseComponent } from './pages/dashboard/database/database/database.
 import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component';
 import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component';
 import { AddItemModalComponent } from './components/add-item-modal/add-item-modal.component'
-
+import { FireDBService } from './services/fire-db.service';
+import { AuthService } from './pages/auth/auth.service';
+import firebase from 'firebase/compat/app';
 
 
 
@@ -60,16 +60,15 @@ import { AddItemModalComponent } from './components/add-item-modal/add-item-moda
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-
-
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     provideStorage(() => getStorage()),
 
-
-
-
   ],
-  providers: [],
+  providers: [FireDBService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

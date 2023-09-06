@@ -2,8 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
-    "./node_modules/flowbite/**/*.js",
-    "node_modules/preline/dist/*.js",
+
   ],
   theme: {
     extend: {
@@ -17,7 +16,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("flowbite/plugin"), require("preline/plugin")],
+  plugins: [],
 };
 
 // primary: '#4C3A51',

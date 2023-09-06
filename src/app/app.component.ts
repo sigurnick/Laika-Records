@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FireDBService } from './services/fire-db.service';
 import { IUser } from './interfaces/user';
 import { initFlowbite } from 'flowbite';
+import { Firestore } from '@angular/fire/firestore';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -12,6 +16,8 @@ export class AppComponent {
   title = 'Laika-Records';
   userData!: IUser;
   isAdminLogged: boolean = false;
+
+
   constructor(private firebaseService: FireDBService) {}
 
   ngOnInit() {

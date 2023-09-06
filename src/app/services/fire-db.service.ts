@@ -1,5 +1,4 @@
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
-import { IRecordInfo } from 'src/app/interfaces/record-id-res';
 import { IUser } from './../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
@@ -8,16 +7,16 @@ import { tap } from 'rxjs/internal/operators/tap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import {  mergeMap } from 'rxjs';
 import { Storage } from '@angular/fire/storage';
-import { Observable, catchError, map, mergeMap, throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class FireDBService {
   //firebase key/url
-  fireKey: string = environment.apiKey;
+  fireKey: string = environment.apiKeyFire;
   urlUsers: string =
     'https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/users';
   urlItems: string = `https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/items`;
@@ -27,8 +26,9 @@ export class FireDBService {
   private authSubject = new BehaviorSubject<null | IUser>(null); //null = utente non loggato
   userData$ = this.authSubject.asObservable(); //dati utente loggato
 
-  // private storage: Storage = inject(Storage);
-  constructor(private http: HttpClient, private router: Router, ) {
+
+
+  constructor(private http: HttpClient, private router: Router) {
     this.restoreUser();
   }
 

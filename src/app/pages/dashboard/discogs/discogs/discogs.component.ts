@@ -1,11 +1,10 @@
-import { filter } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+
+import { Component, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Result } from 'src/app/interfaces/barcodeDiscogsRes';
 import { IRecordInfo } from 'src/app/interfaces/record-id-res';
 import { DiscogsService } from 'src/app/services/discogs.service';
-
+import { Storage } from '@angular/fire/storage';
 @Component({
   selector: 'app-discogs',
   templateUrl: './discogs.component.html',
@@ -19,7 +18,9 @@ export class DiscogsComponent {
   searchResult: Result[] = [];
   recordInfo!: IRecordInfo;
   selectedOption: string = '';
-  constructor(private discogsService: DiscogsService) {}
+
+
+  constructor(private discogsService: DiscogsService, private storage: Storage) {}
 
   ngOnInit() {}
 
@@ -78,5 +79,7 @@ export class DiscogsComponent {
     this.catno = catno;
     this.getRecordInfo(id);
     this.modalIsOpen = true;
+
+
   }
 }
