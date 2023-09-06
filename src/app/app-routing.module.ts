@@ -14,6 +14,7 @@ import { PaymentComponent } from './pages/profile/payment/payment/payment.compon
 import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component';
 import { DatabaseComponent } from './pages/dashboard/database/database/database.component';
 import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component';
+import { RecordComponent } from './pages/record/record/record.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -41,6 +42,8 @@ const routes: Routes = [
       { path: 'payment', component: PaymentComponent },
     ],
   },
+  { path: 'record', component: RecordComponent},
+  { path: 'record/:genre/:id', component: RecordComponent}
 ];
 
 @NgModule({

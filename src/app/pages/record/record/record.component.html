@@ -1,0 +1,32 @@
+<div class="px-3 py-3 max-w-[1700px] mx-auto mt-8">
+
+  <div *ngIf="record" class="flex flex-col md:flex-row md:justify-center md:gap-10">
+
+    <!-- Record Image -->
+    <div class="mx-auto w-6/12 max-w-[70%] md:max-w-[750px] md:mx-0 rounded-sm">
+  <img  src="https://m.media-amazon.com/images/I/81NaE+lIhBL._AC_SL1400_.jpg" alt="Record image">
+    </div>
+
+    <!-- Record Data -->
+    <div class="mx-auto w-6/12  md:max-w-[750px]">
+
+      <!-- Title - Artist - Year released -->
+    <div class="text-3xl  tracking-wide">{{record.title}}</div>
+   <a class="underline text-2xl">{{record.artists[0].name}}</a>
+   <div class="mt-6">{{record.released_formatted}}</div>
+
+   <!-- Record info -->
+   <hr class="mt-4 mb-2">
+   <div><span class="font-semibold">Format: </span>{{record.formats[0].name}} {{record.formats[0].qty}}x{{record.formats[0].descriptions}}</div>
+   <div><span class="font-semibold">Genre: </span>{{record.genres}}</div>
+   <div *ngIf="record.styles.length>0"><span class="font-semibold">Styles: </span>{{record.styles | separateArrayString}}</div>
+   <div><span class="font-semibold">Barcode: </span>{{record.barcode}}</div>
+   <hr class="mt-2 mb-4">
+
+
+    </div>
+
+
+
+  </div>
+</div>

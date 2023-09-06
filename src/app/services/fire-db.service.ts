@@ -8,7 +8,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import {  mergeMap } from 'rxjs';
-import { Storage } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+
+
 
 
 @Injectable({
@@ -107,6 +109,10 @@ export class FireDBService {
         }
       })
     );
+  }
+
+  getItemByIdAndGenre(id:string, genre:string) {
+    return this.http.get<IRecordOnDatabase>(`${this.urlItems}/${genre}/${id}.json`)
   }
 
   //recupera tutti gli oggetti in vendita

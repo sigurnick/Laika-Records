@@ -1,9 +1,11 @@
+
 import { NgModule } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getAuth, provideAuth } from '@angular/fire/auth';
+import { connectFirestoreEmulator, enableIndexedDbPersistence, getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { firebaseConfig } from './../environments/firebase-config';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,9 +31,16 @@ import { AddItemModalComponent } from './components/add-item-modal/add-item-moda
 import { FireDBService } from './services/fire-db.service';
 import { AuthService } from './pages/auth/auth.service';
 import firebase from 'firebase/compat/app';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { RecordComponent } from './pages/record/record/record.component';
+import { SeparateArrayStringPipe } from './pipes/separate-array-string.pipe';
 
 
 
+
+
+// firebase.initializeApp(firebaseConfig)
 
 @NgModule({
   declarations: [
@@ -51,7 +60,9 @@ import firebase from 'firebase/compat/app';
     DatabaseComponent,
     OverviewComponent,
     DiscogsComponent,
-    AddItemModalComponent
+    AddItemModalComponent,
+    RecordComponent,
+    SeparateArrayStringPipe
   ],
   imports: [
     BrowserModule,
@@ -60,10 +71,18 @@ import firebase from 'firebase/compat/app';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth()),
-    provideStorage(() => getStorage()),
+
+    // provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    // provideDatabase(() => getDatabase()),
+    // provideFirestore(() => getFirestore()),
+    // provideAuth(() => getAuth()),
+    // provideStorage(() => getStorage()),
+
+
+
+AngularFireModule.initializeApp(firebaseConfig),
+AngularFireStorageModule
+
 
   ],
   providers: [FireDBService, AuthService],

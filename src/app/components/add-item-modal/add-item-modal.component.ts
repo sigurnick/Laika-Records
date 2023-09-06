@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { IRecordInfo } from 'src/app/interfaces/record-id-res';
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { Record } from 'src/app/models/record.model';
@@ -14,6 +15,7 @@ export class AddItemModalComponent {
   recordToSendOnDatabase!: IRecordOnDatabase;
   imgFiles: File[] = [];
   record!: IRecordOnDatabase;
+
 
   @Input() recordInfo!: IRecordInfo;
   @Input() barcode!: string;
@@ -35,7 +37,28 @@ export class AddItemModalComponent {
   //invio dati item per inserimento nel database
   submitItem(form: NgForm) {
     if (this.imgFiles.length > 0) {
-      //?immagine caricata- da implementare.....
+      //*Ho le immagini e quindi le crico
+      // const storage = getStorage();
+      // const storageRef = ref(storage, 'LP-IMG');
+
+      // for (const selectedImage of this.imgFiles) {
+      //   if (selectedImage) {
+      //     const filePath = `images/${selectedImage.name}`;
+      //     const fileRef =ref(storage, filePath);
+
+      //     uploadBytes(storageRef, selectedImage).then((snapshot) => {
+      //       console.log('Uploaded a blob or file!');
+      //     });
+
+      //   }
+      // }
+
+
+
+
+
+
+
     }
     console.log('info', this.recordInfo);
 

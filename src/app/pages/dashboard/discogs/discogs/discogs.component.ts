@@ -20,6 +20,7 @@ export class DiscogsComponent {
   selectedOption: string = '';
 
 
+
   constructor(private discogsService: DiscogsService, private storage: Storage) {}
 
   ngOnInit() {}

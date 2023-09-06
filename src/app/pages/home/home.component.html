@@ -1,1 +1,37 @@
-<p>home works!</p>
+<div class="px-3 py-3 max-w-[1700px] mx-auto mt-8">
+  <!-- Last item added -->
+  <h1 class="text-2xl tracking-wider mb-3">Last records added on Laika</h1>
+  <div
+    class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  2xl:grid-cols-6"
+  >
+    <div *ngFor="let item of lastAddedItems" class="mb-4 mx-auto ">
+      <a routerLink="/record/{{item.genres[0]}}/{{ item.id }}">
+        <img
+          src="https://m.media-amazon.com/images/I/81NaE+lIhBL._AC_SL1400_.jpg"
+          alt="record cover"
+          class="rounded-sm"
+        />
+      </a>
+
+        <a
+          routerLink="/record/{{item.genres[0]}}/{{ item.id }}"
+          class="font-light truncate  hover:underline mt-1"
+          >{{ item.title }}</a
+        >
+<br>
+        <a
+          routerLink="/record/{{ item.id }}"
+          class="font-light  hover:underline"
+          >{{ item.artists[0].name }}</a
+        >
+
+
+      <a
+        routerLink="/record/{{ item.id }}"
+        class="font-light  underline-offset-8 decoration-coolBlack border-b-2  flex justify-between hover:border-b-coolBlack mt-2"
+      >
+        <span>Buy</span><span>{{ item.price }} €</span>
+      </a>
+    </div>
+  </div>
+</div>
