@@ -35,6 +35,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { RecordComponent } from './pages/record/record/record.component';
 import { SeparateArrayStringPipe } from './pipes/separate-array-string.pipe';
+import { initFlowbite } from 'flowbite';
+
 
 
 
@@ -71,6 +73,7 @@ import { SeparateArrayStringPipe } from './pipes/separate-array-string.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+
 
     // provideFirebaseApp(() => initializeApp(firebaseConfig)),
     // provideDatabase(() => getDatabase()),

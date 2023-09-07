@@ -2,6 +2,10 @@
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
+    "./node_modules/flowbite/**/*.js",
+    "./node_modules/tw-elements/dist/js/**/*.js"
+
+
 
   ],
   theme: {
@@ -16,7 +20,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin'),
+  require("tw-elements/dist/plugin.cjs")],
 };
 
 // primary: '#4C3A51',
