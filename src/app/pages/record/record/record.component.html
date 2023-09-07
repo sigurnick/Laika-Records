@@ -1,5 +1,6 @@
 <div class="px-3 py-3 max-w-[1700px] mx-auto mt-1 lg:mt-8">
 
+  <!--  RECORD COVER - INFO -->
   <div *ngIf="record" class="flex flex-col lg:flex-row md:justify-center md:gap-10 mx-auto lg:p-8">
 
     <!-- Record Image -->
@@ -8,24 +9,30 @@
     </div>
 
     <!-- Record Data -->
-    <div class="px-4 mt-6 lg:mt-0 w-full max-w-[750px]">
+    <div class="px-4 mt-6 lg:mt-0 w-full max-w-[750px] flex flex-col justify-start gap-4  lg:gap-8 xl:gap-12 2xl:gap-16">
 
       <!-- Title - Artist - Year released -->
-    <div class="text-4xl">{{record.title}}</div>
-   <a class="underline text-3xl">{{record.artists[0].name}}</a>
-   <div class="mt-4 font-semibold text-lg">€{{record.price}}</div>
+      <div>
+        <h1 class="text-3xl md:text-4xl font-semibold">{{record.title}}</h1>
+       <a class="underline text-2xl md:text-3xl"><h2>{{record.artists[0].name}}</h2></a>
+       <div class="mt-4 font-semibold text-lg">€{{record.price}}</div>
+      </div>
+
+      <hr class="border-bottom-[1px] border-slate-300">
 
    <!-- Record info -->
-   <hr class="mt-6 mb-4 border-bottom-[1px] border-slate-300">
-   <div class="mt-6 text-lg"><span class="font-semibold">Released: </span>{{record.released_formatted}}</div>
-   <div class="text-lg"><span class="font-semibold">Format: </span>{{record.formats[0].name}} {{record.formats[0].qty}}x{{record.formats[0].descriptions | separateArrayString}}</div>
-   <div class="text-lg"><span class="font-semibold">Genre: </span>{{record.genres}} <span *ngIf="record.styles.length>0">| {{record.styles | separateArrayString}}</span></div>
-   <div class="text-lg"><span class="font-semibold">Barcode: </span>{{record.barcode}}</div>
-   <hr class="mt-6 mb-6 border-bottom-[1px] border-slate-300">
+   <div>
+     <div class=" text-lg"><span class="font-semibold">Released: </span>{{record.released_formatted}}</div>
+     <div class="text-lg"><span class="font-semibold">Format: </span>{{record.formats[0].name}} {{record.formats[0].qty}}x{{record.formats[0].descriptions | separateArrayString}}</div>
+     <div class="text-lg"><span class="font-semibold">Genre: </span>{{record.genres}} <span *ngIf="record.styles.length>0">| {{record.styles | separateArrayString}}</span></div>
+     <div class="text-lg"><span class="font-semibold">Barcode: </span>{{record.barcode}}</div>
+   </div>
+
+   <hr class=" border-bottom-[1px] border-slate-300">
 
 
 <!-- Button Buy and favourite -->
-    <div class="flex gap-1 justify-center items-center">
+    <div class="flex gap-1 justify-center items-center text-lg">
       <button class="w-full bg-black py-2 px-4 text-white rounded-md max-w-xs">Add to cart</button>
 
       <button class="w-full border-2 py-1 border-red-500 rounded-md flex justify-center items-center text-black max-w-[100px] "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 ">
@@ -33,7 +40,8 @@
       </svg>
       </button>
     </div>
-   <hr class="mt-6 mb-4 border-bottom-[1px] border-slate-300">
+
+   <hr class="border-bottom-[1px] border-slate-300">
 
 
 
@@ -42,8 +50,9 @@
 
 
 </div>
-<!-- Tracklist -->
-<div *ngIf="record" class="mx-auto px-3 lg:px-16 lg:max-w-[1500px]">
+
+<!-- RECORD TRACKLIST -->
+<div *ngIf="record" class="mx-auto px-5 lg:px-10 lg:max-w-[1550px] text-lg">
   <div class="text-lg mt-14 mb-4">Tracklist</div>
   <hr class=" border-bottom-[1px] border-slate-300">
 
