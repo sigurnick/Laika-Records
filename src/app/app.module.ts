@@ -63,12 +63,10 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(() => getStorage()),
-    provideDatabase(() => getDatabase()),
-    provideAuth(() => getAuth()),
+    provideFirebaseApp(()=> initializeApp(environment.firebase)),
+    provideStorage(()=> getStorage())
   ],
-  providers: [FireDBService, AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

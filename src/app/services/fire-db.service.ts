@@ -36,8 +36,6 @@ export class FireDBService {
 
   constructor(private http: HttpClient,
     private router: Router,
-    private db: Database,
-    defaultApp: FirebaseApp,
     private storage: Storage
     ) {
     this.restoreUser();
