@@ -1,9 +1,7 @@
 
 import { NgModule } from '@angular/core';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { FirebaseApp, getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { connectFirestoreEmulator, enableIndexedDbPersistence, getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { firebaseConfig } from './../environments/firebase-config';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 
@@ -30,19 +28,11 @@ import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.comp
 import { AddItemModalComponent } from './components/add-item-modal/add-item-modal.component'
 import { FireDBService } from './services/fire-db.service';
 import { AuthService } from './pages/auth/auth.service';
-import firebase from 'firebase/compat/app';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { RecordComponent } from './pages/record/record/record.component';
 import { SeparateArrayStringPipe } from './pipes/separate-array-string.pipe';
-import { initFlowbite } from 'flowbite';
+import { environment } from 'src/environments/environment';
 
 
-
-
-
-
-// firebase.initializeApp(firebaseConfig)
 
 @NgModule({
   declarations: [
@@ -73,20 +63,10 @@ import { initFlowbite } from 'flowbite';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-
-
-    // provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    // provideDatabase(() => getDatabase()),
-    // provideFirestore(() => getFirestore()),
-    // provideAuth(() => getAuth()),
-    // provideStorage(() => getStorage()),
-
-
-
-AngularFireModule.initializeApp(firebaseConfig),
-AngularFireStorageModule
-
-
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
+    provideDatabase(() => getDatabase()),
+    provideAuth(() => getAuth()),
   ],
   providers: [FireDBService, AuthService],
   bootstrap: [AppComponent]

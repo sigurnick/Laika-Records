@@ -4,9 +4,6 @@ import { IUser } from './interfaces/user';
 import { initFlowbite } from 'flowbite';
 import { Carousel, Dropdown, initTE } from 'tw-elements';
 
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,12 +14,16 @@ export class AppComponent {
   userData!: IUser;
   isAdminLogged: boolean = false;
 
-
-  constructor(private firebaseService: FireDBService) {}
+  constructor(
+    private firebaseService: FireDBService,
+  ) {}
 
   ngOnInit() {
+
     initFlowbite();
     initTE({ Carousel, Dropdown });
+
+
 
     this.firebaseService.userData$.subscribe((data) => {
       console.log('data', data);

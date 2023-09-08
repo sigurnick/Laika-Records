@@ -6,9 +6,14 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { tap } from 'rxjs/internal/operators/tap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import {  mergeMap } from 'rxjs';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Storage } from '@angular/fire/storage';
+import { initializeApp } from 'firebase/app';
+import { environment } from 'src/environments/environment';
+import { Auth } from '@angular/fire/auth';
+import { Database } from '@angular/fire/database';
+import { FirebaseApp, FirebaseApps } from '@angular/fire/app';
+import { getAuth, updatePassword } from "firebase/auth";
 
 
 
@@ -29,9 +34,14 @@ export class FireDBService {
   userData$ = this.authSubject.asObservable(); //dati utente loggato
 
 
-
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient,
+    private router: Router,
+    private db: Database,
+    defaultApp: FirebaseApp,
+    private storage: Storage
+    ) {
     this.restoreUser();
+
   }
 
   //---------------------------[Gestione Utenti]-------------------------
@@ -56,8 +66,19 @@ export class FireDBService {
     );
   }
 
-
-
+//update password user
+ updatePassword(newPassword: string) {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if(user){
+    updatePassword(user, newPassword).then(() => {
+      // Update successful.
+    }).catch((error) => {
+      // An error ocurred
+      // ...
+    });
+  }
+ }
 
   //Prendo dati utente e li inserisco nel localstorage
   getUserData(userId: string, tokenId: string) {

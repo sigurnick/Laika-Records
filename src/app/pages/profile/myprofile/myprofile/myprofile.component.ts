@@ -13,11 +13,15 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./myprofile.component.scss']
 })
 export class MyprofileComponent {
-  @ViewChild('editNameForm') form!: NgForm;
+  @ViewChild('editNameForm') editNameForm!: NgForm;
+  // @ViewChild('editPasswordForm') editPasswordForm!: NgForm;
 
   id!: string;
   userAuth!: IAuthResponseData
   userData!: IUser;
+  nameUser!:string
+  surnameUser!:string
+
 
   constructor(private authService: AuthService, private router: Router, private firebaseService: FireDBService) { }
 
@@ -33,16 +37,20 @@ export class MyprofileComponent {
 
     //prendo i dati dell'utente dal db
     this.firebaseService.userData$.subscribe((user) => {
-      if (user)
+      if (user){
+
         this.userData = user;
+      this.nameUser = user.name
+      this.surnameUser = user.surname
       console.log(this.userData);
+      }
 
     })
   }
 
   //edit Name and Surname User
-  editNameForm(form: NgForm) {
-    console.log(form.value.name);
+  editNameFormSubmit(form: NgForm) {
+
 
     this.firebaseService.writeUserData(this.userData.userId, this.userAuth.idToken,this.userData.email, form.value.name, form.value.surname).subscribe((resData)=>{
       console.log(resData);
@@ -56,9 +64,13 @@ export class MyprofileComponent {
     })
   }
 
-  editPasswordForm(form: NgForm) {
+//   editPasswordFormSubmit(form: NgForm) {
 
-  }
+
+// if(form.value.newPassword.length >= 6){
+//   this.firebaseService.updatePassword(form.value.password)
+// }
+//   }
 
   goBack() {
     this.router.navigate([`/profile/${this.id}`]);
