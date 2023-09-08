@@ -6,6 +6,7 @@ import { IUser } from 'src/app/interfaces/user';
 import { IAuthResponseData } from '../auth/interfaces/auth-responde-data';
 import { FireDBService } from 'src/app/services/fire-db.service';
 import { NgForm } from '@angular/forms';
+import { initFlowbite } from 'flowbite';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit{
   constructor(private actRouter: ActivatedRoute, private router: Router, private authService: AuthService, private firebaseService: FireDBService) { }
 
   ngOnInit() {
+    initFlowbite();
     this.isRouteOpen=false
 
       //prendo l'id parametro

@@ -56,7 +56,10 @@ export class FireDBService {
     );
   }
 
-  //Prendo dati utente
+
+
+
+  //Prendo dati utente e li inserisco nel localstorage
   getUserData(userId: string, tokenId: string) {
     return this.http
       .get<IUser>(`${this.urlUsers}/${userId}.json?auth=${tokenId}`)

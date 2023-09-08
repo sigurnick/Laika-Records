@@ -40,14 +40,14 @@
 </div>
 
 <!-- MAIN -->
-<main class="px-3 py-3 max-w-[1700px] mx-auto ">
+<main class="px-3 py-3 max-w-[1600px] mx-auto ">
 
   <!-- Last item added -->
   <h1 class="text-2xl tracking-wider mb-3">Last records added on Laika</h1>
   <div
-    class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  2xl:grid-cols-6"
+    class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
   >
-    <div *ngFor="let item of lastAddedItems" class="mb-4 mx-auto ">
+    <div *ngFor="let item of lastAddedItems" class="mb-4 mx-auto flex flex-col gap-1">
       <a routerLink="/record/{{item.genres[0]}}/{{ item.id }}">
         <img
           src="https://m.media-amazon.com/images/I/81NaE+lIhBL._AC_SL1400_.jpg"
@@ -58,10 +58,10 @@
 
         <a
           routerLink="/record/{{item.genres[0]}}/{{ item.id }}"
-          class="font-light truncate  hover:underline mt-1 "
+          class="font-light  hover:underline "
           >{{ item.title }}</a
         >
-<br>
+
         <a
           routerLink="/record/{{ item.id }}"
           class="font-light  hover:underline"
