@@ -8,12 +8,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import {  mergeMap } from 'rxjs';
 import { Storage } from '@angular/fire/storage';
-import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { Auth } from '@angular/fire/auth';
-import { Database } from '@angular/fire/database';
-import { FirebaseApp, FirebaseApps } from '@angular/fire/app';
 import { getAuth, updatePassword } from "firebase/auth";
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 
 
@@ -36,10 +34,10 @@ export class FireDBService {
 
   constructor(private http: HttpClient,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private auth: Auth
     ) {
     this.restoreUser();
-
   }
 
   //---------------------------[Gestione Utenti]-------------------------
@@ -64,13 +62,16 @@ export class FireDBService {
     );
   }
 
-//update password user
+//update password user //! Da sistemare
  updatePassword(newPassword: string) {
   const auth = getAuth();
   const user = auth.currentUser;
+  console.log(user);
+
   if(user){
     updatePassword(user, newPassword).then(() => {
-      // Update successful.
+     console.log('pass changed');
+
     }).catch((error) => {
       // An error ocurred
       // ...
@@ -166,19 +167,84 @@ export class FireDBService {
     }
     return this.http.delete<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`);
   }
+
+  //salvataggio immagini nello storage
+  saveImgInStorage(imgFile: File, item:IRecordOnDatabase) {
+
+    const storage = getStorage(); //storage
+    const storageRef = ref(storage, `IMG/LP/${item.id}/${imgFile.name}`); //percorrso salvataggio file
+
+    const imagePath =`IMG/LP/${item.id}/${imgFile.name}`
+
+    uploadBytes(storageRef, imgFile).then((snapshot) => {
+            console.log('Uploaded a blob or file!');
+            item.img = imagePath
+            //ora inserisco il percorso nel database
+          this.http.put<IRecordOnDatabase>(`${this.urlItems}/${item.genres[0]}/${item.id}.json`,item).subscribe((data) => {
+
+          })
+          });
+      // for (const selectedImage of imgFiles) {
+      //   if (selectedImage) {
+      //     const filePath = `images/${selectedImage.name}`;
+      //     const fileRef =ref(storage, filePath);
+
+      //     uploadBytes(storageRef, selectedImage).then((snapshot) => {
+      //       console.log('Uploaded a blob or file!');
+      //     });
+
+      //   }
+      // }
+  }
+
+  async getImage(item: IRecordOnDatabase): Promise<string | null> {
+    if (item.img) {
+      const storage = getStorage();
+
+      try {
+        const url = await getDownloadURL(ref(storage, item.img));
+        // Ora puoi utilizzare l'URL come desideri
+        console.log('URL dell\'immagine:', url);
+        return url;
+      } catch (error) {
+        // Gestisci gli errori qui
+        console.error('Errore nel recupero dell\'URL dell\'immagine:', error);
+        return null; // Restituisci un valore di fallback in caso di errore
+      }
+    } else {
+      return null; // Restituisci un valore di fallback se item.img non è definito
+    }
+  }
+
+
+
+// getImage(item: IRecordOnDatabase){
+//   if (item.img) {
+//     const storage = getStorage();
+// getDownloadURL(ref(storage, item.img))
+//   .then((url) => {
+//     // `url` is the download URL for 'images/stars.jpg'
+
+//     // This can be downloaded directly:
+//     const xhr = new XMLHttpRequest();
+//     xhr.responseType = 'blob';
+//     xhr.onload = (event) => {
+//       const blob = xhr.response;
+//     };
+//     xhr.open('GET', url);
+//     xhr.send();
+
+//     // Or inserted into an <img> element
+//     return url
+//   })
+//   .catch((error) => {
+//     // Handle any errors
+//   });
+//   }
+
+// }
+
   //------------------------------------------------------------------
 
-  // async uploadFiles(files: File[]) {
-  //   for (const file of files) {
-  //     const filePath = `path_del_tuo_file/${file.name}`;
-  //     const storageRef = this.storage.ref(filePath);
 
-  //     try {
-  //       await storageRef.put(file);
-  //       console.log(`File ${file.name} caricato con successo.`);
-  //     } catch (error) {
-  //       console.error(`Errore durante il caricamento del file ${file.name}:`, error);
-  //     }
-  //   }
-  // }
 }

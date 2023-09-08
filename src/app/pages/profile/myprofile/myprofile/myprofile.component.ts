@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
 })
 export class MyprofileComponent {
   @ViewChild('editNameForm') editNameForm!: NgForm;
-  // @ViewChild('editPasswordForm') editPasswordForm!: NgForm;
+  @ViewChild('editPasswordForm') editPasswordForm!: NgForm;
 
   id!: string;
   userAuth!: IAuthResponseData
@@ -64,13 +64,14 @@ export class MyprofileComponent {
     })
   }
 
-//   editPasswordFormSubmit(form: NgForm) {
+  // edit password
+  editPasswordFormSubmit(form: NgForm) {
+    console.log(form);
 
-
-// if(form.value.newPassword.length >= 6){
-//   this.firebaseService.updatePassword(form.value.password)
-// }
-//   }
+if(form.value.newPassword.length >= 6){
+  this.firebaseService.updatePassword(form.value.password)
+}
+  }
 
   goBack() {
     this.router.navigate([`/profile/${this.id}`]);

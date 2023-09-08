@@ -14,6 +14,7 @@ import { FireDBService } from 'src/app/services/fire-db.service';
 export class AddItemModalComponent {
   recordToSendOnDatabase!: IRecordOnDatabase;
   imgFiles: File[] = [];
+  imgFile!: File
   record!: IRecordOnDatabase;
 
 
@@ -24,42 +25,26 @@ export class AddItemModalComponent {
 
   constructor(private fireBaseService: FireDBService) {}
 
-  //prende le immagini caricate
+  //mette le immagini nella variabile imgFiles
   onFilesSelected(event: any) {
-    const files: FileList = event.target.files; // Ottieni tutti i file selezionati
+    //todo codice per l'uplod di più immagini
+    // const files: FileList = event.target.files; // Ottieni tutti i file selezionati
+    // for (let i = 0; i < files.length; i++) {
+    //   // Aggiungi i file alla lista dei file selezionati
+    //   this.imgFiles.push(files[i]);
+    // }
 
-    for (let i = 0; i < files.length; i++) {
-      // Aggiungi i file alla lista dei file selezionati
-      this.imgFiles.push(files[i]);
-    }
+    this.imgFile = event.target.files[0]
+    console.log(this.imgFile);
+
   }
+
 
   //invio dati item per inserimento nel database
   submitItem(form: NgForm) {
-    if (this.imgFiles.length > 0) {
-      //*Ho le immagini e quindi le crico
-      // const storage = getStorage();
-      // const storageRef = ref(storage, 'LP-IMG');
-
-      // for (const selectedImage of this.imgFiles) {
-      //   if (selectedImage) {
-      //     const filePath = `images/${selectedImage.name}`;
-      //     const fileRef =ref(storage, filePath);
-
-      //     uploadBytes(storageRef, selectedImage).then((snapshot) => {
-      //       console.log('Uploaded a blob or file!');
-      //     });
-
-      //   }
-      // }
 
 
 
-
-
-
-
-    }
     console.log('info', this.recordInfo);
 
     //modello record
@@ -87,6 +72,9 @@ export class AddItemModalComponent {
     );
 if(!this.record.price){return}
     console.log(this.record);
+
+    this.fireBaseService.saveImgInStorage(this.imgFile, this.record)
+
 
     this.record.genres.forEach((genre) => {
       this.fireBaseService

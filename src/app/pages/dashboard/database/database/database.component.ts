@@ -49,6 +49,14 @@ export class DatabaseComponent implements OnInit {
       this.items = uniqueArray;
       console.log(this.items);
 
+      //prende l'url dell' immagine di ogn iitems
+      this.items.forEach((item)=>{
+        this.firebaseDatabaseService.getImage(item).then((url)=>{
+          item.url = url;
+        })
+      })
+
+
 
     });
   }

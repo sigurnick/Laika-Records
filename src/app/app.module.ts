@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-import { FirebaseApp, getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
@@ -26,8 +26,6 @@ import { DatabaseComponent } from './pages/dashboard/database/database/database.
 import { OverviewComponent } from './pages/dashboard/overview/overview/overview.component';
 import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component';
 import { AddItemModalComponent } from './components/add-item-modal/add-item-modal.component'
-import { FireDBService } from './services/fire-db.service';
-import { AuthService } from './pages/auth/auth.service';
 import { RecordComponent } from './pages/record/record/record.component';
 import { SeparateArrayStringPipe } from './pipes/separate-array-string.pipe';
 import { environment } from 'src/environments/environment';
@@ -64,7 +62,9 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     FormsModule,
     provideFirebaseApp(()=> initializeApp(environment.firebase)),
-    provideStorage(()=> getStorage())
+    provideStorage(()=> getStorage()),
+    provideAuth(() => getAuth()),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
