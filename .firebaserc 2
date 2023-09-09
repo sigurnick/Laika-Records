@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "laika-records": {
+      "hosting": {
+        "Laika-Records": [
+          "laika-records"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "laika-records"
+  }
+}

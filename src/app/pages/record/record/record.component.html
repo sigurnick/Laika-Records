@@ -20,11 +20,12 @@
     </div>
 
     <!-- Più immagini -->
-    <div *ngIf="(record.imgUrl) && (record.imgUrl.length > 1)" class="flex flex-col">
+    <div *ngIf="(record.imgUrl) && (record.imgUrl.length > 1)" class="flex flex-col ">
       <div
-      class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded-sm"
+      class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded-sm min-h[500px] md:h-[600px] flex justify-center items-center"
     >
       <img
+      class="object-cover md:max-h-[600px]"
         src="{{ currentPreviewImg }}"
         alt="Record image"
       />
@@ -60,8 +61,8 @@
               class="w-4 h-4 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"
             ></div>
             <span *ngIf="record.quantity > 5">In stock</span>
-            <span *ngIf="record.quantity < 5"
-              >Only {{ record.quantity }} in stock</span
+            <span *ngIf="record.quantity <= 5"
+              >Only {{ record.quantity }} left</span
             >
           </div>
 
@@ -100,6 +101,9 @@
         </div>
         <div class="text-lg">
           <span class="font-semibold">Barcode: </span>{{ record.barcode }}
+        </div>
+        <div class="text-lg">
+          <span class="font-semibold">Label: </span>{{ record.labels[0].name}}
         </div>
       </div>
 
