@@ -29,6 +29,7 @@ import { AddItemModalComponent } from './components/add-item-modal/add-item-moda
 import { RecordComponent } from './pages/record/record/record.component';
 import { SeparateArrayStringPipe } from './pipes/separate-array-string.pipe';
 import { environment } from 'src/environments/environment';
+import { CollectionsComponent } from './pages/profile/collections/collections/collections.component';
 
 
 
@@ -52,7 +53,8 @@ import { environment } from 'src/environments/environment';
     DiscogsComponent,
     AddItemModalComponent,
     RecordComponent,
-    SeparateArrayStringPipe
+    SeparateArrayStringPipe,
+    CollectionsComponent
   ],
   imports: [
     BrowserModule,

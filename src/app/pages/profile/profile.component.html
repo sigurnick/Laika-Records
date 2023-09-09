@@ -34,6 +34,21 @@
         <span class="text-xl tracking-wider">My orders</span>
       </a>
 
+
+       <!-- Collections -->
+       <a
+       (click)="openRoute()"
+       class="flex items-center gap-4 p-2"
+       routerLink="/profile/{{ id }}/collection"
+     >
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+    </svg>
+
+
+       <span class="text-xl tracking-wider">Collection</span>
+     </a>
+
       <!-- Favourites -->
       <a
         (click)="openRoute()"
@@ -55,7 +70,7 @@
           />
         </svg>
 
-        <span class="text-xl tracking-wider">Favourites</span>
+        <span class="text-xl tracking-wider">Wanted</span>
       </a>
 
       <!-- Profile -->
@@ -203,6 +218,23 @@
         <span class="text-xl tracking-wider">My orders</span>
       </a>
 
+      <!-- Collection -->
+      <a
+
+        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white"
+        routerLink="/profile/{{ id }}/collection"
+        routerLinkActive="profileNavActive"
+
+
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+      </svg>
+
+
+        <span class="text-xl tracking-wider">Collection</span>
+      </a>
+
       <!-- Favourites -->
       <a
 
@@ -227,7 +259,7 @@
           />
         </svg>
 
-        <span class="text-xl tracking-wider">Favourites</span>
+        <span class="text-xl tracking-wider">Wanted</span>
       </a>
 
       <!-- Profile -->

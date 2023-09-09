@@ -1,87 +1,145 @@
 <!-- Carousel  -->
-<div id="controls-carousel" class="w-full  relative xl:my-8" data-carousel="static">
+<div
+  id="controls-carousel"
+  class="w-full relative xl:my-8"
+  data-carousel="static"
+>
   <!-- Carousel wrapper -->
-  <div class="relative h-[200px] overflow-hidden  md:h-[260px] lg:h-[380px] xl:h-[400] 2xl:h-[440px] min-[2030px]:h-[520px] min-[2800px]:h-[620px] min-[3200px]:h-[680px] min-[3800px]:h-[740px]">
-       <!-- Item 1 -->
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="assets/Banners/sigurros-atta-real.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-      </div>
-      <!-- Item 2 -->
-      <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-          <img src="assets/Banners/sigurros-atta-real.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-      </div>
-      <!-- Item 3 -->
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="assets/Banners/sigurros-atta-real.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-      </div>
-      <!-- Item 4 -->
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="assets/Banners/sigurros-atta-real.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-      </div>
-
+  <div
+    class="relative h-[200px] overflow-hidden md:h-[260px] lg:h-[380px] xl:h-[400] 2xl:h-[440px] min-[2030px]:h-[520px] min-[2800px]:h-[620px] min-[3200px]:h-[680px] min-[3800px]:h-[740px]"
+  >
+    <!-- Item 1 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img
+        src="assets/Banners/sigurros-atta-real.png"
+        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
+    </div>
+    <!-- Item 2 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+      <img
+        src="assets/Banners/sigurros-atta-real.png"
+        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
+    </div>
+    <!-- Item 3 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img
+        src="assets/Banners/sigurros-atta-real.png"
+        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
+    </div>
+    <!-- Item 4 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img
+        src="assets/Banners/sigurros-atta-real.png"
+        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        alt="..."
+      />
+    </div>
   </div>
   <!-- Slider controls -->
-  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 ">
-          <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-          </svg>
-          <span class="sr-only">Previous</span>
-      </span>
+  <button
+    type="button"
+    class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+    data-carousel-prev
+  >
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60"
+    >
+      <svg
+        class="w-4 h-4 text-white dark:text-gray-800"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 6 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 1 1 5l4 4"
+        />
+      </svg>
+      <span class="sr-only">Previous</span>
+    </span>
   </button>
-  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 g">
-          <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-          </svg>
-          <span class="sr-only">Next</span>
-      </span>
+  <button
+    type="button"
+    class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+    data-carousel-next
+  >
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 g"
+    >
+      <svg
+        class="w-4 h-4 text-white dark:text-gray-800"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 6 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 9 4-4-4-4"
+        />
+      </svg>
+      <span class="sr-only">Next</span>
+    </span>
   </button>
 </div>
 
 <!-- MAIN -->
-<main class="px-3 py-3 max-w-[1600px] mx-auto ">
-
+<main class="px-3 py-3 max-w-[1600px] mx-auto">
   <!-- Last item added -->
-  <h1 class="text-2xl tracking-wider mb-3">Last items added on Laika Records</h1>
+  <h1 class="text-2xl tracking-wider mb-5">
+    Last items added on Laika Records
+  </h1>
   <div
     class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
   >
-    <div *ngFor="let item of lastAddedItems" class="mb-4 mx-auto flex flex-col gap-1
-    max-w-[160px] sm:max-w-[180px] md:max-w-[190px] lg:max-w-[200px]
-    min-[1400px]:max-w-[210px]
-    min-[1500px]:max-w-[220px]
-    min-[1600px]:max-w-[240px]
-    min-[1800px]:max-w-[250px]
-    ">
-
-      <a routerLink="/record/{{item.genres[0]}}/{{ item.id }}">
+    <div
+      *ngFor="let item of lastAddedItems; index as i"
+      class="mb-4 mx-auto flex flex-col gap-1 max-w-[160px] sm:max-w-[180px] md:max-w-[190px] lg:max-w-[200px] min-[1400px]:max-w-[210px] min-[1500px]:max-w-[220px] min-[1600px]:max-w-[240px] min-[1800px]:max-w-[250px]"
+    >
+      <a routerLink="/record/{{ item.genres[0] }}/{{ item.id }}" class="relative " (mouseover)="showHeart(i)" (mouseout)="hideHeart(i)">
         <img
-        *ngIf="item.imgUrl"
-          src="{{item.imgUrl[0]}}"
+          *ngIf="item.imgUrl"
+          src="{{ item.imgUrl[0] }}"
           alt="record cover"
-          class="rounded-sm"
+          class="rounded-sm imgHeart"
         />
+
+        <!-- Ad to fav -->
+        <button *ngIf="showHeartButton[i] == true" class=" absolute top-2 right-2 hover:text-red-500  btnHeart">
+          <i class="fa-regular fa-heart text-lg"></i>
+        </button>
       </a>
 
-        <a
-          routerLink="/record/{{item.genres[0]}}/{{ item.id }}"
-          class="font-light  hover:underline truncate"
-          >{{ item.title }}</a
-        >
-
-        <a
-          routerLink="/record/{{ item.id }}"
-          class="font-light  hover:underline"
-          >{{ item.artists[0].name }}</a
-        >
-
+      <a
+        routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+        class="font-light hover:underline truncate text-lg"
+        >{{ item.title }}</a
+      >
 
       <a
         routerLink="/record/{{ item.id }}"
-        class="font-light  underline-offset-8 decoration-coolBlack border-b-2  flex justify-between hover:border-b-coolBlack mt-2"
+        class="font-light hover:underline text-lg"
+        >{{ item.artists[0].name }}</a
       >
-        <span>Buy</span><span>{{ item.price }} €</span>
+
+      <a
+        routerLink="/record/{{ item.id }}"
+        class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+      >
+        <span>Add to cart</span><span>{{ item.price }} €</span>
       </a>
     </div>
   </div>

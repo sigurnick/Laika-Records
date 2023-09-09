@@ -11,11 +11,10 @@ import { initFlowbite } from 'flowbite';
 export class HomeComponent {
   items: any[] = [];
   lastAddedItems: IRecordOnDatabase[] = [];
-
+  showHeartButton: boolean[] = [];
   constructor(private firebaseDatabaseService: FireDBService) { }
 
   ngOnInit() {
-
     initFlowbite();
     this.firebaseDatabaseService.getAllItems().subscribe((data) => {
       //converte le categorie in array
@@ -56,5 +55,15 @@ console.log('lastItem',this.lastAddedItems);
 
 
     });
+  }
+
+
+  showHeart(i:number) {
+  this.showHeartButton[i] = true;
+
+  }
+
+  hideHeart(i:number) {
+    this.showHeartButton[i] = false;
   }
 }
