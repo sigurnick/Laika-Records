@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { tap } from 'rxjs/internal/operators/tap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import {  mergeMap } from 'rxjs';
+import { Observable, finalize, forkJoin, mergeMap } from 'rxjs';
 import { Storage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { Auth } from '@angular/fire/auth';
@@ -36,7 +36,7 @@ export class FireDBService {
     private router: Router,
     private storage: Storage,
     private auth: Auth
-    ) {
+  ) {
     this.restoreUser();
   }
 
@@ -62,22 +62,22 @@ export class FireDBService {
     );
   }
 
-//update password user //! Da sistemare
- updatePassword(newPassword: string) {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  console.log(user);
+  //update password user //! Da sistemare
+  updatePassword(newPassword: string) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    console.log(user);
 
-  if(user){
-    updatePassword(user, newPassword).then(() => {
-     console.log('pass changed');
+    if (user) {
+      updatePassword(user, newPassword).then(() => {
+        console.log('pass changed');
 
-    }).catch((error) => {
-      // An error ocurred
-      // ...
-    });
+      }).catch((error) => {
+        // An error ocurred
+        // ...
+      });
+    }
   }
- }
 
   //Prendo dati utente e li inserisco nel localstorage
   getUserData(userId: string, tokenId: string) {
@@ -119,22 +119,22 @@ export class FireDBService {
 
 
     return this.http.get<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`)
-    .pipe(
-      mergeMap((resData) => {
-        if (resData && resData.quantity) {
-          // Oggetto già presente nel database quindi incremento la quantità
-          resData.quantity++;
-          return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, resData);
-        } else {
-          // Oggetto non presente nel database quindi lo inserisco
-          item.quantity = 1;
-          return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
-        }
-      })
-    );
+      .pipe(
+        mergeMap((resData) => {
+          if (resData && resData.quantity) {
+            // Oggetto già presente nel database quindi incremento la quantità
+            resData.quantity++;
+            return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, resData);
+          } else {
+            // Oggetto non presente nel database quindi lo inserisco
+            item.quantity = 1;
+            return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
+          }
+        })
+      );
   }
 
-  getItemByIdAndGenre(id:string, genre:string) {
+  getItemByIdAndGenre(id: string, genre: string) {
     return this.http.get<IRecordOnDatabase>(`${this.urlItems}/${genre}/${id}.json`)
   }
 
@@ -144,105 +144,63 @@ export class FireDBService {
   }
 
   //aggiunge di uno la quantità di un oggetto nel database
-  addQuantityToItem(item:IRecordOnDatabase, genre: string) {
+  addQuantityToItem(item: IRecordOnDatabase, genre: string) {
     if (genre.includes('/')) {
       genre = genre.replace('/', '');
     }
-    return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`,item);
+    return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
   }
 
   //rimuove di uno la quantità di un oggetto nel database
-  removeQuantityToItem(item:IRecordOnDatabase, genre: string) {
+  removeQuantityToItem(item: IRecordOnDatabase, genre: string) {
     if (genre.includes('/')) {
       genre = genre.replace('/', '');
     }
 
-    return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`,item);
+    return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
   }
 
   //elimina un oggetto dal database
-  eliminateItem(item:IRecordOnDatabase, genre: string) {
+  eliminateItem(item: IRecordOnDatabase, genre: string) {
     if (genre.includes('/')) {
       genre = genre.replace('/', '');
     }
     return this.http.delete<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`);
   }
 
-  //salvataggio immagini nello storage
-  saveImgInStorage(imgFile: File, item:IRecordOnDatabase) {
 
-    const storage = getStorage(); //storage
-    const storageRef = ref(storage, `IMG/LP/${item.id}/${imgFile.name}`); //percorrso salvataggio file
 
-    const imagePath =`IMG/LP/${item.id}/${imgFile.name}`
+  //salva un array di immagini nello storage e ritorna le url
+   uploadImages(files: File[], item: IRecordOnDatabase): Observable<string[]> {
+    const storage = getStorage();
+    const storageRef = ref(storage, `IMG/LP/${item.id}`);
 
-    uploadBytes(storageRef, imgFile).then((snapshot) => {
-            console.log('Uploaded a blob or file!');
-            item.img = imagePath
-            //ora inserisco il percorso nel database
-          this.http.put<IRecordOnDatabase>(`${this.urlItems}/${item.genres[0]}/${item.id}.json`,item).subscribe((data) => {
+    const observables = files.map((file) => {
+      const filePath = `${storageRef}/${file.name}`;
+      const fileStorageRef = ref(storage, filePath);
 
+      return new Observable<string>((observer) => {
+        uploadBytes(fileStorageRef, file)
+          .then((snapshot) => {
+            console.log('Uploaded a blob or file:', file.name);
+
+            getDownloadURL(fileStorageRef).then((url) => {
+              observer.next(url);
+              observer.complete();
+            });
           })
+          .catch((error) => {
+            observer.error(error);
           });
-      // for (const selectedImage of imgFiles) {
-      //   if (selectedImage) {
-      //     const filePath = `images/${selectedImage.name}`;
-      //     const fileRef =ref(storage, filePath);
+      });
+    });
 
-      //     uploadBytes(storageRef, selectedImage).then((snapshot) => {
-      //       console.log('Uploaded a blob or file!');
-      //     });
-
-      //   }
-      // }
-  }
-
-  async getImage(item: IRecordOnDatabase): Promise<string | null> {
-    if (item.img) {
-      const storage = getStorage();
-
-      try {
-        const url = await getDownloadURL(ref(storage, item.img));
-        // Ora puoi utilizzare l'URL come desideri
-        console.log('URL dell\'immagine:', url);
-        return url;
-      } catch (error) {
-        // Gestisci gli errori qui
-        console.error('Errore nel recupero dell\'URL dell\'immagine:', error);
-        return null; // Restituisci un valore di fallback in caso di errore
-      }
-    } else {
-      return null; // Restituisci un valore di fallback se item.img non è definito
-    }
+    // Utilizza forkJoin per combinare tutti gli Observable in uno
+    return forkJoin(observables);
   }
 
 
 
-// getImage(item: IRecordOnDatabase){
-//   if (item.img) {
-//     const storage = getStorage();
-// getDownloadURL(ref(storage, item.img))
-//   .then((url) => {
-//     // `url` is the download URL for 'images/stars.jpg'
-
-//     // This can be downloaded directly:
-//     const xhr = new XMLHttpRequest();
-//     xhr.responseType = 'blob';
-//     xhr.onload = (event) => {
-//       const blob = xhr.response;
-//     };
-//     xhr.open('GET', url);
-//     xhr.send();
-
-//     // Or inserted into an <img> element
-//     return url
-//   })
-//   .catch((error) => {
-//     // Handle any errors
-//   });
-//   }
-
-// }
 
   //------------------------------------------------------------------
 

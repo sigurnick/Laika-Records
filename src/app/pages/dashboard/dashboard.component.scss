@@ -1,3 +1,6 @@
+$topbar-height: 80px;
+$height: calc(100vh - #{$topbar-height});
+
 .linkActiveNavDashboard {
   background-color: rgb(66, 66, 66);
   color: white;
@@ -24,8 +27,16 @@
   background-color: white;
 }
 
+.dashboardRoutlet {
+  height: 100vh;
+}
 
 @media (min-width: 1024px) {
+
+  .dashboardRoutlet{
+    height: $height;
+    }
+
   .topbar {
     height: var(--topbar-height);
     margin-left: var(--sidebar-width);

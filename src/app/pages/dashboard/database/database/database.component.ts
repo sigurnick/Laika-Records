@@ -50,11 +50,6 @@ export class DatabaseComponent implements OnInit {
       console.log(this.items);
 
       //prende l'url dell' immagine di ogn iitems
-      this.items.forEach((item)=>{
-        this.firebaseDatabaseService.getImage(item).then((url)=>{
-          item.url = url;
-        })
-      })
 
 
 
@@ -79,12 +74,12 @@ export class DatabaseComponent implements OnInit {
   }
 
   //rimuove una quantità all' oggetto nel db
-  removeQuantity(item: IRecordOnDatabase) {
+  removeQuantity(item: IRecordOnDatabase, i:number) {
     //se la quantità è uguale a zero rimuove l'oggetto dal db
     if (item.quantity === 1) {
       console.log(item.quantity);
 
-      this.eliminateItem(item)
+      this.eliminateItem(item, i)
 
     }else {
 
@@ -103,15 +98,14 @@ export class DatabaseComponent implements OnInit {
     }
   }
 
-  //rimuove completamente oggeto nel db
-  eliminateItem(item: IRecordOnDatabase) {
-    console.log(item);
+  //rimuove completamente oggeto dal db
+  eliminateItem(item: IRecordOnDatabase , i:number) {
 
     item.genres.forEach((element) => {
       this.firebaseDatabaseService
         .eliminateItem(item, element)
         .subscribe((resData) => {
-          console.log(resData);
+          this.items.splice(i,1)
         });
     });
   }

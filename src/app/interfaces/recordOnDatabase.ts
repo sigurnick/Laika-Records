@@ -1,7 +1,6 @@
 export interface IRecordOnDatabase {
   quantity?:number
-  img?:string
-  imgUrl?:string
+  imgUrl?:string[]
   id: number
   price:number
   barcode:string

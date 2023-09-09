@@ -50,7 +50,8 @@
     <div *ngFor="let item of lastAddedItems" class="mb-4 mx-auto flex flex-col gap-1">
       <a routerLink="/record/{{item.genres[0]}}/{{ item.id }}">
         <img
-          src="https://m.media-amazon.com/images/I/81NaE+lIhBL._AC_SL1400_.jpg"
+        *ngIf="item.imgUrl"
+          src="{{item.imgUrl[0]}}"
           alt="record cover"
           class="rounded-sm"
         />

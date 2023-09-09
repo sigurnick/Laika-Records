@@ -27,25 +27,17 @@ export class AddItemModalComponent {
 
   //mette le immagini nella variabile imgFiles
   onFilesSelected(event: any) {
-    //todo codice per l'uplod di più immagini
-    // const files: FileList = event.target.files; // Ottieni tutti i file selezionati
-    // for (let i = 0; i < files.length; i++) {
-    //   // Aggiungi i file alla lista dei file selezionati
-    //   this.imgFiles.push(files[i]);
-    // }
 
-    this.imgFile = event.target.files[0]
-    console.log(this.imgFile);
+    const files: FileList = event.target.files; // Ottieni tutti i file selezionati
+    for (let i = 0; i < files.length; i++) {
 
+      this.imgFiles.push(files[i]); //file imagini
+    }
   }
 
 
   //invio dati item per inserimento nel database
   submitItem(form: NgForm) {
-
-
-
-    console.log('info', this.recordInfo);
 
     //modello record
     this.record = new Record(
@@ -73,16 +65,19 @@ export class AddItemModalComponent {
 if(!this.record.price){return}
     console.log(this.record);
 
-    this.fireBaseService.saveImgInStorage(this.imgFile, this.record)
+    //carico le immagini nello storage e ottengo le url
+    this.fireBaseService.uploadImages(this.imgFiles, this.record).subscribe((urls)=>{
+      this.record.imgUrl = urls //url delle immagini
 
-
-    this.record.genres.forEach((genre) => {
-      this.fireBaseService
-        .additemintoDB(this.record, genre)
-        .subscribe((res) => {
-          console.log('aggiunto:', res);
-        });
-    });
+      //carico il record nel db
+      this.record.genres.forEach((genre) => {
+        this.fireBaseService
+          .additemintoDB(this.record, genre)
+          .subscribe((res) => {
+            console.log('aggiunto:', res);
+          });
+      });
+    })
 
     form.reset();
   }
