@@ -70,7 +70,9 @@ export class DiscogsComponent {
     this.discogsService.getRecordInfoById(id).subscribe((resData) => {
       this.recordInfo = resData;
 
-      console.log('record info', this.recordInfo);
+      console.log('title:',this.recordInfo.title);
+      console.log('artist:',this.recordInfo.artists[0].name);
+
     });
   }
 

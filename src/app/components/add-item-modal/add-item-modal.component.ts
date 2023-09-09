@@ -28,11 +28,12 @@ export class AddItemModalComponent {
   //mette le immagini nella variabile imgFiles
   onFilesSelected(event: any) {
 
-    const files: FileList = event.target.files; // Ottieni tutti i file selezionati
+    let files: FileList = event.target.files; // Ottieni tutti i file selezionati
     for (let i = 0; i < files.length; i++) {
 
       this.imgFiles.push(files[i]); //file imagini
     }
+
   }
 
 
@@ -68,6 +69,7 @@ if(!this.record.price){return}
     //carico le immagini nello storage e ottengo le url
     this.fireBaseService.uploadImages(this.imgFiles, this.record).subscribe((urls)=>{
       this.record.imgUrl = urls //url delle immagini
+      this.imgFiles = []
 
       //carico il record nel db
       this.record.genres.forEach((genre) => {

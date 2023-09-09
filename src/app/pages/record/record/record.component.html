@@ -4,8 +4,8 @@
   <div *ngIf="record" class="flex flex-col lg:flex-row md:justify-center md:gap-10 mx-auto lg:p-8">
 
     <!-- Record Image -->
-    <div class="mx-auto  max-w-[70%] lg:max-w-[750px]  rounded-sm">
-  <img  src="https://m.media-amazon.com/images/I/81NaE+lIhBL._AC_SL1400_.jpg" alt="Record image">
+    <div class="mx-auto  max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded-sm">
+  <img *ngIf="record.imgUrl"  src="{{record.imgUrl[0]}}" alt="Record image">
     </div>
 
     <!-- Record Data -->
@@ -15,7 +15,24 @@
       <div>
         <h1 class="text-3xl md:text-4xl font-semibold">{{record.title}}</h1>
        <a class="underline text-2xl md:text-3xl"><h2>{{record.artists[0].name}}</h2></a>
-       <div class="mt-4 font-semibold text-lg">€{{record.price}}</div>
+
+       <div class="flex justify-between items-center">
+         <div class="mt-4 font-semibold text-lg">€{{record.price}}</div>
+         <!-- Record in stock -->
+         <div *ngIf="record.quantity && record.quantity > 0" class="flex items-center gap-1 text-lg">
+            <div class="w-4 h-4 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></div>
+            <span *ngIf="record.quantity > 5">In stock</span>
+            <span *ngIf="record.quantity < 5">Only {{record.quantity}} in stock</span>
+        </div>
+
+             <!-- Record out stock -->
+             <div *ngIf="record.quantity && record.quantity == 0" class="flex items-center gap-1 text-lg">
+              <div class="w-4 h-4 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"></div>
+              <span *>Out of stock</span>
+          </div>
+
+
+       </div>
       </div>
 
       <hr class="border-bottom-[1px] border-slate-300">
