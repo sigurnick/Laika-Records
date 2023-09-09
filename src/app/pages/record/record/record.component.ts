@@ -5,6 +5,7 @@ import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { FireDBService } from 'src/app/services/fire-db.service';
 import { AuthService } from '../../auth/auth.service';
 import { IUser } from 'src/app/interfaces/user';
+import { IAuthResponseData } from '../../auth/interfaces/auth-responde-data';
 
 
 @Component({
@@ -19,13 +20,13 @@ export class RecordComponent {
   imgSecondary: string[] = []
   currentPreviewImg!: string
   userData!: IUser | null
+  userAuth!: IAuthResponseData | null
+  isWantedRecord: boolean = false
   constructor(private actRouter: ActivatedRoute, private firebaseService: FireDBService, private authService: AuthService) {
     initFlowbite();
   }
 
   ngOnInit() {
-
-
     //prendo l'id parametro
     this.actRouter.paramMap.subscribe((params) => {
       this.id = params.get('id')!;
@@ -49,7 +50,17 @@ export class RecordComponent {
     //prendo dati utente
     this.firebaseService.userData$.subscribe((user) => {
       this.userData = user;
+      //prendo wanted list user
+    this.firebaseService.getUserWantedList(this.userData!, this.userAuth!).subscribe((wantedList)=>{
+      //controllo se nella lista è presente il record
+
     })
+    })
+    //prendo dati auth utente
+    this.authService.user$.subscribe((userAuth)=>{
+      this.userAuth = userAuth;
+    })
+
 
   }
 
@@ -58,8 +69,11 @@ export class RecordComponent {
     this.currentPreviewImg = url
   }
 
-  //rediret dello user al login
-  redirectToLogin() {
+  //salvo record nella wanted list
+  addRecordToWantedList() {
+    this.firebaseService.addRecordWanted(this.userData!, this.userAuth!, this.record).subscribe((data)=>{
+      console.log(data);
 
+    })
   }
 }

@@ -1,3 +1,4 @@
+import { IAuthResponseData } from 'src/app/pages/auth/interfaces/auth-responde-data';
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { IUser } from './../interfaces/user';
 import { HttpClient } from '@angular/common/http';
@@ -107,7 +108,30 @@ export class FireDBService {
     localStorage.removeItem('userData');
     this.router.navigate(['/home']);
   }
+
+  //inserisci item wanted
+  addRecordWanted(userData: IUser, userAuth:IAuthResponseData, record:IRecordOnDatabase) {
+
+    return this.http.put(
+      `${this.urlUsers}/${userData.userId}/wanted/${record.id}.json?auth=${userAuth.idToken}`,
+      record
+    );
+  }
+
+  //prendi wanted list user
+  getUserWantedList(userData: IUser, userAuth:IAuthResponseData) {
+
+    return this.http.get<IRecordOnDatabase[]>(
+      `${this.urlUsers}/${userData.userId}/wanted.json?auth=${userAuth.idToken}`);
+  }
   //------------------------------------------------------------------
+
+
+
+
+
+
+
 
   //---------------------------[Gestione Database Items]-------------------------
   //Inserimento item nel database
