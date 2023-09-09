@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FireDBService } from './services/fire-db.service';
 import { IUser } from './interfaces/user';
 import { initFlowbite } from 'flowbite';
-import { Carousel, Dropdown, initTE } from 'tw-elements';
+
 
 @Component({
   selector: 'app-root',
@@ -21,9 +21,6 @@ export class AppComponent {
   ngOnInit() {
 
     initFlowbite();
-    initTE({ Carousel, Dropdown });
-
-
 
     this.firebaseService.userData$.subscribe((data) => {
       console.log('data', data);

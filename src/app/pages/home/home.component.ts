@@ -3,10 +3,6 @@ import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { FireDBService } from 'src/app/services/fire-db.service';
 import { initFlowbite } from 'flowbite';
 
-import {
-  Carousel,
-  initTE,
-} from "tw-elements";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +15,7 @@ export class HomeComponent {
   constructor(private firebaseDatabaseService: FireDBService) { }
 
   ngOnInit() {
-    initTE({ Carousel });
+
     initFlowbite();
     this.firebaseDatabaseService.getAllItems().subscribe((data) => {
       //converte le categorie in array
