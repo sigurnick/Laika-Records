@@ -50,15 +50,19 @@ export class RecordComponent {
     //prendo dati utente
     this.firebaseService.userData$.subscribe((user) => {
       this.userData = user;
-      //prendo wanted list user
-    this.firebaseService.getUserWantedList(this.userData!, this.userAuth!).subscribe((wantedList)=>{
-      //controllo se nella lista è presente il record
 
-    })
     })
     //prendo dati auth utente
     this.authService.user$.subscribe((userAuth)=>{
       this.userAuth = userAuth;
+
+      if(this.userAuth) {
+        //prendo wanted list user
+        this.firebaseService.getUserWantedList(this.userData!, this.userAuth!).subscribe((wantedList)=>{
+         //controllo se nella lista è presente il record
+
+       })
+      }
     })
 
 
@@ -73,6 +77,17 @@ export class RecordComponent {
   addRecordToWantedList() {
     this.firebaseService.addRecordWanted(this.userData!, this.userAuth!, this.record).subscribe((data)=>{
       console.log(data);
+
+      if(data){
+        //aumento il contatore wanted del record
+        this.record.collected++
+        this.record.genres.forEach((genre)=>{
+          this.firebaseService.increaseWantedRecord(this.record, genre).subscribe((data)=>{
+            console.log(data);
+
+          })
+        })
+      }
 
     })
   }

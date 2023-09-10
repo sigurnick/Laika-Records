@@ -109,7 +109,7 @@ export class FireDBService {
     this.router.navigate(['/home']);
   }
 
-  //inserisci item wanted
+  //inserisci item wanted in user
   addRecordWanted(userData: IUser, userAuth:IAuthResponseData, record:IRecordOnDatabase) {
 
     return this.http.put(
@@ -157,7 +157,7 @@ export class FireDBService {
         })
       );
   }
-
+  //prendo informazioni record con id e genere
   getItemByIdAndGenre(id: string, genre: string) {
     return this.http.get<IRecordOnDatabase>(`${this.urlItems}/${genre}/${id}.json`)
   }
@@ -193,7 +193,6 @@ export class FireDBService {
   }
 
 
-
   //salva un array di immagini nello storage e ritorna le url
    uploadImages(files: File[], item: IRecordOnDatabase): Observable<string[]> {
     const storage = getStorage();
@@ -224,6 +223,12 @@ export class FireDBService {
   }
 
 
+  //-----------[Wanted e Collection]-----------
+
+  //incremento wanted
+  increaseWantedRecord(item:IRecordOnDatabase, genre:string) {
+    return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
+  }
 
 
   //------------------------------------------------------------------

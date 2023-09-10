@@ -24,6 +24,9 @@ export class Record implements IRecordOnDatabase{
      public tracklist : Tracklist[],
      public extraartists: Extraartist2[],
      public dateAdded: Date ,
-     public quantity?:number
+     public quantity:number,
+     public purchased: number,
+     public favourite: number,
+     public collected: number
   ){ }
 }

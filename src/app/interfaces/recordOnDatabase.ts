@@ -1,5 +1,5 @@
 export interface IRecordOnDatabase {
-  quantity?:number
+  quantity:number
   imgUrl?:string[]
   id: number
   price:number
@@ -23,6 +23,9 @@ export interface IRecordOnDatabase {
   tracklist: Tracklist[]
   extraartists: Extraartist2[]
   dateAdded: Date
+  purchased: number
+  favourite: number
+  collected: number
 }
 
 export interface Artist {

@@ -98,49 +98,112 @@
 
 <!-- MAIN -->
 <main class="px-3 py-3 max-w-[1600px] mx-auto">
-  <!-- Last item added -->
-  <h1 class="text-2xl tracking-wider mb-5">
-    Last items added on Laika Records
-  </h1>
-  <div
-    class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
-  >
+
+
+  <!-- Last released records -->
+  <div class="mb-20">
+    <h1 class="text-2xl tracking-wider mb-5">
+      Last released records
+    </h1>
     <div
-      *ngFor="let item of lastAddedItems; index as i"
-      class="mb-4 mx-auto flex flex-col gap-1 max-w-[160px] sm:max-w-[180px] md:max-w-[190px] lg:max-w-[200px] min-[1400px]:max-w-[210px] min-[1500px]:max-w-[220px] min-[1600px]:max-w-[240px] min-[1800px]:max-w-[250px]"
+      class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
     >
-      <a routerLink="/record/{{ item.genres[0] }}/{{ item.id }}" class="relative " (mouseover)="showHeart(i)" (mouseout)="hideHeart(i)">
-        <img
-          *ngIf="item.imgUrl"
-          src="{{ item.imgUrl[0] }}"
-          alt="record cover"
-          class="rounded-sm imgHeart"
-        />
-
-        <!-- Ad to fav -->
-        <button *ngIf="showHeartButton[i] == true" class=" absolute top-2 right-2 hover:text-red-500  btnHeart">
-          <i class="fa-regular fa-heart text-lg"></i>
-        </button>
-      </a>
-
-      <a
-        routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-        class="font-light hover:underline truncate text-lg"
-        >{{ item.title }}</a
+      <div
+        *ngFor="let item of lastAddedItems; index as i"
+        class="mb-4 mx-auto flex flex-col gap-1 max-w-[160px] sm:max-w-[180px] md:max-w-[190px] lg:max-w-[200px] min-[1400px]:max-w-[210px] min-[1500px]:max-w-[220px] min-[1600px]:max-w-[240px] min-[1800px]:max-w-[250px]"
       >
+        <a routerLink="/record/{{ item.genres[0] }}/{{ item.id }}" class="relative " (mouseover)="showHeart(i)" (mouseout)="hideHeart(i)">
+          <img
+            *ngIf="item.imgUrl"
+            src="{{ item.imgUrl[0] }}"
+            alt="record cover"
+            class="rounded-sm imgHeart"
+          />
 
-      <a
-        routerLink="/record/{{ item.id }}"
-        class="font-light hover:underline text-lg"
-        >{{ item.artists[0].name }}</a
-      >
+          <!-- Ad to fav -->
+          <button *ngIf="showHeartButton[i] == true" class=" absolute top-2 right-2 hover:text-red-500  btnHeart">
+            <i class="fa-regular fa-heart text-lg"></i>
+          </button>
+        </a>
 
-      <a
-        routerLink="/record/{{ item.id }}"
-        class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-      >
-        <span>Add to cart</span><span>{{ item.price }} €</span>
-      </a>
+        <div>
+
+        </div>
+        <a
+          (mouseover)="showTitleTolpit(i)" (mouseout)="hideTitleTolpit(i)"
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.title }}
+
+
+          </a
+          >
+
+
+
+        <a
+          routerLink="/record/{{ item.id }}"
+          class="font-light hover:underline text-lg"
+          >{{ item.artists[0].name }}</a
+        >
+
+        <a
+          routerLink="/record/{{ item.id }}"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </a>
+      </div>
     </div>
   </div>
+
+   <!-- Last records added -->
+   <div>
+     <h1 class="text-2xl tracking-wider mb-5">
+      Last items added on Laika Records
+    </h1>
+    <div
+      class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+    >
+      <div
+        *ngFor="let item of lastAddedItems; index as i"
+        class="mb-4 mx-auto flex flex-col gap-1 max-w-[160px] sm:max-w-[180px] md:max-w-[190px] lg:max-w-[200px] min-[1400px]:max-w-[210px] min-[1500px]:max-w-[220px] min-[1600px]:max-w-[240px] min-[1800px]:max-w-[250px]"
+      >
+        <a routerLink="/record/{{ item.genres[0] }}/{{ item.id }}" class="relative " (mouseover)="showHeart(i)" (mouseout)="hideHeart(i)">
+          <img
+            *ngIf="item.imgUrl"
+            src="{{ item.imgUrl[0] }}"
+            alt="record cover"
+            class="rounded-sm imgHeart"
+          />
+
+          <!-- Ad to fav -->
+          <button *ngIf="showHeartButton[i] == true" class=" absolute top-2 right-2 hover:text-red-500  btnHeart">
+            <i class="fa-regular fa-heart text-lg"></i>
+          </button>
+        </a>
+
+        <a
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.title }}</a
+        >
+
+        <a
+          routerLink="/record/{{ item.id }}"
+          class="font-light hover:underline text-lg"
+          >{{ item.artists[0].name }}</a
+        >
+
+        <a
+          routerLink="/record/{{ item.id }}"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </a>
+      </div>
+    </div>
+   </div>
+
+
 </main>

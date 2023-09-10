@@ -12,6 +12,7 @@ export class HomeComponent {
   items: any[] = [];
   lastAddedItems: IRecordOnDatabase[] = [];
   showHeartButton: boolean[] = [];
+  titleTolpit: boolean[] = [];
   constructor(private firebaseDatabaseService: FireDBService) { }
 
   ngOnInit() {
@@ -65,5 +66,14 @@ console.log('lastItem',this.lastAddedItems);
 
   hideHeart(i:number) {
     this.showHeartButton[i] = false;
+  }
+
+
+  //todo da implementare tolpit titolo
+  showTitleTolpit(i:number) {
+    this.titleTolpit[i] = true;
+  }
+  hideTitleTolpit(i:number) {
+    this.titleTolpit[i] = false;
   }
 }

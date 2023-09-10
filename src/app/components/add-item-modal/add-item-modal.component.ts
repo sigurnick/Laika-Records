@@ -62,7 +62,10 @@ export class AddItemModalComponent {
       this.recordInfo.tracklist,
       this.recordInfo.extraartists,
       new Date(),
-      1
+      1,
+      0,
+      0,
+      0
     );
 if(!this.record.price){return}
     console.log(this.record);

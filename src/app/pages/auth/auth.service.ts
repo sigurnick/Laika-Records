@@ -99,7 +99,6 @@ export class AuthService {
     expDate = expDate * 1000; //converto in millisecondi
     this.autoLogoutTimer = setTimeout(() => {
       //avvio un timer che fa logout allo scadere del tempo
-      console.log('effettuo logout');
       this.logout();
     }, expDate);
   }
