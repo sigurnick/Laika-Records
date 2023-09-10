@@ -109,6 +109,8 @@ export class FireDBService {
     this.router.navigate(['/home']);
   }
 
+
+  //-------[Gestione wanted utente]--------
   //inserisci item wanted in user
   addRecordWanted(userData: IUser, userAuth:IAuthResponseData, record:IRecordOnDatabase) {
 
@@ -118,11 +120,46 @@ export class FireDBService {
     );
   }
 
-  //prendi wanted list user
-  getUserWantedList(userData: IUser, userAuth:IAuthResponseData) {
+  //rimuovo item wanted in user
+  removeRecordWanted(userData: IUser, userAuth:IAuthResponseData, record:IRecordOnDatabase) {
+    return this.http.delete(
+      `${this.urlUsers}/${userData.userId}/wanted/${record.id}.json?auth=${userAuth.idToken}`
+    );
+  }
+
+  //cerco se il record è nella wanted dello user
+  getWantedById(userData: IUser, userAuth:IAuthResponseData, item:IRecordOnDatabase) {
 
     return this.http.get<IRecordOnDatabase[]>(
-      `${this.urlUsers}/${userData.userId}/wanted.json?auth=${userAuth.idToken}`);
+      `${this.urlUsers}/${userData.userId}/wanted/${item.id}.json?auth=${userAuth.idToken}`);
+  }
+
+
+  //-------[Gestione collection utente]--------
+
+  //inserisci item wanted in user
+  addRecordCollected(userData: IUser, userAuth:IAuthResponseData, record:IRecordOnDatabase) {
+
+    return this.http.put(
+      `${this.urlUsers}/${userData.userId}/collection/${record.id}.json?auth=${userAuth.idToken}`,
+      record
+    );
+  }
+
+  //rimuovo item wanted in user
+  removeRecordCollected(userData: IUser, userAuth:IAuthResponseData, record:IRecordOnDatabase) {
+    return this.http.delete(
+      `${this.urlUsers}/${userData.userId}/collection/${record.id}.json?auth=${userAuth.idToken}`
+    );
+  }
+
+
+
+   //cerco se il record è nella collection dello user
+   getCollectedById(userData: IUser, userAuth:IAuthResponseData, item:IRecordOnDatabase) {
+
+    return this.http.get<IRecordOnDatabase[]>(
+      `${this.urlUsers}/${userData.userId}/collection/${item.id}.json?auth=${userAuth.idToken}`);
   }
   //------------------------------------------------------------------
 
@@ -225,8 +262,8 @@ export class FireDBService {
 
   //-----------[Wanted e Collection]-----------
 
-  //incremento wanted
-  increaseWantedRecord(item:IRecordOnDatabase, genre:string) {
+  //update record data
+  updateRecord(item:IRecordOnDatabase, genre:string) {
     return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
   }
 

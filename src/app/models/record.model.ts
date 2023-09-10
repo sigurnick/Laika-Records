@@ -26,7 +26,7 @@ export class Record implements IRecordOnDatabase{
      public dateAdded: Date ,
      public quantity:number,
      public purchased: number,
-     public favourite: number,
+     public wanted: number,
      public collected: number
   ){ }
 }

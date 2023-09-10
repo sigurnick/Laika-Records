@@ -109,7 +109,7 @@
 
       <hr class="border-bottom-[1px] border-slate-300" />
 
-      <!-- Button Buy and favourite -->
+      <!-- -----Button BUY COLLECTED WANTED---- -->
       <div class="flex gap-1 justify-center items-center text-lg">
         <button
           class="w-full h-12 bg-black py-2 px-4 text-white rounded-md max-w-xs"
@@ -118,31 +118,52 @@
         </button>
 
 
-        <!-- fav button -->
+        <!-- Add to wanted button -->
         <button
+        *ngIf="isWantedRecord == false"
         (click)="addRecordToWantedList()"
-        data-tooltip-target="tooltip-light" data-tooltip-style="light"
-          class="w-full h-12 border-2 py-1 border-red-400 rounded-md flex justify-center items-center text-black max-w-[80px]  hover:bg-red-400 hover:text-white hover:border-red-700
-          focus:bg-red-400 focus:text-white focus:border-red-700 transition-colors"
+
+          class="w-full h-12 border-2 py-1 border-red-500 rounded-md flex justify-center items-center text-black max-w-[80px]
+           hover:bg-red-500 hover:text-white hover:border-red-700
+           transition-colors"
         >
         <i class="fa-regular fa-heart text-xl"></i>
         </button>
 
-        <!-- toolpit fav button -->
-        <!-- <div *ngIf="!userData" id="tooltip-light" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
-          Please login to use favourite features
-          <div class="tooltip-arrow" data-popper-arrow></div>
-      </div> -->
+          <!-- Remove to wanted button -->
+          <button
+          *ngIf="isWantedRecord == true"
+          (click)="removeRecordFromWantedList()"
+
+            class="w-full h-12 border-2 py-1 border-red-700 rounded-md flex justify-center items-center text-white max-w-[80px] bg-red-500
+             hover:bg-white hover:text-black hover:border-red-500
+             transition-colors"
+          >
+          <i class="fa-regular fa-heart text-xl"></i>
+          </button>
 
 
-        <!-- collection -->
+
+
+        <!-- Add to collection button -->
         <button
-        data-tooltip-target="tooltip-light" data-tooltip-style="light"
+        (click)="addRecordToCollectionList()"
+          *ngIf="isColectedRecord == false"
           class="w-full h-12 border-2 py-1 border-blue-500 rounded-md flex justify-center items-center text-black max-w-[80px]  hover:bg-blue-500 hover:text-white hover:border-blue-700 transition-colors"
         >
         <i class="fa-regular fa-bookmark text-xl"></i>
 
         </button>
+
+         <!-- Remove to collection button -->
+         <button
+         (click)="removeRecordFromCollectionList()"
+         *ngIf="isColectedRecord == true"
+         class="w-full h-12 border-2 py-1 border-blue-700 rounded-md flex justify-center items-center text-white max-w-[80px] bg-blue-500  hover:bg-white hover:text-black hover:border-blue-500 transition-colors"
+       >
+       <i class="fa-regular fa-bookmark text-xl"></i>
+
+       </button>
       </div>
 
       <hr class="border-bottom-[1px] border-slate-300" />

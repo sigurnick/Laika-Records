@@ -24,7 +24,7 @@ export interface IRecordOnDatabase {
   extraartists: Extraartist2[]
   dateAdded: Date
   purchased: number
-  favourite: number
+  wanted: number
   collected: number
 }
 
