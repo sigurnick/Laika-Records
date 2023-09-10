@@ -9,10 +9,16 @@ import { initFlowbite } from 'flowbite';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  items: any[] = [];
-  lastAddedItems: IRecordOnDatabase[] = [];
   showHeartButton: boolean[] = [];
   titleTolpit: boolean[] = [];
+
+  //record array
+  items: any[] = [];
+  lastAddedItems: IRecordOnDatabase[] = [];
+  lastReleasedItems: IRecordOnDatabase[] = [];
+  mostFavouritedItems: IRecordOnDatabase[] = [];
+  mostSoldItems: IRecordOnDatabase[] = [];
+
   constructor(private firebaseDatabaseService: FireDBService) { }
 
   ngOnInit() {
@@ -27,8 +33,20 @@ export class HomeComponent {
         this.items = this.items.concat(albumObjects);
       });
 
+
+
+      // rimuove i duplicati dall'array
+      const uniqueArray = this.items.reduce((result, item) => {
+        if (!result.some((existingItem: IRecordOnDatabase) => existingItem.id === item.id)) {
+          result.push(item);
+        }
+        return result;
+      }, []);
+
+      this.items = uniqueArray;
+
       //ordina gli oggetti in base alla data di aggiunta
-      this.items.sort((a, b) => {
+      this.lastAddedItems = this.items.sort((a, b) => {
         const dateA = new Date(a.dateAdded);
         const dateB = new Date(b.dateAdded);
 
@@ -40,19 +58,25 @@ export class HomeComponent {
           return 0;
         }
       });
+      //ultimi articoli aggiunti
+      this.lastAddedItems = this.lastAddedItems.slice(0,12)
+      console.log('lastItem',this.lastAddedItems);
 
-      // rimuove i duplicati dall'array
-      const uniqueArray = this.items.reduce((result, item) => {
-        if (!result.some((existingItem: IRecordOnDatabase) => existingItem.id === item.id)) {
-          result.push(item);
+      //ordina gli oggetti in base alle ultime uscite
+      this.lastReleasedItems = this.items.sort((a, b) => {
+        const dateA = new Date(a.released);
+        const dateB = new Date(b.released);
+
+        if (dateA < dateB) {
+          return 1;
+        } else if (dateA > dateB) {
+          return -1;
+        } else {
+          return 0;
         }
-        return result;
-      }, []);
-
-      this.items = uniqueArray;
-      this.lastAddedItems = this.items.slice(0,12)
-      console.log(this.items);
-console.log('lastItem',this.lastAddedItems);
+      });
+      this.lastReleasedItems = this.lastReleasedItems.slice(0,12)
+      console.log('lastReleasedItem',this.lastReleasedItems);
 
 
     });
