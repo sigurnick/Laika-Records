@@ -4,13 +4,10 @@ import {
   EventEmitter,
   HostListener,
   Input,
-  OnChanges,
-  OnInit,
   Output,
   Renderer2,
 } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
 import { FireDBService } from 'src/app/services/fire-db.service';
 import { IUser } from 'src/app/interfaces/user';
 

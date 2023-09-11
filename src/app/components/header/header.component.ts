@@ -1,5 +1,5 @@
 import { IAuthResponseData } from './../../pages/auth/interfaces/auth-responde-data';
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces/user';
@@ -17,8 +17,9 @@ export class HeaderComponent {
   isAdminLogged: boolean = false;
   user!: IAuthResponseData | null;
   userData!:IUser |  null
-
-  constructor(private authService: AuthService, private firebaseService:FireDBService, private router: Router) {}
+  isScrolled = false;
+  constructor(private authService: AuthService, private firebaseService:FireDBService, private renderer: Renderer2,
+    private el: ElementRef) {}
 
   ngOnInit(): void {
 
@@ -65,5 +66,21 @@ export class HeaderComponent {
     this.authService.logout();
   }
 
+
+  //cambia la variabile allo scroll del mouse in basso
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const scrollY = window.scrollY;
+
+    if (scrollY > 30) {
+      this.isScrolled = true;
+
+      this.renderer.addClass(this.el.nativeElement, 'scrolled');
+    } else {
+      this.isScrolled = false;
+
+      this.renderer.removeClass(this.el.nativeElement, 'scrolled');
+    }
+  }
 
 }

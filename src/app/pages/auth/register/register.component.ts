@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
               console.log(res);
               this.form.reset();
               this.isLoading = false;
-              this.router.navigate(['/home']);
+              this.router.navigate(['/login']);
             });
         },
         (errorMessage) => {

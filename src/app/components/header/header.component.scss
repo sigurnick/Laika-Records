@@ -10,3 +10,22 @@
 .linkActiveMobile {
   text-decoration: underline;
 }
+
+
+$topbar-height: 80px;
+
+.headerTop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scrolled {
+
+  height: 80px;
+
+}
+
