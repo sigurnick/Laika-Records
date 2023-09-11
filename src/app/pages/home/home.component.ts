@@ -18,6 +18,7 @@ export class HomeComponent {
   lastReleasedItems: IRecordOnDatabase[] = [];
   mostFavouritedItems: IRecordOnDatabase[] = [];
   mostSoldItems: IRecordOnDatabase[] = [];
+  isLoading: boolean = false;
 
   constructor(private firebaseDatabaseService: FireDBService) { }
 
@@ -94,6 +95,7 @@ export class HomeComponent {
       });
       this.mostFavouritedItems = this.mostFavouritedItems.slice(0,12)
       console.log('mostFav',this.mostFavouritedItems);
+      this.isLoading = true
 
 
 
