@@ -79,7 +79,7 @@
         </div>
       </div>
 
-      <hr class="border-bottom-[1px] border-slate-300" />
+      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
 
       <!-- Record info -->
       <div>
@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      <hr class="border-bottom-[1px] border-slate-300" />
+      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
 
       <!-- -----Button BUY COLLECTED WANTED---- -->
       <div class="flex gap-1 justify-center items-center text-lg">
@@ -166,14 +166,14 @@
        </button>
       </div>
 
-      <hr class="border-bottom-[1px] border-slate-300" />
+      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
     </div>
   </div>
 
   <!-- RECORD TRACKLIST -->
   <div *ngIf="record" class="mx-auto px-5 lg:px-10 lg:max-w-[1550px] text-lg">
     <div class="text-lg mt-14 mb-4">Tracklist</div>
-    <hr class="border-bottom-[1px] border-slate-300" />
+    <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
 
     <div *ngFor="let track of record.tracklist">
       <div *ngIf="track.type_ == 'track'">
@@ -186,7 +186,7 @@
 
           <span>{{ track.duration }}</span>
         </div>
-        <hr class="border-bottom-[1px] border-slate-300" />
+        <hr class="border-bottom-[1px] border-[rgba(0,0,0,0.3)]" />
       </div>
     </div>
   </div>

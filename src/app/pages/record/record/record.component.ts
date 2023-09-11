@@ -99,6 +99,9 @@ export class RecordComponent {
           this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
             console.log(data);
 
+            this.firebaseService.updateWantedEvent(true)
+            setTimeout(() => this.firebaseService.updateWantedEvent(false)
+            , 800)
           })
         })
       }

@@ -18,6 +18,10 @@ export class HeaderComponent {
   user!: IAuthResponseData | null;
   userData!:IUser |  null
   isScrolled = false;
+
+  newWantedEvents: boolean = false;
+
+
   constructor(private authService: AuthService, private firebaseService:FireDBService, private renderer: Renderer2,
     private el: ElementRef) {}
 
@@ -49,10 +53,13 @@ export class HeaderComponent {
       console.log('loggato:',this.isLogged);
 
     });
-  }
 
-  //?barra di ricerca da implementare
-  onSubmit(form: NgForm) {}
+    this.firebaseService.getWantedEvent().subscribe((value)=> {
+      this.newWantedEvents = value
+      console.log(this.newWantedEvents);
+
+    })
+  }
 
   openMenu() {
     this.isMenuOpen = true;

@@ -32,6 +32,8 @@ export class FireDBService {
   private authSubject = new BehaviorSubject<null | IUser>(null); //null = utente non loggato
   userData$ = this.authSubject.asObservable(); //dati utente loggato
 
+  private newWantedEvent$ = new BehaviorSubject<boolean>(false);
+
 
   constructor(private http: HttpClient,
     private router: Router,
@@ -139,6 +141,14 @@ export class FireDBService {
     `${this.urlUsers}/${userData.userId}/wanted.json?auth=${userAuth.idToken}`);
 }
 
+
+getWantedEvent() {
+  return this.newWantedEvent$.asObservable();
+}
+
+updateWantedEvent(newValue:boolean) {
+  this.newWantedEvent$.next(newValue)
+}
   //-------[Gestione collection utente]--------
 
   //inserisci item wanted in user
