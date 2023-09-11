@@ -112,7 +112,7 @@
       <!-- -----Button BUY COLLECTED WANTED---- -->
       <div class="flex gap-1 justify-center items-center text-lg">
         <button
-          class="w-full h-12 bg-black py-2 px-4 text-white rounded-md max-w-xs"
+          class="w-full h-12 bg-black py-2 px-4 text-white rounded-md max-w-xs hover:bg-coolBlack transition-colors duration-300"
         >
           Add to cart
         </button>
@@ -125,7 +125,7 @@
 
           class="w-full h-12 border-2 py-1 border-red-500 rounded-md flex justify-center items-center text-black max-w-[80px]
            hover:bg-red-500 hover:text-white hover:border-red-700
-           transition-colors"
+           transition-colors  duration-300"
         >
         <i class="fa-regular fa-heart text-xl"></i>
         </button>
@@ -137,7 +137,7 @@
 
             class="w-full h-12 border-2 py-1 border-red-700 rounded-md flex justify-center items-center text-white max-w-[80px] bg-red-500
              hover:bg-white hover:text-black hover:border-red-500
-             transition-colors"
+             transition-colors duration-300"
           >
           <i class="fa-regular fa-heart text-xl"></i>
           </button>
@@ -149,7 +149,7 @@
         <button
         (click)="addRecordToCollectionList()"
           *ngIf="isColectedRecord == false"
-          class="w-full h-12 border-2 py-1 border-blue-500 rounded-md flex justify-center items-center text-black max-w-[80px]  hover:bg-blue-500 hover:text-white hover:border-blue-700 transition-colors"
+          class="w-full h-12 border-2 py-1 border-blue-500 rounded-md flex justify-center items-center text-black max-w-[80px]  hover:bg-blue-500 hover:text-white hover:border-blue-700 transition-colors duration-300"
         >
         <i class="fa-regular fa-bookmark text-xl"></i>
 
@@ -159,7 +159,7 @@
          <button
          (click)="removeRecordFromCollectionList()"
          *ngIf="isColectedRecord == true"
-         class="w-full h-12 border-2 py-1 border-blue-700 rounded-md flex justify-center items-center text-white max-w-[80px] bg-blue-500  hover:bg-white hover:text-black hover:border-blue-500 transition-colors"
+         class="w-full h-12 border-2 py-1 border-blue-700 rounded-md flex justify-center items-center text-white max-w-[80px] bg-blue-500  hover:bg-white hover:text-black hover:border-blue-500 transition-colors duration-300"
        >
        <i class="fa-regular fa-bookmark text-xl"></i>
 
