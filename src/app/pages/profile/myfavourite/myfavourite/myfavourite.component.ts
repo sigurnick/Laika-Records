@@ -15,7 +15,7 @@ export class MyfavouriteComponent {
   id!: string;
   userAuth!: IAuthResponseData
   userData!: IUser
-  collection: IRecordOnDatabase[] = []
+  wanted: IRecordOnDatabase[] = []
 
   constructor(private authService: AuthService, private router: Router, private firebaseService: FireDBService) {}
 
@@ -30,10 +30,10 @@ export class MyfavouriteComponent {
           this.firebaseService.userData$.subscribe((userData) => {
             if(userData) {
               this.userData = userData
-              //ora recupero la lista collection
-              this.firebaseService.getUserCollection(this.userData, this.userAuth).subscribe((collection)=> {
-                this.collection = Object.values(collection); //trasforma in array
-                console.log(this.collection);
+              //ora recupero la lista wanted
+              this.firebaseService.getUserWanted(this.userData, this.userAuth).subscribe((wanted)=> {
+                this.wanted = Object.values(wanted); //trasforma in array
+                console.log(this.wanted);
 
               })
             }
@@ -48,9 +48,9 @@ export class MyfavouriteComponent {
     window.location.reload()
   }
 
-  removeFromCollection(item: IRecordOnDatabase,i:number) {
+  removeFromWanted(item: IRecordOnDatabase,i:number) {
     this.firebaseService.removeRecordWanted(this.userData, this.userAuth, item).subscribe((res)=> {
-      this.collection.splice(i,1)
+      this.wanted.splice(i,1)
     })
   }
 }

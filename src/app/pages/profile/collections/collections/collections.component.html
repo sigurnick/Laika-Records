@@ -1,1 +1,89 @@
-<p>collections works!</p>
+<div class="relative md:block">
+  <!-- Go back button -->
+  <button class="absolute left-0 top-[10px] md:hidden" (click)="goBack()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15.75 19.5L8.25 12l7.5-7.5"
+      />
+    </svg>
+  </button>
+
+  <!-- All profile data -->
+  <div class="flex flex-col gap-8">
+    <h1
+      class="text-4xl tracking-wide font-bold text-center w-full md:text-left"
+    >
+      COLLECTION
+    </h1>
+    <hr class="border-bottom-4 border-black mt-1" />
+
+    <!-- collection list-->
+    <div>
+
+      <div
+        class="mx-2 grid gap-4 grid-cols-1 lg:grid-cols-2 "
+      >
+        <div
+          *ngFor="let item of collection; index as i"
+          class="mb-4 flex justify-start items-center gap-4 bg-slate-200 rounded shadow relative hover:bg-slate-300 hover:scale-110 hover:z-10 hover:text-xl transition-all"
+        >
+        <!-- album cover -->
+          <a
+            routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+            class="max-w-[80px] basis-1/4"
+          >
+            <img
+              *ngIf="item.imgUrl"
+              src="{{ item.imgUrl[0] }}"
+              alt="record cover"
+              class="rounded-sm"
+            />
+
+          </a>
+
+
+          <div class="flex flex-col basis-3/4 ">
+
+            <a
+
+              routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+              class="font-light lg:text-lg  truncate "
+              >{{ item.title }}
+            </a>
+
+            <a
+              routerLink="/record/{{ item.id }}"
+              class="lg:text-lg  truncate "
+              >{{ item.artists[0].name }}</a
+            >
+
+
+          </div>
+
+          <button (click)="removeFromCollection(item,i)" class="absolute right-3 -top-0.5 md:text-lg lg:text-xl text-blue-500  transition-all hover:text-gray-500 hover:text-2xl"><i class="fa-solid fa-bookmark"></i></button>
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+</div>

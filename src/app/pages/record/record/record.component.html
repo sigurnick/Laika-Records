@@ -22,7 +22,7 @@
     <!-- Più immagini -->
     <div *ngIf="(record.imgUrl) && (record.imgUrl.length > 1)" class="flex flex-col ">
       <div
-      class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded-sm min-h[500px] md:h-[600px] flex justify-center items-center"
+      class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded min-h[500px] md:h-[600px] flex justify-center items-center"
     >
       <img
       class="object-cover md:max-h-[600px]"
@@ -33,7 +33,7 @@
   <!-- Preview immagini -->
   <div class="flex items-center justify-center gap-2">
    <button (click)="changePreview(img)" *ngFor="let img of record.imgUrl" class="w-2/12 h-2/12">
-     <img src="{{img}}" alt="" class="object-scale-down h-48 w-96 rounded-sm">
+     <img src="{{img}}" alt="" class="object-scale-down h-48 w-96 rounded">
    </button>
 
   </div>

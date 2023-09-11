@@ -15,6 +15,7 @@ import { OverviewComponent } from './pages/dashboard/overview/overview/overview.
 import { DatabaseComponent } from './pages/dashboard/database/database/database.component';
 import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component';
 import { RecordComponent } from './pages/record/record/record.component';
+import { CollectionsComponent } from './pages/profile/collections/collections/collections.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -36,7 +37,8 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'orders', component: MyordersComponent },
-      { path: 'favourites', component: MyfavouriteComponent },
+      { path: 'collection', component: CollectionsComponent},
+      { path: 'wanted', component: MyfavouriteComponent },
       { path: 'editprofile', component: MyprofileComponent },
       { path: 'address', component: AddressComponent },
       { path: 'payment', component: PaymentComponent },

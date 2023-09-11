@@ -133,12 +133,11 @@ export class FireDBService {
       `${this.urlUsers}/${userData.userId}/wanted/${item.id}.json?auth=${userAuth.idToken}`);
   }
 
-  //prendo lista collection user
-  getUserCollection(userData: IUser, userAuth:IAuthResponseData) {
-    return this.http.get<IRecordOnDatabase[]>(
-      `${this.urlUsers}/${userData.userId}/wanted.json?auth=${userAuth.idToken}`);
-  }
-
+ //prendo lista wanted user
+ getUserWanted(userData: IUser, userAuth:IAuthResponseData) {
+  return this.http.get<IRecordOnDatabase[]>(
+    `${this.urlUsers}/${userData.userId}/wanted.json?auth=${userAuth.idToken}`);
+}
 
   //-------[Gestione collection utente]--------
 
@@ -166,6 +165,13 @@ export class FireDBService {
     return this.http.get<IRecordOnDatabase[]>(
       `${this.urlUsers}/${userData.userId}/collection/${item.id}.json?auth=${userAuth.idToken}`);
   }
+
+    //prendo lista collection user
+    getUserCollection(userData: IUser, userAuth:IAuthResponseData) {
+      return this.http.get<IRecordOnDatabase[]>(
+        `${this.urlUsers}/${userData.userId}/collection.json?auth=${userAuth.idToken}`);
+    }
+
   //------------------------------------------------------------------
 
 
