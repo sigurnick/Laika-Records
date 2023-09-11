@@ -79,6 +79,24 @@ export class HomeComponent {
       console.log('lastReleasedItem',this.lastReleasedItems);
 
 
+      //ordina gli oggetti in base ai più preferiti
+      this.mostFavouritedItems = this.items.sort((a, b) => {
+        const dateA = new Date(a.wanted)
+        const dateB = new Date(b.wanted);
+
+        if (dateA < dateB) {
+          return 1;
+        } else if (dateA > dateB) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      this.mostFavouritedItems = this.mostFavouritedItems.slice(0,12)
+      console.log('mostFav',this.mostFavouritedItems);
+
+
+
     });
   }
 
