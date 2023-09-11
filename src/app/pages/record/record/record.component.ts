@@ -37,6 +37,8 @@ export class RecordComponent {
     //prendo i dati del record
     this.firebaseService.getItemByIdAndGenre(this.id, this.genre).subscribe((record) => {
       this.record = record;
+      console.log(this.record);
+
 
       if (this.record.imgUrl) {
         //imposto la immagine iniziale

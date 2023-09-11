@@ -1,4 +1,4 @@
-<div class="px-3 py-3 max-w-[1700px] mx-auto mt-1 lg:mt-8">
+<div class="px-3 py-3 max-w-[1400px] mx-auto mt-1 lg:mt-8">
 
   <!--  RECORD COVER - INFO -->
   <div
@@ -179,8 +179,9 @@
       <div *ngIf="track.type_ == 'track'">
         <div class="flex justify-between">
           <div>
-            <span class="mr-4">{{ track.position }}</span
-            ><span>{{ track.title }}</span>
+            <span class="mr-6">{{ track.position }}</span
+            ><span class="mr-2">{{ track.title }}</span>
+            <a *ngFor="let artist of track.extraartists"  class="text-sm font-light hover:underline hidden lg:inline-block"> - {{artist.name}} </a>
           </div>
 
           <span>{{ track.duration }}</span>
