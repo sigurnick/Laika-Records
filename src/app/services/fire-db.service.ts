@@ -129,9 +129,14 @@ export class FireDBService {
 
   //cerco se il record è nella wanted dello user
   getWantedById(userData: IUser, userAuth:IAuthResponseData, item:IRecordOnDatabase) {
-
     return this.http.get<IRecordOnDatabase[]>(
       `${this.urlUsers}/${userData.userId}/wanted/${item.id}.json?auth=${userAuth.idToken}`);
+  }
+
+  //prendo lista collection user
+  getUserCollection(userData: IUser, userAuth:IAuthResponseData) {
+    return this.http.get<IRecordOnDatabase[]>(
+      `${this.urlUsers}/${userData.userId}/wanted.json?auth=${userAuth.idToken}`);
   }
 
 

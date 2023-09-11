@@ -27,12 +27,52 @@
     <hr class="border-bottom-4 border-black mt-1" />
 
     <!-- My wanted list-->
-    <div class="flex justify-between">
+    <div>
+
+      <div
+        class="mx-2 grid gap-4 grid-cols-1 lg:grid-cols-2 "
+      >
+        <div
+          *ngFor="let item of collection; index as i"
+          class="mb-4 flex justify-start items-center gap-4 bg-slate-200 rounded relative hover:bg-slate-300"
+        >
+        <!-- album cover -->
+          <a
+            routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+            class="max-w-[80px] basis-1/4"
+          >
+            <img
+              *ngIf="item.imgUrl"
+              src="{{ item.imgUrl[0] }}"
+              alt="record cover"
+              class="rounded-sm"
+            />
+
+          </a>
 
 
+          <div class="flex flex-col basis-3/4 ">
+
+            <a
+
+              routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+              class="font-light lg:text-lg hover:underline truncate"
+              >{{ item.title }}
+            </a>
+
+            <a
+              routerLink="/record/{{ item.id }}"
+              class="lg:text-lg hover:underline truncate"
+              >{{ item.artists[0].name }}</a
+            >
 
 
+          </div>
 
+          <button (click)="removeFromCollection(item,i)" class="absolute right-2 top-2 md:text-lg text-[#a3a3a3] hover:text-gray-500"><i class="fa-solid fa-xmark"></i></button>
+
+        </div>
+      </div>
     </div>
 
 
