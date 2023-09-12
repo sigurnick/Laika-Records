@@ -82,12 +82,9 @@ export class HomeComponent {
 
       //ordina gli oggetti in base ai più preferiti
       this.mostFavouritedItems = this.items.sort((a, b) => {
-        const dateA = new Date(a.wanted)
-        const dateB = new Date(b.wanted);
-
-        if (dateA < dateB) {
+        if (a.wanted < b.wanted) {
           return 1;
-        } else if (dateA > dateB) {
+        } else if (a.wanted > b.wanted) {
           return -1;
         } else {
           return 0;

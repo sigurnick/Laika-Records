@@ -71,7 +71,6 @@ class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-
 <!------------------------------------------------------------------->
 
 
-<button (click)="resetFilter(genericFilterValue)" class="bg-black text-white font-light px-4 py-2 w-full rounded hover:bg-coolBlack transition-colors">Reset</button>
 
 
     </div>
@@ -81,34 +80,37 @@ class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-
 
 <!-----------------------------------[Most popular]----------------------------------->
 <!-- Dropdown button filtri most popular most loved -->
-<button id="dropdownGenericFilterButton" data-dropdown-toggle="dropdownGenericFilter" data-dropdown-placement="bottom"
-class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-md  px-5 py-2.5 w-full  flex justify-between items-center hover:border-black focus:border-black" type="button"><span>{{genericFilterValue}}</span>
+<button  id="dropdownGenericFilterButton" data-dropdown-toggle="dropdownGenericFilter" data-dropdown-placement="bottom"
+class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-md mb-1  px-5 py-2.5 w-full flex justify-between items-center hover:border-black focus:border-black" type="button"><span>{{genericFilterValue}}</span>
 <svg class="w-3 h-3 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
 </svg></button>
+
+<button (click)="resetFilter()" class="bg-black text-white font-light px-4 py-2 w-full rounded hover:bg-coolBlack transition-colors">Reset</button>
+
 
 <!-- Dropdown GENRES-->
 <div id="dropdownGenericFilter" class="z-10 hidden bg-white rounded-md border-2 border-black w-11/12">
   <div class="max-h-[300px] pt-2 px-3 pb-3 overflow-y-auto text-sm text-black flex flex-col gap-1" aria-labelledby="dropdownGenericFilterButton">
     <button   class="">
-      <div (click)="newestReleasedFilter()" class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
+      <div (click)="genericFilter('Newest released')" class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
         Newest released
       </div>
     </button>
 
-    <button   (click)="newestAddedFilter()">
+    <button   (click)="genericFilter('Newest added')">
       <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
         Newest added
       </div>
     </button>
 
-    <button   class="">
+    <button (click)="genericFilter('Most wanted')" >
       <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
         Most wanted
       </div>
     </button>
 
-    <button   class="">
+    <button  (click)="genericFilter('Most collected')">
       <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
         Most collected
       </div>
@@ -138,26 +140,22 @@ class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-
     *ngIf="items && !isLoading"
   >
     <!-- Mobile filter button -->
-    <div class="mx-2 grid grid-cols-2 mb-12 gap-1 lg:hidden">
+    <div class="mx-2 grid grid-cols-1 mb-12 gap-1 lg:hidden">
       <button
         (click)="openMobileSide()"
         class="bg-black text-white font-light px-4 py-2 w-full max-w-[180px] mx-auto sm:max-w-full"
       >
         Filter
       </button>
-      <button
-        class="bg-black text-white font-light px-4 py-2 w-full max-w-[180px] mx-auto sm:max-w-full"
-      >
-        Most popular
-      </button>
+
     </div>
 
-    <div class="mx-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+    <div class="mx-2 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4">
 
       <!-- ITEMS -->
       <div
         *ngFor="let item of itemsOnView; index as i"
-        class="mb-8 mx-auto flex flex-col gap-1 max-w-[180px] sm:max-w-[190px] md:max-w-[180px] lg:max-w-[230px] xl:max-w-[24s0px] min-[1400px]:max-w-[210px]"
+        class="mb-8 mx-auto flex flex-col gap-1 max-w-[180px] sm:max-w-[190px] md:max-w-[180px] lg:max-w-[220px] xl:max-w-[230px] min-[1400px]:max-w-[250px]"
       >
         <a routerLink="/record/{{ item.genres[0] }}/{{ item.id }}">
           <img

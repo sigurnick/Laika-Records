@@ -159,6 +159,7 @@ export class ProductsComponent {
     if(this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
+    this.genericFilter(this.genericFilterValue)
   }
 
   //filtra items per genere
@@ -172,6 +173,7 @@ export class ProductsComponent {
     if(this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
+    this.genericFilter(this.genericFilterValue)
     })
   }
 
@@ -185,51 +187,78 @@ export class ProductsComponent {
     if(this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
+    this.genericFilter(this.genericFilterValue)
+
   }
 
   //resetta i 3 filtri
-  resetFilter(genericFilter:string) {
+  resetFilter() {
     this.labelFilterValue = 'Label'
     this.genreFilterValue = 'Genre'
     this.artistFilterValue = 'Artist'
     this.itemsOnView = this.items
+    this.genericFilterValue = 'Newest released'
     if(this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
   }
 
-  newestReleasedFilter() {
-    this.genericFilterValue = 'Newest released'
-    this.itemsOnView = this.itemsOnView.sort((a, b) => {
-      const dateA = new Date(a.released);
-      const dateB = new Date(b.released);
 
-      if (dateA < dateB) {
+  genericFilter(filter:string) {
+    if(filter==='Newest released') {
+      this.genericFilterValue = 'Newest released'
+      this.itemsOnView = this.itemsOnView.sort((a, b) => {
+        const dateA = new Date(a.released);
+        const dateB = new Date(b.released);
+
+        if (dateA < dateB) {
+          return 1;
+        } else if (dateA > dateB) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    } else if(filter==='Newest added') {
+      this.genericFilterValue = 'Newest added'
+      this.itemsOnView = this.itemsOnView.sort((a, b) => {
+       const dateA = new Date(a.dateAdded);
+       const dateB = new Date(b.dateAdded);
+
+       if (dateA < dateB) {
+         return 1;
+       } else if (dateA > dateB) {
+         return -1;
+       } else {
+         return 0;
+       }
+     });
+    } else if(filter==='Most wanted') {
+      this.genericFilterValue = 'Most wanted'
+    this.itemsOnView = this.items.sort((a, b) => {
+      if (a.wanted < b.wanted) {
         return 1;
-      } else if (dateA > dateB) {
+      } else if (a.wanted > b.wanted) {
         return -1;
       } else {
         return 0;
       }
     });
+    } else if(filter==='Most collected') {
+      this.genericFilterValue = 'Most collected'
+      this.itemsOnView = this.items.sort((a, b) => {
+        if (a.collected < b.collected) {
+          return 1;
+        } else if (a.collected > b.collected) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    }
+
+
   }
-
-  newestAddedFilter() {
-    this.genericFilterValue = 'Newest added'
-     this.itemsOnView = this.itemsOnView.sort((a, b) => {
-      const dateA = new Date(a.dateAdded);
-      const dateB = new Date(b.dateAdded);
-
-      if (dateA < dateB) {
-        return 1;
-      } else if (dateA > dateB) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
-  }
-
 
 
   //------------------------------------------------------------------
