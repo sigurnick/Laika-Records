@@ -18,14 +18,22 @@ export class ProductsComponent {
 
   //item filte
   artists: string[] = []
+  genres: string[] = []
   itemsOnView: IRecordOnDatabase[] = []
+
+  //filter name value
+  artistFilterValue: string = 'Artist'
+  genreFilterValue: string = 'Genre'
 
 
   constructor(private firebaseService: FireDBService) { }
 
   ngOnInit() {
     initFlowbite();
+    //---------------------------[Prendo informazioni iniziali]-------------------------
     this.firebaseService.getAllItems().subscribe((data) => {
+
+
       //converte le categorie in array
       const categories = Object.values(data);
 
@@ -61,6 +69,9 @@ export class ProductsComponent {
       console.log(this.items);
       this.isLoading = false
 
+
+//---------------------------[Creo array Artisti - Genere - Label]-------------------------
+
       //prendo tutti gli artisti
       this.artists = this.items.map(item => item.artists[0].name)
       //li ordino per iniziale del nome
@@ -85,6 +96,20 @@ export class ProductsComponent {
         return arr.indexOf(name) === index
       })
 
+
+      //prendo generi
+      this.items.forEach((item)=> {
+        item.genres.forEach((genre)=> {
+          this.genres.push(genre);
+        })
+      })
+      this.genres = this.genres.filter((name, index, arr )=> {
+        return arr.indexOf(name) === index
+      })
+
+
+
+
     });
   }
 
@@ -96,9 +121,28 @@ export class ProductsComponent {
     this.mobileSideStatus = 'closeed';
   }
 
+  //filtre item per artist
   filterArtist(artist:string) {
+    this.genreFilterValue = 'Genre'
+    this.artistFilterValue = artist
     this.isFilterActive = true
     this.itemsOnView = this.items.filter(item => item.artists[0].name === artist)
+    if(this.mobileSideStatus === 'open') {
+      this.mobileSideStatus = 'cloded'
+    }
+  }
+
+  //filtra items per genere
+  genreFilter(genre:string) {
+    this.artistFilterValue = 'Artist'
+    this.genreFilterValue = genre
+    this.isFilterActive = true
+    this.firebaseService.getItemsByGenre(genre).subscribe((data)=> {
+    this.itemsOnView = Object.values(data);
+    if(this.mobileSideStatus === 'open') {
+      this.mobileSideStatus = 'cloded'
+    }
+    })
   }
 
 }

@@ -281,6 +281,13 @@ updateWantedEvent(newValue:boolean) {
   }
 
 
+  //----------Filtri Items--------
+  getItemsByGenre(genre: string) {
+    return  this.http.get<IRecordOnDatabase>(`${this.urlItems}/${genre}.json`)
+  }
+
+
+
   //-----------[Wanted e Collection]-----------
 
   //update record data
