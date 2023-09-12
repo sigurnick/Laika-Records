@@ -67,6 +67,8 @@ export class DiscogsComponent {
 
   //prendo info di un album specifico
   getRecordInfo(id: number) {
+    console.log('id:',id);
+
     this.discogsService.getRecordInfoById(id).subscribe((resData) => {
       this.recordInfo = resData;
 

@@ -3,36 +3,52 @@
   <aside
     [class.slide-in-left]="mobileSideStatus == 'open'"
     [class.slide-out-left]="mobileSideStatus == 'closed'"
-    class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter lg:w-full lg:max-w-[250px] lg:sticky lg:top-[120px]"
+    class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter w-full lg:max-w-[250px] lg:sticky lg:top-[120px]"
   >
     <h1 class="font-light text-2xl mb-6">Filter</h1>
     <!-- FILTRI -->
     <div class="flex flex-col gap-2">
 
 
-
+<!-----------------------------------[ARTIST FILTER]----------------------------------->
 <!-- Dropdown button ARTIST -->
 <button id="dropdownSearchArtistsButton" data-dropdown-toggle="dropdownSearchArtists" data-dropdown-placement="bottom"
-class="text-black bg-white border-2 border-black font-medium rounded-md  px-5 py-2.5  flex justify-between items-center" type="button"><span>Artist</span>
+class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-md  px-5 py-2.5 w-full  flex justify-between items-center hover:border-black focus:border-black" type="button"><span>Artist</span>
 <svg class="w-3 h-3 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
 </svg></button>
 
-<!-- Dropdown ARTISTS -->
-<div id="dropdownSearchArtists" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
-
-  <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchArtistsButton">
-    <li *ngFor="let artist of artists">
-      <div class="flex items-center pl-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-        <input id="checkbox-item-11" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-        <label for="checkbox-item-11" class="w-full py-2 ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{artist}}</label>
+<!-- Dropdown ARTIST -->
+<div id="dropdownSearchArtists" class="z-10 hidden bg-white rounded-md border-2 border-black w-11/12">
+  <div class="h-[300px] pt-2 px-3 pb-3 overflow-y-auto text-sm text-black flex flex-col gap-1" aria-labelledby="dropdownSearchArtistsButton">
+    <button (click)="filterArtist(artist)" *ngFor="let artist of artists" class="">
+      <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
+        {{artist}}
       </div>
-    </li>
-
-  </ul>
-
+    </button>
+  </div>
 </div>
+<!------------------------------------------------------------------->
 
+<!-----------------------------------[GENRE FILTER]----------------------------------->
+<!-- Dropdown buttonGENRE -->
+<button id="dropdownSearchAGenreButton" data-dropdown-toggle="dropdownSearchAGenre" data-dropdown-placement="bottom"
+class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-md  px-5 py-2.5 w-full  flex justify-between items-center hover:border-black focus:border-black" type="button"><span>Artist</span>
+<svg class="w-3 h-3 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+</svg></button>
+
+<!-- Dropdown ARTIST -->
+<div id="dropdownSearchAGenre" class="z-10 hidden bg-white rounded-md border-2 border-black w-11/12">
+  <div class="h-[300px] pt-2 px-3 pb-3 overflow-y-auto text-sm text-black flex flex-col gap-1" aria-labelledby="dropdownSearchArtistsButton">
+    <button (click)="filterArtist(artist)" *ngFor="let artist of artists" class="">
+      <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
+        {{artist}}
+      </div>
+    </button>
+  </div>
+</div>
+<!------------------------------------------------------------------->
 
 
 
@@ -73,8 +89,10 @@ class="text-black bg-white border-2 border-black font-medium rounded-md  px-5 py
     </div>
 
     <div class="mx-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+
+      <!-- ITEMS -->
       <div
-        *ngFor="let item of items; index as i"
+        *ngFor="let item of itemsOnView; index as i"
         class="mb-8 mx-auto flex flex-col gap-1 max-w-[180px] sm:max-w-[190px] md:max-w-[180px] lg:max-w-[230px] xl:max-w-[24s0px] min-[1400px]:max-w-[210px]"
       >
         <a routerLink="/record/{{ item.genres[0] }}/{{ item.id }}">
@@ -106,6 +124,8 @@ class="text-black bg-white border-2 border-black font-medium rounded-md  px-5 py
           <span>Add to cart</span><span>{{ item.price }} €</span>
         </a>
       </div>
+
+
     </div>
   </main>
 </div>

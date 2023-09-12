@@ -60,7 +60,7 @@
             <div
               class="w-4 h-4 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"
             ></div>
-            <span *ngIf="record.quantity > 5">In stock</span>
+            <span *ngIf="record.quantity >5">{{record.quantity}} in stock</span>
             <span *ngIf="record.quantity <= 5"
               >Only {{ record.quantity }} left</span
             >

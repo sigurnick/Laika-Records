@@ -10,12 +10,15 @@ import { FireDBService } from 'src/app/services/fire-db.service';
 })
 export class ProductsComponent {
 
-  items: any[] = [];
+  items: IRecordOnDatabase[] = [];
+  itemsRes: any[] = []
   isLoading: boolean = true;
   mobileSideStatus: string = ''
+  isFilterActive: boolean = false
 
   //item filte
   artists: string[] = []
+  itemsOnView: IRecordOnDatabase[] = []
 
 
   constructor(private firebaseService: FireDBService) { }
@@ -29,11 +32,11 @@ export class ProductsComponent {
       //prende gli oggetti item di ogni categoria e li trasforma in array
       categories.forEach((category) => {
         const albumObjects = Object.values(category);
-        this.items = this.items.concat(albumObjects);
+        this.itemsRes = this.itemsRes.concat(albumObjects);
       });
 
       // rimuove i duplicati dall'array
-      const uniqueArray = this.items.reduce((result, item) => {
+      const uniqueArray = this.itemsRes.reduce((result, item) => {
         if (!result.some((existingItem: IRecordOnDatabase) => existingItem.id === item.id)) {
           result.push(item);
         }
@@ -41,8 +44,6 @@ export class ProductsComponent {
       }, []);
 
       this.items = uniqueArray;
-
-
 
       //ordina gli oggetti in base alle ultime uscite
       this.items = this.items.sort((a, b) => {
@@ -62,6 +63,28 @@ export class ProductsComponent {
 
       //prendo tutti gli artisti
       this.artists = this.items.map(item => item.artists[0].name)
+      //li ordino per iniziale del nome
+      this.artists.sort((a, b) => {
+
+        const firstLetterA = a.charAt(0).toLowerCase();
+        const firstLetterB = b.charAt(0).toLowerCase();
+
+        if (firstLetterA < firstLetterB) {
+          return -1;
+        }
+        if (firstLetterA > firstLetterB) {
+          return 1;
+        }
+        return 0;
+      })
+
+      this.itemsOnView = this.items //copia
+
+      //tolgo artisti duplicati
+      this.artists = this.artists.filter((name, index, arr )=> {
+        return arr.indexOf(name) === index
+      })
+
     });
   }
 
@@ -71,6 +94,11 @@ export class ProductsComponent {
 
   closeMobileSide() {
     this.mobileSideStatus = 'closeed';
+  }
+
+  filterArtist(artist:string) {
+    this.isFilterActive = true
+    this.itemsOnView = this.items.filter(item => item.artists[0].name === artist)
   }
 
 }
