@@ -30,6 +30,7 @@ import { SeparateArrayStringPipe } from './pipes/separate-array-string.pipe';
 import { environment } from 'src/environments/environment';
 import { CollectionsComponent } from './pages/profile/collections/collections/collections.component';
 import { SearchbarComponent } from './components/searchbar/searchbar/searchbar.component';
+import { ProductsComponent } from './pages/products/products/products.component';
 
 
 
@@ -54,7 +55,8 @@ import { SearchbarComponent } from './components/searchbar/searchbar/searchbar.c
     RecordComponent,
     SeparateArrayStringPipe,
     CollectionsComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

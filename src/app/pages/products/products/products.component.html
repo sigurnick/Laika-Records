@@ -1,0 +1,82 @@
+<main class="px-3 py-3 max-w-[1400px] mx-auto mt-8">
+
+  <!-- Aside filter -->
+  <aside [class.slide-in-left]="isMobileSideOpen" [class.slide-out-left]="!isMobileSideOpen"
+  class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter">
+
+    <h1 class="font-light text-2xl">Filter</h1>
+    <!-- Form filter -->
+    <form >
+      <input type="text">
+      <button (click)="closeMobileSide()">Apply</button>
+    </form>
+
+  </aside>
+
+
+  <!-- Spinner -->
+<div class="pt-56 mx-auto" *ngIf="isLoading == true" id="circleG">
+  <div id="circleG_1" class="circleG"></div>
+  <div id="circleG_2" class="circleG"></div>
+  <div id="circleG_3" class="circleG"></div>
+</div>
+
+
+  <!-- ITEMS -->
+  <div [class.hidden]="isMobileSideOpen" [class.block]="!isMobileSideOpen" class="mb-20" *ngIf="items && !isLoading">
+
+    <!-- Mobile filter button -->
+    <div class="mx-2 grid grid-cols-2 mb-12 gap-1">
+      <button
+      (click)="openMobileSide()"
+      class="bg-black text-white font-light px-4 py-2 w-full max-w-[180px] mx-auto sm:max-w-full">Filter</button>
+      <button class="bg-black text-white font-light px-4 py-2 w-full max-w-[180px] mx-auto sm:max-w-full">Most popular</button>
+    </div>
+
+
+    <div
+      class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  xl:grid-cols-6"
+    >
+      <div
+        *ngFor="let item of items; index as i"
+        class="mb-4 mx-auto flex flex-col gap-1 max-w-[180px] sm:max-w-[190px] md:max-w-[180px] lg:max-w-[230px] xl:max-w-[190px]  min-[1400px]:max-w-[210px] "
+      >
+        <a
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+
+        >
+          <img
+            *ngIf="item.imgUrl"
+            src="{{ item.imgUrl[0] }}"
+            alt="record cover"
+            class="rounded imgHeart"
+          />
+
+
+        </a>
+
+        <div></div>
+        <a
+
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.title }}
+        </a>
+
+        <a
+          routerLink="/record/{{ item.id }}"
+          class="font-light hover:underline text-lg"
+          >{{ item.artists[0].name }}</a
+        >
+
+        <a
+          routerLink="/record/{{ item.id }}"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</main>

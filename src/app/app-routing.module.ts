@@ -16,6 +16,7 @@ import { DatabaseComponent } from './pages/dashboard/database/database/database.
 import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.component';
 import { RecordComponent } from './pages/record/record/record.component';
 import { CollectionsComponent } from './pages/profile/collections/collections/collections.component';
+import { ProductsComponent } from './pages/products/products/products.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -45,7 +46,9 @@ const routes: Routes = [
     ],
   },
   { path: 'record', component: RecordComponent},
-  { path: 'record/:genre/:id', component: RecordComponent}
+  { path: 'record/:genre/:id', component: RecordComponent},
+  { path: 'products', component: ProductsComponent}
+
 ];
 
 @NgModule({
