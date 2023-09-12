@@ -6,7 +6,7 @@
     class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter w-full lg:max-w-[250px] lg:sticky lg:top-[120px]"
   >
     <h1 class="font-light text-2xl mb-6">Filter</h1>
-    <!-- FILTRI -->
+    <!-- FILTRI artist,genre,labe-->
     <div class="flex flex-col gap-2">
 
 
@@ -40,7 +40,7 @@ class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-
 
 <!-- Dropdown GENRES-->
 <div id="dropdownSearchAGenre" class="z-10 hidden bg-white rounded-md border-2 border-black w-11/12">
-  <div class="max-h-[300px] pt-2 px-3 pb-3 overflow-y-auto text-sm text-black flex flex-col gap-1" aria-labelledby="dropdownSearchArtistsButton">
+  <div class="max-h-[300px] pt-2 px-3 pb-3 overflow-y-auto text-sm text-black flex flex-col gap-1" aria-labelledby="dropdownSearchGenreButton">
     <button (click)="genreFilter(genre)"  *ngFor="let genre of genres" class="">
       <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
         {{genre}}
@@ -50,8 +50,72 @@ class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-
 </div>
 <!------------------------------------------------------------------->
 
+<!-----------------------------------[LABELS FILTER]----------------------------------->
+<!-- Dropdown button LABELS -->
+<button id="dropdownSearchALabelButton" data-dropdown-toggle="dropdownSearchALabel" data-dropdown-placement="bottom"
+class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-md  px-5 py-2.5 w-full  flex justify-between items-center hover:border-black focus:border-black" type="button"><span>{{labelFilterValue}}</span>
+<svg class="w-3 h-3 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+</svg></button>
+
+<!-- Dropdown GENRES-->
+<div id="dropdownSearchALabel" class="z-10 hidden bg-white rounded-md border-2 border-black w-11/12">
+  <div class="max-h-[300px] pt-2 px-3 pb-3 overflow-y-auto text-sm text-black flex flex-col gap-1" aria-labelledby="dropdownSearchALabelButton">
+    <button (click)="labelFilter(label)"  *ngFor="let label of labels" class="">
+      <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
+        {{label}}
+      </div>
+    </button>
+  </div>
+</div>
+<!------------------------------------------------------------------->
 
 
+<button (click)="resetFilter(genericFilterValue)" class="bg-black text-white font-light px-4 py-2 w-full rounded hover:bg-coolBlack transition-colors">Reset</button>
+
+
+    </div>
+
+    <!-- Filtri most popular ecc -->
+    <div class="mt-8">
+
+<!-----------------------------------[Most popular]----------------------------------->
+<!-- Dropdown button filtri most popular most loved -->
+<button id="dropdownGenericFilterButton" data-dropdown-toggle="dropdownGenericFilter" data-dropdown-placement="bottom"
+class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-md  px-5 py-2.5 w-full  flex justify-between items-center hover:border-black focus:border-black" type="button"><span>{{genericFilterValue}}</span>
+<svg class="w-3 h-3 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+</svg></button>
+
+<!-- Dropdown GENRES-->
+<div id="dropdownGenericFilter" class="z-10 hidden bg-white rounded-md border-2 border-black w-11/12">
+  <div class="max-h-[300px] pt-2 px-3 pb-3 overflow-y-auto text-sm text-black flex flex-col gap-1" aria-labelledby="dropdownGenericFilterButton">
+    <button   class="">
+      <div (click)="newestReleasedFilter()" class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
+        Newest released
+      </div>
+    </button>
+
+    <button   (click)="newestAddedFilter()">
+      <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
+        Newest added
+      </div>
+    </button>
+
+    <button   class="">
+      <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
+        Most wanted
+      </div>
+    </button>
+
+    <button   class="">
+      <div class="text-left pl-2 rounded text-base   hover:text-white hover:bg-black">
+        Most collected
+      </div>
+    </button>
+  </div>
+</div>
+<!------------------------------------------------------------------->
     </div>
   </aside>
 

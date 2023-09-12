@@ -19,11 +19,14 @@ export class ProductsComponent {
   //item filte
   artists: string[] = []
   genres: string[] = []
+  labels: string[] = []
   itemsOnView: IRecordOnDatabase[] = []
 
   //filter name value
   artistFilterValue: string = 'Artist'
   genreFilterValue: string = 'Genre'
+  labelFilterValue: string = 'Label'
+  genericFilterValue: string = 'Newest released'
 
 
   constructor(private firebaseService: FireDBService) { }
@@ -108,6 +111,28 @@ export class ProductsComponent {
       })
 
 
+      //prendo etichette
+      this.labels = this.items.map(item => item.labels[0].name)
+       //tolgo labels duplicati
+       this.labels = this.labels.filter((name, index, arr )=> {
+        return arr.indexOf(name) === index
+      })
+
+
+      //li ordino per iniziale del nome
+      this.labels.sort((a, b) => {
+
+        const firstLetterA = a.charAt(0).toLowerCase();
+        const firstLetterB = b.charAt(0).toLowerCase();
+
+        if (firstLetterA < firstLetterB) {
+          return -1;
+        }
+        if (firstLetterA > firstLetterB) {
+          return 1;
+        }
+        return 0;
+      })
 
 
     });
@@ -121,8 +146,12 @@ export class ProductsComponent {
     this.mobileSideStatus = 'closeed';
   }
 
+
+
+  //---------------------------[Gestione Filtri]-------------------------
   //filtre item per artist
   filterArtist(artist:string) {
+    this.labelFilterValue = 'Label'
     this.genreFilterValue = 'Genre'
     this.artistFilterValue = artist
     this.isFilterActive = true
@@ -135,6 +164,7 @@ export class ProductsComponent {
   //filtra items per genere
   genreFilter(genre:string) {
     this.artistFilterValue = 'Artist'
+    this.labelFilterValue = 'Label'
     this.genreFilterValue = genre
     this.isFilterActive = true
     this.firebaseService.getItemsByGenre(genre).subscribe((data)=> {
@@ -144,5 +174,64 @@ export class ProductsComponent {
     }
     })
   }
+
+  //filtra item per etichetta
+  labelFilter(label: string) {
+    this.labelFilterValue = label
+    this.artistFilterValue = 'Artist'
+    this.genreFilterValue = 'Genre'
+    this.isFilterActive = true
+    this.itemsOnView = this.items.filter(item => item.labels[0].name === label)
+    if(this.mobileSideStatus === 'open') {
+      this.mobileSideStatus = 'cloded'
+    }
+  }
+
+  //resetta i 3 filtri
+  resetFilter(genericFilter:string) {
+    this.labelFilterValue = 'Label'
+    this.genreFilterValue = 'Genre'
+    this.artistFilterValue = 'Artist'
+    this.itemsOnView = this.items
+    if(this.mobileSideStatus === 'open') {
+      this.mobileSideStatus = 'cloded'
+    }
+  }
+
+  newestReleasedFilter() {
+    this.genericFilterValue = 'Newest released'
+    this.itemsOnView = this.itemsOnView.sort((a, b) => {
+      const dateA = new Date(a.released);
+      const dateB = new Date(b.released);
+
+      if (dateA < dateB) {
+        return 1;
+      } else if (dateA > dateB) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  newestAddedFilter() {
+    this.genericFilterValue = 'Newest added'
+     this.itemsOnView = this.itemsOnView.sort((a, b) => {
+      const dateA = new Date(a.dateAdded);
+      const dateB = new Date(b.dateAdded);
+
+      if (dateA < dateB) {
+        return 1;
+      } else if (dateA > dateB) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+
+
+  //------------------------------------------------------------------
 
 }
