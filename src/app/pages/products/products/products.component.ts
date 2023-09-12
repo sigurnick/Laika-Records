@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { initFlowbite } from 'flowbite';
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { FireDBService } from 'src/app/services/fire-db.service';
 
@@ -11,13 +12,16 @@ export class ProductsComponent {
 
   items: any[] = [];
   isLoading: boolean = true;
-  isMobileSideOpen: boolean = false;
+  mobileSideStatus: string = ''
+
+  //item filte
+  artists: string[] = []
 
 
-  constructor(private firebaseService: FireDBService) {}
+  constructor(private firebaseService: FireDBService) { }
 
   ngOnInit() {
-
+    initFlowbite();
     this.firebaseService.getAllItems().subscribe((data) => {
       //converte le categorie in array
       const categories = Object.values(data);
@@ -27,8 +31,6 @@ export class ProductsComponent {
         const albumObjects = Object.values(category);
         this.items = this.items.concat(albumObjects);
       });
-
-
 
       // rimuove i duplicati dall'array
       const uniqueArray = this.items.reduce((result, item) => {
@@ -43,7 +45,7 @@ export class ProductsComponent {
 
 
       //ordina gli oggetti in base alle ultime uscite
-      this.items= this.items.sort((a, b) => {
+      this.items = this.items.sort((a, b) => {
         const dateA = new Date(a.released);
         const dateB = new Date(b.released);
 
@@ -55,24 +57,20 @@ export class ProductsComponent {
           return 0;
         }
       });
-     console.log(this.items);
-
-
-
-
+      console.log(this.items);
       this.isLoading = false
 
-
-
+      //prendo tutti gli artisti
+      this.artists = this.items.map(item => item.artists[0].name)
     });
   }
 
   openMobileSide() {
-    this.isMobileSideOpen = true;
+    this.mobileSideStatus = 'open'
   }
 
   closeMobileSide() {
-    this.isMobileSideOpen = false;
+    this.mobileSideStatus = 'closeed';
   }
 
 }
