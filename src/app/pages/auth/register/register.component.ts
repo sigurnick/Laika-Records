@@ -71,11 +71,10 @@ export class RegisterComponent implements OnInit {
   submitForm() {
     if (this.form.valid) {
       this.isLoading = true;
-      console.log('form', this.form.value);
 
       this.authService.singup(this.form.value).subscribe(
         (resData) => {
-          console.log(resData);
+
 
           //inserisco i dati utendi nel db
           this.firedbService
@@ -94,7 +93,7 @@ export class RegisterComponent implements OnInit {
             });
         },
         (errorMessage) => {
-          console.log('errore', errorMessage);
+
           this.error = errorMessage;
           this.isLoading = false;
         }

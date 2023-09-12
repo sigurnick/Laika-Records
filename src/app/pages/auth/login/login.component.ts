@@ -29,7 +29,7 @@ export class LoginComponent {
   //login
   submitForm(form:NgForm) {
 
-    console.log(this.form.value);
+
 
     this.isLoading = true
     let dataLogin:ILogin = {...this.form.value}
@@ -38,7 +38,7 @@ export class LoginComponent {
 
     this.authService.login(dataLogin).subscribe((data)=>{
 
-      console.log(data);
+
 
       if(data) {
         this.firebaseService.getUserData(data.localId,data.idToken).subscribe((userData)=>{

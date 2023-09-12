@@ -33,10 +33,7 @@ export class HeaderComponent {
         this.isLogged = true;
         this.authService.user$.subscribe((res) => {
           this.user = res;
-          console.log(this.user);
-          if (this.user) {
-            console.log('userid', this.user.localId);
-          }
+
         });
 
         //prendo dati utente
@@ -49,8 +46,6 @@ export class HeaderComponent {
       } else {
         this.isLogged = false;
       }
-
-      console.log('loggato:',this.isLogged);
 
     });
 

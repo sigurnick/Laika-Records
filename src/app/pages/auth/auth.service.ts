@@ -13,7 +13,7 @@ import { IRegister } from './interfaces/register';
 import { IAuthResponseData } from './interfaces/auth-responde-data';
 import { ILogin } from './interfaces/login';
 import { environment } from 'src/environments/environment';
-import { firebaseConfig } from 'src/environments/firebase-config';
+
 
 
 
