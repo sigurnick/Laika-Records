@@ -75,11 +75,9 @@ export class DatabaseComponent implements OnInit {
 
   //rimuove una quantità all' oggetto nel db
   removeQuantity(item: IRecordOnDatabase, i:number) {
-    //se la quantità è uguale a zero rimuove l'oggetto dal db
-    if (item.quantity === 1) {
-      console.log(item.quantity);
-
-      this.eliminateItem(item, i)
+    //impedisco che la quantità vada sotto lo 0
+    if (item.quantity === 1 || item.quantity === 0) {
+     item.quantity = 0
 
     }else {
 

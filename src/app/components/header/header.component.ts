@@ -1,3 +1,4 @@
+import { SharedVariablesService } from './../../services/shared-variables.service';
 import { IAuthResponseData } from './../../pages/auth/interfaces/auth-responde-data';
 import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -23,7 +24,7 @@ export class HeaderComponent {
 
 
   constructor(private authService: AuthService, private firebaseService:FireDBService, private renderer: Renderer2,
-    private el: ElementRef) {}
+    private el: ElementRef, private sharedVariableService: SharedVariablesService) {}
 
   ngOnInit(): void {
 
@@ -49,7 +50,7 @@ export class HeaderComponent {
 
     });
 
-    this.firebaseService.getWantedEvent().subscribe((value)=> {
+    this.sharedVariableService.getWantedEvent().subscribe((value)=> {
       this.newWantedEvents = value
       console.log(this.newWantedEvents);
 

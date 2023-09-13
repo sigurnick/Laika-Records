@@ -2,15 +2,13 @@ import { IAuthResponseData } from 'src/app/pages/auth/interfaces/auth-responde-d
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { IUser } from './../interfaces/user';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { tap } from 'rxjs/internal/operators/tap';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import { Observable, finalize, forkJoin, mergeMap } from 'rxjs';
-import { Storage } from '@angular/fire/storage';
+import { Observable, forkJoin, mergeMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Auth } from '@angular/fire/auth';
 import { getAuth, updatePassword } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
@@ -32,13 +30,12 @@ export class FireDBService {
   private authSubject = new BehaviorSubject<null | IUser>(null); //null = utente non loggato
   userData$ = this.authSubject.asObservable(); //dati utente loggato
 
-  private newWantedEvent$ = new BehaviorSubject<boolean>(false);
+
 
 
   constructor(private http: HttpClient,
     private router: Router,
-    private storage: Storage,
-    private auth: Auth
+
   ) {
     this.restoreUser();
   }
@@ -142,13 +139,7 @@ export class FireDBService {
 }
 
 
-getWantedEvent() {
-  return this.newWantedEvent$.asObservable();
-}
 
-updateWantedEvent(newValue:boolean) {
-  this.newWantedEvent$.next(newValue)
-}
   //-------[Gestione collection utente]--------
 
   //inserisci item wanted in user
@@ -295,7 +286,9 @@ updateWantedEvent(newValue:boolean) {
     return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
   }
 
+search(text:string) {
 
+}
   //------------------------------------------------------------------
 
 

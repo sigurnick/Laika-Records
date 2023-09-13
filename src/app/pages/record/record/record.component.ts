@@ -6,6 +6,7 @@ import { FireDBService } from 'src/app/services/fire-db.service';
 import { AuthService } from '../../auth/auth.service';
 import { IUser } from 'src/app/interfaces/user';
 import { IAuthResponseData } from '../../auth/interfaces/auth-responde-data';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class RecordComponent {
   userAuth!: IAuthResponseData | null
   isWantedRecord: boolean = false
   isColectedRecord: boolean = false
-  constructor(private actRouter: ActivatedRoute, private firebaseService: FireDBService, private authService: AuthService) {
+  constructor(private actRouter: ActivatedRoute, private firebaseService: FireDBService, private authService: AuthService, private sharedVariablesService: SharedVariablesService) {
     initFlowbite();
   }
 
@@ -99,8 +100,8 @@ export class RecordComponent {
           this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
             console.log(data);
 
-            this.firebaseService.updateWantedEvent(true)
-            setTimeout(() => this.firebaseService.updateWantedEvent(false)
+            this.sharedVariablesService.updateWantedEvent(true)
+            setTimeout(() => this.sharedVariablesService.updateWantedEvent(false)
             , 800)
           })
         })
