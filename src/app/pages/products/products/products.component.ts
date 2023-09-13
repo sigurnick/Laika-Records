@@ -196,8 +196,9 @@ export class ProductsComponent {
     this.labelFilterValue = 'Label'
     this.genreFilterValue = 'Genre'
     this.artistFilterValue = 'Artist'
-    this.itemsOnView = this.items
     this.genericFilterValue = 'Newest released'
+    this.itemsOnView = this.items
+    this.genericFilter(this.genericFilterValue)
     if(this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
