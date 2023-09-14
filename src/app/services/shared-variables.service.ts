@@ -11,6 +11,8 @@ export class SharedVariablesService {
   private searchText$ = new BehaviorSubject<string>('');
 
 
+
+
   constructor() { }
 
   //salva il nome artista

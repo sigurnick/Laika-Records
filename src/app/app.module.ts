@@ -32,6 +32,7 @@ import { CollectionsComponent } from './pages/profile/collections/collections/co
 import { SearchbarComponent } from './components/searchbar/searchbar/searchbar.component';
 import { ProductsComponent } from './pages/products/products/products.component';
 import { AboutComponent } from './pages/about/about/about.component';
+import { CartComponent } from './pages/cart/cart/cart.component';
 
 
 
@@ -58,7 +59,8 @@ import { AboutComponent } from './pages/about/about/about.component';
     CollectionsComponent,
     SearchbarComponent,
     ProductsComponent,
-    AboutComponent
+    AboutComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

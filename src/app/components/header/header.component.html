@@ -105,7 +105,7 @@
         <!-- cart -->
         <li *ngIf="userData" class="hidden md:flex items-center">
           <a class="flex items-center"
-          routerLink="/profile/{{userData.userId}}/cart"
+          routerLink="/cart/{{userData.userId}}"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -319,11 +319,11 @@
         </a>
       </li>
 
-      <!-- CART -->
-      <li class="text-white text-2xl m-5">
+      <!-- CART-->
+      <li *ngIf="user != null" class="text-white text-2xl m-5">
         <a
           (click)="closeMenu()"
-          routerLink="home"
+          routerLink="/cart/{{ user.localId }}"
           class="flex items-center justify-center gap-2"
         >
 
