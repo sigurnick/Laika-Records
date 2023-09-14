@@ -198,7 +198,8 @@
         </a>
 
         <a
-          routerLink="/record/{{ item.id }}"
+        (click)="sendArtistName(item.artists[0].name)"
+          routerLink="/products"
           class="font-light hover:underline text-lg"
           >{{ item.artists[0].name }}</a
         >
@@ -252,7 +253,8 @@
         >
 
         <a
-          routerLink="/record/{{ item.id }}"
+        (click)="sendArtistName(item.artists[0].name)"
+          routerLink="/products"
           class="font-light hover:underline text-lg"
           >{{ item.artists[0].name }}</a
         >
@@ -306,7 +308,8 @@
         >
 
         <a
-          routerLink="/record/{{ item.id }}"
+        (click)="sendArtistName(item.artists[0].name)"
+          routerLink="/products"
           class="font-light hover:underline text-lg"
           >{{ item.artists[0].name }}</a
         >

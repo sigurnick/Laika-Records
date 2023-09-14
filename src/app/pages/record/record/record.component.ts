@@ -177,4 +177,8 @@ export class RecordComponent {
 
     })
   }
+
+  sendArtistName(artist:string) {
+    this.sharedVariablesService.updateArtistName(artist)
+  }
 }

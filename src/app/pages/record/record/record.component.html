@@ -22,7 +22,7 @@
     <!-- Più immagini -->
     <div *ngIf="(record.imgUrl) && (record.imgUrl.length > 1)" class="flex flex-col ">
       <div
-      class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded min-h[500px] md:h-[600px] flex justify-center items-center"
+      class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded min-h[500px] md:h-[600px] flex justify-center items-center "
     >
       <img
       class="object-cover md:max-h-[600px]"
@@ -46,7 +46,10 @@
       <!-- Title - Artist - Year released -->
       <div>
         <h1 class="text-3xl md:text-4xl font-semibold">{{ record.title }}</h1>
-        <a class="underline text-2xl md:text-3xl"
+        <a
+        (click)="sendArtistName(record.artists[0].name)"
+        routerLink="/products"
+        class="underline text-2xl md:text-3xl"
           ><h2>{{ record.artists[0].name }}</h2></a
         >
 

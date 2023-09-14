@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { FireDBService } from 'src/app/services/fire-db.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit, OnDestroy{
 
   items: IRecordOnDatabase[] = [];
   itemsRes: any[] = []
   isLoading: boolean = true;
   mobileSideStatus: string = ''
   isFilterActive: boolean = false
+   private artistSubscription!: Subscription
 
   //item filte
   artists: string[] = []
@@ -29,7 +32,7 @@ export class ProductsComponent {
   genericFilterValue: string = 'Newest released'
 
 
-  constructor(private firebaseService: FireDBService) { }
+  constructor(private firebaseService: FireDBService, private sharedVariablesService: SharedVariablesService) { }
 
   ngOnInit() {
     initFlowbite();
@@ -93,6 +96,13 @@ export class ProductsComponent {
       })
 
       this.itemsOnView = this.items //copia
+
+      //quando l'utente arriva da una pagina avendo cliccato su un artista
+      //attivo il filtro artista
+     this.artistSubscription = this.sharedVariablesService.getArtistName().subscribe((artist)=> {
+        if(artist)
+        this.filterArtist(artist)
+      })
 
       //tolgo artisti duplicati
       this.artists = this.artists.filter((name, index, arr )=> {
@@ -261,6 +271,10 @@ export class ProductsComponent {
 
   }
 
+
+  ngOnDestroy() {
+    this.sharedVariablesService.updateArtistName('')
+  }
 
   //------------------------------------------------------------------
 

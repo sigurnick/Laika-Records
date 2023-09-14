@@ -1,3 +1,4 @@
+import { SharedVariablesService } from './../../services/shared-variables.service';
 import { Component } from '@angular/core';
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { FireDBService } from 'src/app/services/fire-db.service';
@@ -20,7 +21,7 @@ export class HomeComponent {
   mostSoldItems: IRecordOnDatabase[] = [];
   isLoading: boolean = false;
 
-  constructor(private firebaseDatabaseService: FireDBService) { }
+  constructor(private firebaseDatabaseService: FireDBService, private sharedVariablesService: SharedVariablesService) { }
 
   ngOnInit() {
     initFlowbite();
@@ -100,14 +101,6 @@ export class HomeComponent {
   }
 
 
-  showHeart(i:number) {
-  this.showHeartButton[i] = true;
-
-  }
-
-  hideHeart(i:number) {
-    this.showHeartButton[i] = false;
-  }
 
 
   //todo da implementare tolpit titolo
@@ -117,4 +110,20 @@ export class HomeComponent {
   hideTitleTolpit(i:number) {
     this.titleTolpit[i] = false;
   }
+
+
+
+  showHeart(i:number) {
+    this.showHeartButton[i] = true;
+
+    }
+
+    hideHeart(i:number) {
+      this.showHeartButton[i] = false;
+    }
+
+    sendArtistName(artist:string) {
+      this.sharedVariablesService
+      .updateArtistName(artist)
+    }
 }
