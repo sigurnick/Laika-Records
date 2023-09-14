@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
   genres: string[] = []
   labels: string[] = []
   itemsOnView: IRecordOnDatabase[] = []
-
+ titles: string[] = []
   //filter name value
   artistFilterValue: string = 'Artist'
   genreFilterValue: string = 'Genre'
@@ -97,12 +97,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
       this.itemsOnView = this.items //copia
 
-      //quando l'utente arriva da una pagina avendo cliccato su un artista
-      //attivo il filtro artista
-     this.artistSubscription = this.sharedVariablesService.getArtistName().subscribe((artist)=> {
-        if(artist)
-        this.filterArtist(artist)
-      })
+
 
       //tolgo artisti duplicati
       this.artists = this.artists.filter((name, index, arr )=> {
@@ -144,7 +139,34 @@ export class ProductsComponent implements OnInit, OnDestroy{
         return 0;
       })
 
+//---------------------------[Variabili esterne]-------------------------
+ //quando l'utente arriva da una pagina avendo cliccato su un artista
+      //attivo il filtro artista
+      this.artistSubscription = this.sharedVariablesService.getArtistName().subscribe((artist)=> {
+        if(artist)
+        this.filterArtist(artist)
+      })
 
+      this.sharedVariablesService.getSearchText().subscribe((searchText)=> {
+
+        if(searchText) {
+          //è stata effettuata una ricerca
+          //converto la ricerca in lowercase
+          const searchTextLowerCase = searchText.toLowerCase();
+          //recupero tutti i titoli degli album e li converto in lower case
+          this.titles = this.items.map(item => item.title)
+          const titlesLowerCase = this.titles.map(title => title.toLocaleLowerCase())
+
+          const artistLowerCase = this.artists.map(artist => artist.toLowerCase())
+          if(artistLowerCase.includes(searchTextLowerCase)) {
+            this.filterArtist(searchText)
+          } else if(titlesLowerCase.includes(searchTextLowerCase)) {
+            this.itemsOnView = this.items.filter(item => item.title.toLowerCase() === searchTextLowerCase)
+          }
+        }
+
+
+      })
     });
   }
 
@@ -165,7 +187,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
     this.genreFilterValue = 'Genre'
     this.artistFilterValue = artist
     this.isFilterActive = true
-    this.itemsOnView = this.items.filter(item => item.artists[0].name === artist)
+    this.itemsOnView = this.items.filter(item => item.artists[0].name.toLowerCase() === artist.toLowerCase())
     if(this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
@@ -274,6 +296,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
   ngOnDestroy() {
     this.sharedVariablesService.updateArtistName('')
+    this.sharedVariablesService.updateSearchText('')
   }
 
   //------------------------------------------------------------------

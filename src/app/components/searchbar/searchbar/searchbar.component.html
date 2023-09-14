@@ -1,23 +1,22 @@
 <!-- Searchbar -->
 <form
-
 class="p-3 max-w-[1400px] mx-auto"
- #searchform="ngForm"
+ (ngSubmit)="searchOnSubmit()"
 
 >
  <div class="relative">
    <input
      type="search"
-     id="nav-search"
-     class="block w-full 0 h-10 border-0 border-b-2 border-b-[rgb(0,0,0,0.3)] focus:ring-0 focus:outline-none focus:border-black tracking-widest text-lg"
-     placeholder="Search on Laika..."
+     id="searchInput"
+     class="block w-full 0 h-10 border-0 border-b-2 border-b-[rgb(0,0,0,0.3)] focus:ring-0 focus:outline-none focus:border-black tracking-wider text-lg pl-2.5"
+     placeholder="Search artists or products..."
      required
-     name="search"
-     ngModel
-     searchs
+     name="searchInput"
+     [(ngModel)]="searchInput"
+     (input)="onInputChange()"
    />
 
-   <button type="submit" class="text-xgray absolute right-2.5 bottom-2.5">
+   <button type="submit" class="text-xgray absolute right-2.5 bottom-2.5" [ngClass]="{'invisible': isInputUsed}">
      <svg
        xmlns="http://www.w3.org/2000/svg"
        fill="none"

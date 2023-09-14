@@ -8,14 +8,16 @@ export class SharedVariablesService {
 
   private newWantedEvent$ = new BehaviorSubject<boolean>(false); //evento aggiunto item a wanted
   private artistName$ = new BehaviorSubject<string>('');
+  private searchText$ = new BehaviorSubject<string>('');
 
 
   constructor() { }
 
+  //salva il nome artista
   updateArtistName(artist:string) {
     this.artistName$.next(artist);
   }
-
+ //recupero nome artista come Observable
   getArtistName() {
     return this.artistName$.asObservable()
   }
@@ -32,4 +34,14 @@ export class SharedVariablesService {
   updateWantedEvent(newValue:boolean) {
     this.newWantedEvent$.next(newValue)
   }
+
+   //salva la ricerca
+   updateSearchText(artist:string) {
+    this.searchText$.next(artist);
+  }
+ //recupero la ricerca
+  getSearchText() {
+    return this.searchText$.asObservable()
+  }
+
 }
