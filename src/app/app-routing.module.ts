@@ -17,6 +17,7 @@ import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.comp
 import { RecordComponent } from './pages/record/record/record.component';
 import { CollectionsComponent } from './pages/profile/collections/collections/collections.component';
 import { ProductsComponent } from './pages/products/products/products.component';
+import { AboutComponent } from './pages/about/about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -47,7 +48,8 @@ const routes: Routes = [
   },
   { path: 'record', component: RecordComponent},
   { path: 'record/:genre/:id', component: RecordComponent},
-  { path: 'products', component: ProductsComponent}
+  { path: 'products', component: ProductsComponent},
+  { path: 'about', component: AboutComponent}
 
 ];
 

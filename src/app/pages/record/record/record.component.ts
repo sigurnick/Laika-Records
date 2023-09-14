@@ -7,6 +7,7 @@ import { AuthService } from '../../auth/auth.service';
 import { IUser } from 'src/app/interfaces/user';
 import { IAuthResponseData } from '../../auth/interfaces/auth-responde-data';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
+import { timeInterval } from 'rxjs';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class RecordComponent {
   userAuth!: IAuthResponseData | null
   isWantedRecord: boolean = false
   isColectedRecord: boolean = false
+  showMessageLogIn: boolean = false
   constructor(private actRouter: ActivatedRoute, private firebaseService: FireDBService, private authService: AuthService, private sharedVariablesService: SharedVariablesService) {
     initFlowbite();
   }
@@ -62,12 +64,12 @@ export class RecordComponent {
           if (this.userAuth && this.userData) {
             //controllo se il record è nella wanted dello user
             this.firebaseService.getWantedById(this.userData, this.userAuth, this.record).subscribe((wanted) => {
-              if (wanted){
+              if (wanted) {
                 this.isWantedRecord = true
               }
               //controllo se il record è nella collection dello user
-              this.firebaseService.getCollectedById(this.userData!, this.userAuth!, this.record).subscribe((collected)=>{
-                if (collected){
+              this.firebaseService.getCollectedById(this.userData!, this.userAuth!, this.record).subscribe((collected) => {
+                if (collected) {
                   this.isColectedRecord = true
                 }
               })
@@ -89,46 +91,53 @@ export class RecordComponent {
 
   //salvo record nella wanted list
   addRecordToWantedList() {
-    this.isWantedRecord = true
-    this.firebaseService.addRecordWanted(this.userData!, this.userAuth!, this.record).subscribe((data) => {
-      console.log(data);
+    if (this.userAuth != null) {
 
-      if (data) {
-        //aumento il contatore wanted del record
-        this.record.wanted++
-        this.record.genres.forEach((genre) => {
-          this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
-            console.log(data);
+      this.isWantedRecord = true
+      this.firebaseService.addRecordWanted(this.userData!, this.userAuth!, this.record).subscribe((data) => {
+        console.log(data);
 
-            this.sharedVariablesService.updateWantedEvent(true)
-            setTimeout(() => this.sharedVariablesService.updateWantedEvent(false)
-            , 800)
+        if (data) {
+          //aumento il contatore wanted del record
+          this.record.wanted++
+          this.record.genres.forEach((genre) => {
+            this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
+              console.log(data);
+
+              this.sharedVariablesService.updateWantedEvent(true)
+              setTimeout(() => this.sharedVariablesService.updateWantedEvent(false)
+                , 800)
+            })
           })
-        })
-      }
+        }
 
-    })
+      })
+    }
   }
 
   //rimuovo record dalla wanted list
   removeRecordFromWantedList() {
+
+
+
     this.isWantedRecord = false
     this.firebaseService.removeRecordWanted(this.userData!, this.userAuth!, this.record).subscribe((data) => {
 
 
-        //diminuisco il contatore wanted del record
-        if(this.record.wanted!=0) {
-          this.record.wanted--
-        }
-        this.record.genres.forEach((genre) => {
-          this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
-            console.log(data);
+      //diminuisco il contatore wanted del record
+      if (this.record.wanted != 0) {
+        this.record.wanted--
+      }
+      this.record.genres.forEach((genre) => {
+        this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
+          console.log(data);
 
-          })
         })
+      })
 
 
     })
+
   }
 
 
@@ -139,46 +148,62 @@ export class RecordComponent {
 
   //salvo record nella collection list
   addRecordToCollectionList() {
-    this.isColectedRecord = true
-    this.firebaseService.addRecordCollected(this.userData!, this.userAuth!, this.record).subscribe((data) => {
-      console.log(data);
+    if (this.userAuth != null) {
 
-      if (data) {
-        //aumento il contatore collected del record
-        this.record.collected++
-        this.record.genres.forEach((genre) => {
-          this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
-            console.log(data);
+      this.isColectedRecord = true
+      this.firebaseService.addRecordCollected(this.userData!, this.userAuth!, this.record).subscribe((data) => {
+        console.log(data);
 
+        if (data) {
+          //aumento il contatore collected del record
+          this.record.collected++
+          this.record.genres.forEach((genre) => {
+            this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
+              console.log(data);
+
+            })
           })
-        })
-      }
+        }
 
-    })
+      })
+
+    }
   }
 
   //rimuovo record dalla collection list
   removeRecordFromCollectionList() {
+
+
     this.isColectedRecord = false
     this.firebaseService.removeRecordCollected(this.userData!, this.userAuth!, this.record).subscribe((data) => {
 
 
-        //diminuisco il contatore collected del record
-        if(this.record.collected!=0) {
-          this.record.collected--
-        }
-        this.record.genres.forEach((genre) => {
-          this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
-            console.log(data);
+      //diminuisco il contatore collected del record
+      if (this.record.collected != 0) {
+        this.record.collected--
+      }
+      this.record.genres.forEach((genre) => {
+        this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
+          console.log(data);
 
-          })
         })
+      })
 
 
     })
+
   }
 
-  sendArtistName(artist:string) {
+  sendArtistName(artist: string) {
     this.sharedVariablesService.updateArtistName(artist)
+  }
+
+  showMessageToLogIn() {
+    if (!this.userAuth) {
+      this.showMessageLogIn = true
+      setTimeout(() => {
+        this.showMessageLogIn = false
+      }, 4000)
+    }
   }
 }

@@ -31,6 +31,7 @@ import { environment } from 'src/environments/environment';
 import { CollectionsComponent } from './pages/profile/collections/collections/collections.component';
 import { SearchbarComponent } from './components/searchbar/searchbar/searchbar.component';
 import { ProductsComponent } from './pages/products/products/products.component';
+import { AboutComponent } from './pages/about/about/about.component';
 
 
 
@@ -56,7 +57,8 @@ import { ProductsComponent } from './pages/products/products/products.component'
     SeparateArrayStringPipe,
     CollectionsComponent,
     SearchbarComponent,
-    ProductsComponent
+    ProductsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

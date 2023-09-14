@@ -28,6 +28,13 @@
             class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
             >Products</a
           >
+
+          <a
+          routerLink="/about"
+          routerLinkActive="linkActive"
+          class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
+          >About</a
+        >
         </nav>
       </div>
 
@@ -246,6 +253,8 @@
         >
       </li>
 
+
+
       <!-- CATALOGO -->
       <li class="text-white text-2xl m-5">
         <a
@@ -335,6 +344,16 @@
           <span> Cart</span>
         </a>
       </li>
+
+        <!-- ABOUT -->
+        <li class="text-white text-2xl m-5">
+          <a
+            (click)="closeMenu()"
+            routerLink="/about"
+            routerLinkActive="linkActiveMobile"
+            >About</a
+          >
+        </li>
 
 
 

@@ -112,9 +112,11 @@
 
       <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
 
-      <!-- -----Button BUY COLLECTED WANTED---- -->
+
+      <!-- -----Button user logged BUY COLLECTED WANTED---- -->
       <div class="flex gap-1 justify-center items-center text-lg">
         <button
+        (click)="showMessageToLogIn()"
           class="w-full h-12 bg-black py-2 px-4 text-white rounded-md max-w-xs hover:bg-coolBlack transition-colors duration-300"
         >
           Add to cart
@@ -125,6 +127,7 @@
         <button
         *ngIf="isWantedRecord == false"
         (click)="addRecordToWantedList()"
+        (click)="showMessageToLogIn()"
 
           class="w-full h-12 border-2 py-1 border-red-500 rounded-md flex justify-center items-center text-black max-w-[80px]
            hover:bg-red-500 hover:text-white hover:border-red-700
@@ -138,6 +141,7 @@
           *ngIf="isWantedRecord == true"
           (click)="removeRecordFromWantedList()"
 
+
             class="w-full h-12 border-2 py-1 border-red-700 rounded-md flex justify-center items-center text-white max-w-[80px] bg-red-500
              hover:bg-white hover:text-black hover:border-red-500
              transition-colors duration-300"
@@ -146,11 +150,10 @@
           </button>
 
 
-
-
         <!-- Add to collection button -->
         <button
         (click)="addRecordToCollectionList()"
+        (click)="showMessageToLogIn()"
           *ngIf="isColectedRecord == false"
           class="w-full h-12 border-2 py-1 border-blue-500 rounded-md flex justify-center items-center text-black max-w-[80px]  hover:bg-blue-500 hover:text-white hover:border-blue-700 transition-colors duration-300"
         >
@@ -167,7 +170,17 @@
        <i class="fa-regular fa-bookmark text-xl"></i>
 
        </button>
+
+
       </div>
+
+
+  <div *ngIf="showMessageLogIn == true" class="text-black font-light text-center bg-slate-200 p-2 rounded mt-[-20px] mx-auto w-6/12">Please log in first</div>
+
+
+
+
+      <!--  -->
 
       <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
     </div>
