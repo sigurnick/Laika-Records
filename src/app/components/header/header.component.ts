@@ -1,8 +1,6 @@
 import { SharedVariablesService } from './../../services/shared-variables.service';
 import { IAuthResponseData } from './../../pages/auth/interfaces/auth-responde-data';
 import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/pages/auth/auth.service';
 import { FireDBService } from 'src/app/services/fire-db.service';

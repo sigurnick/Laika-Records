@@ -22,7 +22,7 @@ export class HomeComponent {
   mostFavouritedItems: IRecordOnDatabase[] = [];
   mostSoldItems: IRecordOnDatabase[] = [];
   isLoading: boolean = false;
-  userData?: IUser
+  userData!: IUser
 
   constructor(private firebaseDatabaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) { }
 
