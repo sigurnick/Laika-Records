@@ -96,14 +96,14 @@ export class RecordComponent {
 
       this.isWantedRecord = true
       this.firebaseService.addRecordWanted(this.userData!, this.userAuth!, this.record).subscribe((data) => {
-        console.log(data);
+
 
         if (data) {
           //aumento il contatore wanted del record
           this.record.wanted++
           this.record.genres.forEach((genre) => {
             this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
-              console.log(data);
+
 
               this.sharedVariablesService.updateWantedEvent(true)
               setTimeout(() => this.sharedVariablesService.updateWantedEvent(false)
@@ -131,7 +131,7 @@ export class RecordComponent {
       }
       this.record.genres.forEach((genre) => {
         this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
-          console.log(data);
+
 
         })
       })
@@ -153,14 +153,14 @@ export class RecordComponent {
 
       this.isColectedRecord = true
       this.firebaseService.addRecordCollected(this.userData!, this.userAuth!, this.record).subscribe((data) => {
-        console.log(data);
+
 
         if (data) {
           //aumento il contatore collected del record
           this.record.collected++
           this.record.genres.forEach((genre) => {
             this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
-              console.log(data);
+
 
             })
           })
@@ -185,7 +185,7 @@ export class RecordComponent {
       }
       this.record.genres.forEach((genre) => {
         this.firebaseService.updateRecord(this.record, genre).subscribe((data) => {
-          console.log(data);
+
 
         })
       })
@@ -197,7 +197,7 @@ export class RecordComponent {
 
   //aggiungo item al carrello
   addItemOnCart(item: IRecordOnDatabase) {
-    if(this.userAuth != null){
+    if (this.userAuth != null) {
       this.purchaseService.newCartItem(item)
     }
   }

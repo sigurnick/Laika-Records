@@ -12,22 +12,22 @@ import { SharedVariablesService } from 'src/app/services/shared-variables.servic
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy{
+export class ProductsComponent implements OnInit, OnDestroy {
 
   items: IRecordOnDatabase[] = [];
   itemsRes: any[] = []
   isLoading: boolean = true;
   mobileSideStatus: string = ''
   isFilterActive: boolean = false
-   private artistSubscription!: Subscription
-   userData?: IUser
+  private artistSubscription!: Subscription
+  userData?: IUser
 
   //item filte
   artists: string[] = []
   genres: string[] = []
   labels: string[] = []
   itemsOnView: IRecordOnDatabase[] = []
- titles: string[] = []
+  titles: string[] = []
   //filter name value
   artistFilterValue: string = 'Artist'
   genreFilterValue: string = 'Genre'
@@ -79,7 +79,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
       this.isLoading = false
 
 
-//---------------------------[Creo array Artisti - Genere - Label]-------------------------
+      //---------------------------[Creo array Artisti - Genere - Label]-------------------------
 
       //prendo tutti gli artisti
       this.artists = this.items.map(item => item.artists[0].name)
@@ -103,26 +103,26 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
 
       //tolgo artisti duplicati
-      this.artists = this.artists.filter((name, index, arr )=> {
+      this.artists = this.artists.filter((name, index, arr) => {
         return arr.indexOf(name) === index
       })
 
 
       //prendo generi
-      this.items.forEach((item)=> {
-        item.genres.forEach((genre)=> {
+      this.items.forEach((item) => {
+        item.genres.forEach((genre) => {
           this.genres.push(genre);
         })
       })
-      this.genres = this.genres.filter((name, index, arr )=> {
+      this.genres = this.genres.filter((name, index, arr) => {
         return arr.indexOf(name) === index
       })
 
 
       //prendo etichette
       this.labels = this.items.map(item => item.labels[0].name)
-       //tolgo labels duplicati
-       this.labels = this.labels.filter((name, index, arr )=> {
+      //tolgo labels duplicati
+      this.labels = this.labels.filter((name, index, arr) => {
         return arr.indexOf(name) === index
       })
 
@@ -142,17 +142,17 @@ export class ProductsComponent implements OnInit, OnDestroy{
         return 0;
       })
 
-//---------------------------[Variabili esterne]-------------------------
- //quando l'utente arriva da una pagina avendo cliccato su un artista
+      //---------------------------[Variabili esterne]-------------------------
+      //quando l'utente arriva da una pagina avendo cliccato su un artista
       //attivo il filtro artista
-      this.artistSubscription = this.sharedVariablesService.getArtistName().subscribe((artist)=> {
-        if(artist)
-        this.filterArtist(artist)
+      this.artistSubscription = this.sharedVariablesService.getArtistName().subscribe((artist) => {
+        if (artist)
+          this.filterArtist(artist)
       })
 
-      this.sharedVariablesService.getSearchText().subscribe((searchText)=> {
+      this.sharedVariablesService.getSearchText().subscribe((searchText) => {
 
-        if(searchText) {
+        if (searchText) {
           //è stata effettuata una ricerca
           //converto la ricerca in lowercase
           const searchTextLowerCase = searchText.toLowerCase();
@@ -161,9 +161,9 @@ export class ProductsComponent implements OnInit, OnDestroy{
           const titlesLowerCase = this.titles.map(title => title.toLocaleLowerCase())
 
           const artistLowerCase = this.artists.map(artist => artist.toLowerCase())
-          if(artistLowerCase.includes(searchTextLowerCase)) {
+          if (artistLowerCase.includes(searchTextLowerCase)) {
             this.filterArtist(searchText)
-          } else if(titlesLowerCase.includes(searchTextLowerCase)) {
+          } else if (titlesLowerCase.includes(searchTextLowerCase)) {
             this.itemsOnView = this.items.filter(item => item.title.toLowerCase() === searchTextLowerCase)
           }
         }
@@ -172,9 +172,9 @@ export class ProductsComponent implements OnInit, OnDestroy{
       })
     });
 
-    this.firebaseService.userData$.subscribe((user)=> {
-      if(user)
-      this.userData = user
+    this.firebaseService.userData$.subscribe((user) => {
+      if (user)
+        this.userData = user
     })
   }
 
@@ -186,40 +186,40 @@ export class ProductsComponent implements OnInit, OnDestroy{
     this.mobileSideStatus = 'closeed';
   }
 
-//aggiungo item al carrello
-addItemOnCart(item: IRecordOnDatabase) {
-  if(this.userData != null){
-    this.purchaseService.newCartItem(item)
+  //aggiungo item al carrello
+  addItemOnCart(item: IRecordOnDatabase) {
+    if (this.userData != null) {
+      this.purchaseService.newCartItem(item)
+    }
   }
-}
 
 
   //---------------------------[Gestione Filtri]-------------------------
   //filtre item per artist
-  filterArtist(artist:string) {
+  filterArtist(artist: string) {
     this.labelFilterValue = 'Label'
     this.genreFilterValue = 'Genre'
     this.artistFilterValue = artist
     this.isFilterActive = true
     this.itemsOnView = this.items.filter(item => item.artists[0].name.toLowerCase() === artist.toLowerCase())
-    if(this.mobileSideStatus === 'open') {
+    if (this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
     this.genericFilter(this.genericFilterValue)
   }
 
   //filtra items per genere
-  genreFilter(genre:string) {
+  genreFilter(genre: string) {
     this.artistFilterValue = 'Artist'
     this.labelFilterValue = 'Label'
     this.genreFilterValue = genre
     this.isFilterActive = true
-    this.firebaseService.getItemsByGenre(genre).subscribe((data)=> {
-    this.itemsOnView = Object.values(data);
-    if(this.mobileSideStatus === 'open') {
-      this.mobileSideStatus = 'cloded'
-    }
-    this.genericFilter(this.genericFilterValue)
+    this.firebaseService.getItemsByGenre(genre).subscribe((data) => {
+      this.itemsOnView = Object.values(data);
+      if (this.mobileSideStatus === 'open') {
+        this.mobileSideStatus = 'cloded'
+      }
+      this.genericFilter(this.genericFilterValue)
     })
   }
 
@@ -230,7 +230,7 @@ addItemOnCart(item: IRecordOnDatabase) {
     this.genreFilterValue = 'Genre'
     this.isFilterActive = true
     this.itemsOnView = this.items.filter(item => item.labels[0].name === label)
-    if(this.mobileSideStatus === 'open') {
+    if (this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
     this.genericFilter(this.genericFilterValue)
@@ -245,14 +245,14 @@ addItemOnCart(item: IRecordOnDatabase) {
     this.genericFilterValue = 'Newest released'
     this.itemsOnView = this.items
     this.genericFilter(this.genericFilterValue)
-    if(this.mobileSideStatus === 'open') {
+    if (this.mobileSideStatus === 'open') {
       this.mobileSideStatus = 'cloded'
     }
   }
 
 
-  genericFilter(filter:string) {
-    if(filter==='Newest released') {
+  genericFilter(filter: string) {
+    if (filter === 'Newest released') {
       this.genericFilterValue = 'Newest released'
       this.itemsOnView = this.itemsOnView.sort((a, b) => {
         const dateA = new Date(a.released);
@@ -266,32 +266,32 @@ addItemOnCart(item: IRecordOnDatabase) {
           return 0;
         }
       });
-    } else if(filter==='Newest added') {
+    } else if (filter === 'Newest added') {
       this.genericFilterValue = 'Newest added'
       this.itemsOnView = this.itemsOnView.sort((a, b) => {
-       const dateA = new Date(a.dateAdded);
-       const dateB = new Date(b.dateAdded);
+        const dateA = new Date(a.dateAdded);
+        const dateB = new Date(b.dateAdded);
 
-       if (dateA < dateB) {
-         return 1;
-       } else if (dateA > dateB) {
-         return -1;
-       } else {
-         return 0;
-       }
-     });
-    } else if(filter==='Most wanted') {
+        if (dateA < dateB) {
+          return 1;
+        } else if (dateA > dateB) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    } else if (filter === 'Most wanted') {
       this.genericFilterValue = 'Most wanted'
-    this.itemsOnView = this.items.sort((a, b) => {
-      if (a.wanted < b.wanted) {
-        return 1;
-      } else if (a.wanted > b.wanted) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
-    } else if(filter==='Most collected') {
+      this.itemsOnView = this.items.sort((a, b) => {
+        if (a.wanted < b.wanted) {
+          return 1;
+        } else if (a.wanted > b.wanted) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    } else if (filter === 'Most collected') {
       this.genericFilterValue = 'Most collected'
       this.itemsOnView = this.items.sort((a, b) => {
         if (a.collected < b.collected) {
