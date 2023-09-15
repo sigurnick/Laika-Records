@@ -9,16 +9,14 @@ import { RecordOnCart } from '../models/recordOnCart.model';
 })
 export class PurchaseService {
 
-  private newCartItemEvent$ = new BehaviorSubject<boolean>(false);
+  private numberItemsOnCart$ = new BehaviorSubject<number>(0);
   cartItems: IRecordOnCart[] = [];
-  numberOfItemsInCart!: number
+
 
   constructor() { this.restoreCart() }
 
 
   newCartItem(record: IRecordOnDatabase) {
-    this.newCartItemEvent$.next(true);
-
     if(this.cartItems.length>0) {
       //controllo se l'item è già nel carrello
       const findItemIndex = this.cartItems.findIndex(item => item.item.id === record.id);
@@ -38,11 +36,12 @@ export class PurchaseService {
     }
 
     localStorage.setItem('userCart', JSON.stringify(this.cartItems));
+    this.numberItemsOnCart$.next(this.cartItems.length)
   }
 
 
-  getNewItemCartEvent() {
-    return this.newCartItemEvent$.asObservable()
+  getNumberItemsOnCart() {
+    return this.numberItemsOnCart$.asObservable()
   }
 
 
@@ -51,6 +50,7 @@ export class PurchaseService {
     if (!cartJson) return; //se i dati non ci sono blocco la funzione
     const userCart: IRecordOnCart[] = JSON.parse(cartJson); //se viene eseguita questa riga significa che i dati ci sono, quindi converto la stringa(che conteneva un json) in oggetto
     this.cartItems = userCart
+    this.numberItemsOnCart$.next(this.cartItems.length)
   }
 
 }

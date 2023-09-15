@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/pages/auth/auth.service';
 import { FireDBService } from 'src/app/services/fire-db.service';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 @Component({
   selector: 'app-header',
@@ -17,14 +18,14 @@ export class HeaderComponent {
   isLogged: boolean = false;
   isAdminLogged: boolean = false;
   user!: IAuthResponseData | null;
-  userData!:IUser |  null
+  userData!: IUser | null
   isScrolled = false;
 
   newWantedEvents: boolean = false;
+  numberItemsOnCart!: number
 
-
-  constructor(private authService: AuthService, private firebaseService:FireDBService, private renderer: Renderer2,
-    private el: ElementRef, private sharedVariableService: SharedVariablesService) {}
+  constructor(private authService: AuthService, private firebaseService: FireDBService, private renderer: Renderer2,
+    private el: ElementRef, private sharedVariableService: SharedVariablesService, private purchaseService: PurchaseService) { }
 
   ngOnInit(): void {
 
@@ -38,9 +39,16 @@ export class HeaderComponent {
         });
 
         //prendo dati utente
-        this.firebaseService.userData$.subscribe((userData)=> {
+        this.firebaseService.userData$.subscribe((userData) => {
           this.userData = userData;
-          if(this.userData?.isAdmin) {
+          if(userData) {
+            this.purchaseService.getNumberItemsOnCart().subscribe((number)=> {
+              this.numberItemsOnCart = number
+              console.log(this.numberItemsOnCart);
+
+            })
+          }
+          if (this.userData?.isAdmin) {
             this.isAdminLogged = true;
           }
         })
@@ -50,7 +58,7 @@ export class HeaderComponent {
 
     });
 
-    this.sharedVariableService.getWantedEvent().subscribe((value)=> {
+    this.sharedVariableService.getWantedEvent().subscribe((value) => {
       this.newWantedEvents = value
       console.log(this.newWantedEvents);
 
