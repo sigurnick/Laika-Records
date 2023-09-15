@@ -1,4 +1,92 @@
+<div class="bg-black text-white text-center text-sm p-1">
+  FREE SHIPPING ABOVE 99€
+</div>
 <div class="px-3 py-3 max-w-[1400px] mx-auto mt-1 lg:mt-8">
+  <h1 class="font-light text-2xl">SHOPPING BAG</h1>
 
-  <h1 class="font-light text-2xl">Cart</h1>
+  <div *ngIf="cartItems.length == 0" class="text-xl mt-8">
+    Empty! Browse our store and add someting in cart!
+  </div>
+
+  <!-- Items -->
+  <div class="mt-6" *ngIf="cartItems.length > 0">
+    <div class="bg-black text-white flex justify-between px-2 py-1 mb-3">
+      <div *ngIf="cartItems.length > 1">{{ cartItems.length }} ITEMS</div>
+      <div *ngIf="cartItems.length == 1">{{ cartItems.length }} ITEM</div>
+
+      <div>PRICE</div>
+    </div>
+
+    <div
+      *ngFor="let item of cartItems;  index as i"
+      class="flex justify-between pr-2 mb-4 border-2"
+    >
+      <!-- Item img -->
+      <div class="flex gap-2">
+        <img
+          *ngIf="item.item.imgUrl"
+          src="{{ item.item.imgUrl[0] }}"
+          class="max-w-[150px] object-contain h-48 w-96"
+        />
+
+        <!-- Info -->
+        <div class="py-4">
+          <a routerLink="/record/{{ item.item.genres[0] }}/{{ item.item.id }}">
+            <h2 class="font-semibold">{{ item.item.title }}</h2>
+          </a>
+
+          <a
+            routerLink="/products/"
+            (click)="sendArtistName(item.item.artists[0].name)"
+          >
+            <h3>{{ item.item.artists[0].name }}</h3>
+          </a>
+
+          <!-- Details -->
+          <div class="mt-2 text-sm">
+            <div>
+              Format: {{ item.item.formats[0].qty }}x{{
+                item.item.formats[0].descriptions | separateArrayString
+              }}
+            </div>
+            <div>Barcode: {{ item.item.barcode }}</div>
+            <div>Label: {{ item.item.labels[0].name }}</div>
+          </div>
+
+          <!-- quantity and remove -->
+          <div>
+
+<button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black rounded text-sm px-1 text-center inline-flex items-center" type="button">Qty:  {{selectedQuantity[i]}}<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+</svg></button>
+
+<!-- Dropdown menu -->
+<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+    <li>
+      <button class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">1</button>
+    </li>
+    <li>
+      <button class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2</button>
+    </li>
+    <li>
+      <button class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">3</button>
+    </li>
+    <li>
+      <button class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">4</button>
+    </li>
+    <li>
+      <button class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">5</button>
+    </li>
+  </ul>
+</div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Item price -->
+      <div class="pr-2 pt-4">€{{ item.item.price }}</div>
+    </div>
+  </div>
 </div>

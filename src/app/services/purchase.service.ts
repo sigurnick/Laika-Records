@@ -44,6 +44,10 @@ export class PurchaseService {
     return this.numberItemsOnCart$.asObservable()
   }
 
+  getCartItems() {
+    return this.cartItems
+  }
+
 
   restoreCart() {
     const cartJson: string | null = localStorage.getItem('userCart'); //recupero i dati
