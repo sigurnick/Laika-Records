@@ -15,7 +15,7 @@ export class PurchaseService {
 
   constructor() { this.restoreCart() }
 
-
+  //aggiungi item al carrello
   newCartItem(record: IRecordOnDatabase) {
     if(this.cartItems.length>0) {
       //controllo se l'item è già nel carrello
@@ -38,6 +38,19 @@ export class PurchaseService {
     localStorage.setItem('userCart', JSON.stringify(this.cartItems));
     this.numberItemsOnCart$.next(this.cartItems.length)
   }
+
+ //modifica quantità item
+ changeQuantityItem(index:number, quantity:number) {
+  this.cartItems[index].quantity = quantity
+  localStorage.setItem('userCart', JSON.stringify(this.cartItems));
+ }
+
+ //rimuovi item
+ removeItemOnCart(index:number) {
+  this.cartItems.splice(index, 1)
+  localStorage.setItem('userCart', JSON.stringify(this.cartItems));
+  this.numberItemsOnCart$.next(this.cartItems.length)
+ }
 
 
   getNumberItemsOnCart() {

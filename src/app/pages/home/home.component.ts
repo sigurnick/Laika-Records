@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { FireDBService } from 'src/app/services/fire-db.service';
 import { initFlowbite } from 'flowbite';
+import { IUser } from 'src/app/interfaces/user';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +22,9 @@ export class HomeComponent {
   mostFavouritedItems: IRecordOnDatabase[] = [];
   mostSoldItems: IRecordOnDatabase[] = [];
   isLoading: boolean = false;
+  userData?: IUser
 
-  constructor(private firebaseDatabaseService: FireDBService, private sharedVariablesService: SharedVariablesService) { }
+  constructor(private firebaseDatabaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) { }
 
   ngOnInit() {
     initFlowbite();
@@ -98,9 +101,19 @@ export class HomeComponent {
 
 
     });
+
+    this.firebaseDatabaseService.userData$.subscribe((user)=>{
+      if(user)
+      this.userData = user;
+    })
   }
 
-
+//aggiungo item al carrello
+addItemOnCart(item: IRecordOnDatabase) {
+  if(this.userData != null){
+    this.purchaseService.newCartItem(item)
+  }
+}
 
 
   //todo da implementare tolpit titolo

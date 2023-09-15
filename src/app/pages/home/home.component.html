@@ -160,11 +160,11 @@
   <div class="mb-20" *ngIf="lastReleasedItems && isLoading">
     <h1 class="text-2xl tracking-wider mb-6">NEW RELEASES</h1>
     <div
-      class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  xl:grid-cols-6"
+    class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  xl:grid-cols-6"
     >
       <div
         *ngFor="let item of lastReleasedItems; index as i"
-        class="mb-4 mx-auto flex flex-col gap-1 max-w-[180px] sm:max-w-[190px] md:max-w-[180px] lg:max-w-[230px] xl:max-w-[190px]  min-[1400px]:max-w-[210px] "
+        class="mb-4 mx-auto flex flex-col gap-1 max-w-[180px] sm:max-w-[190px] md:max-w-[170px] lg:max-w-[230px] xl:max-w-[190px]  min-[1400px]:max-w-[210px] "
       >
         <a
           routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
@@ -179,23 +179,11 @@
             class="rounded imgHeart"
           />
 
-          <!-- Ad to fav -->
-          <button
-            *ngIf="showHeartButton[i] == true"
-            class="absolute top-2 right-2 hover:text-red-500 btnHeart"
-          >
-            <i class="fa-regular fa-heart text-lg"></i>
-          </button>
+
         </a>
 
-        <div></div>
-        <a
-          (mouseover)="showTitleTolpit(i)"
-          (mouseout)="hideTitleTolpit(i)"
-          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-          class="font-light hover:underline truncate text-lg"
-          >{{ item.title }}
-        </a>
+
+
 
         <a
         (click)="sendArtistName(item.artists[0].name)"
@@ -204,8 +192,17 @@
           >{{ item.artists[0].name }}</a
         >
 
-        <a
-          routerLink="/record/{{ item.id }}"
+        <!-- Add to cart user logged -->
+        <button
+        *ngIf="userData != null"
+          (click)="addItemOnCart(item)"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </button>
+
+        <!-- add to cart user not logged -->
+        <a *ngIf="userData == null" routerLink="/login"
           class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
         >
           <span>Add to cart</span><span>{{ item.price }} €</span>
@@ -218,7 +215,7 @@
   <div class="mb-20" *ngIf="lastAddedItems && isLoading">
     <h1 class="text-2xl tracking-wider mb-6">LAST ADDED</h1>
     <div
-      class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+    class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  xl:grid-cols-6"
     >
       <div
         *ngFor="let item of lastAddedItems; index as i"
@@ -237,13 +234,7 @@
             class="rounded-sm imgHeart"
           />
 
-          <!-- Ad to fav -->
-          <button
-            *ngIf="showHeartButton[i] == true"
-            class="absolute top-2 right-2 hover:text-red-500 btnHeart"
-          >
-            <i class="fa-regular fa-heart text-lg"></i>
-          </button>
+
         </a>
 
         <a
@@ -259,12 +250,21 @@
           >{{ item.artists[0].name }}</a
         >
 
-        <a
-          routerLink="/record/{{ item.id }}"
-          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-        >
-          <span>Add to cart</span><span>{{ item.price }} €</span>
-        </a>
+         <!-- Add to cart user logged -->
+         <button
+         *ngIf="userData != null"
+           (click)="addItemOnCart(item)"
+           class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+         >
+           <span>Add to cart</span><span>{{ item.price }} €</span>
+         </button>
+
+         <!-- add to cart user not logged -->
+         <a *ngIf="userData == null" routerLink="/login"
+           class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+         >
+           <span>Add to cart</span><span>{{ item.price }} €</span>
+         </a>
       </div>
     </div>
   </div>
@@ -273,7 +273,7 @@
   <div class="mb-20" *ngIf="mostFavouritedItems && isLoading">
     <h1 class="text-2xl tracking-wider mb-6">MOST WANTED</h1>
     <div
-      class="mx-2 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 "
+    class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  xl:grid-cols-6"
     >
       <div
         *ngFor="let item of mostFavouritedItems; index as i"
@@ -292,13 +292,7 @@
             class="rounded-sm imgHeart"
           />
 
-          <!-- Ad to fav -->
-          <button
-            *ngIf="showHeartButton[i] == true"
-            class="absolute top-2 right-2 hover:text-red-500 btnHeart"
-          >
-            <i class="fa-regular fa-heart text-lg"></i>
-          </button>
+
         </a>
 
         <a
@@ -314,8 +308,17 @@
           >{{ item.artists[0].name }}</a
         >
 
-        <a
-          routerLink="/record/{{ item.id }}"
+        <!-- Add to cart user logged -->
+        <button
+        *ngIf="userData != null"
+          (click)="addItemOnCart(item)"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </button>
+
+        <!-- add to cart user not logged -->
+        <a *ngIf="userData == null" routerLink="/login"
           class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
         >
           <span>Add to cart</span><span>{{ item.price }} €</span>
