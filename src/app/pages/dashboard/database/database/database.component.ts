@@ -79,12 +79,9 @@ export class DatabaseComponent implements OnInit {
     if (item.quantity === 1 || item.quantity === 0) {
      item.quantity = 0
 
-    }else {
-
-      if (item.quantity) {
-
+    }else if(item.quantity){
         item.quantity--
-
+    }
         item.genres.forEach((element) => {
           this.firebaseDatabaseService
             .addQuantityToItem(item, element)
@@ -92,8 +89,8 @@ export class DatabaseComponent implements OnInit {
               console.log(resData);
             });
         });
-      }
-    }
+
+
   }
 
   //rimuove completamente oggeto dal db

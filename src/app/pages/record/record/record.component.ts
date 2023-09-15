@@ -8,6 +8,7 @@ import { IUser } from 'src/app/interfaces/user';
 import { IAuthResponseData } from '../../auth/interfaces/auth-responde-data';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 import { timeInterval } from 'rxjs';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class RecordComponent {
   isWantedRecord: boolean = false
   isColectedRecord: boolean = false
   showMessageLogIn: boolean = false
-  constructor(private actRouter: ActivatedRoute, private firebaseService: FireDBService, private authService: AuthService, private sharedVariablesService: SharedVariablesService) {
+  constructor(private actRouter: ActivatedRoute, private firebaseService: FireDBService, private authService: AuthService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) {
     initFlowbite();
   }
 
@@ -192,6 +193,13 @@ export class RecordComponent {
 
     })
 
+  }
+
+  //aggiungo item al carrello
+  addItemOnCart(item: IRecordOnDatabase) {
+    if(this.userAuth != null){
+      this.purchaseService.newCartItem(item)
+    }
   }
 
   sendArtistName(artist: string) {
