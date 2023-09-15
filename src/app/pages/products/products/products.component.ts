@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
+import { IUser } from 'src/app/interfaces/user';
 import { FireDBService } from 'src/app/services/fire-db.service';
+import { PurchaseService } from 'src/app/services/purchase.service';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
@@ -18,6 +20,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
   mobileSideStatus: string = ''
   isFilterActive: boolean = false
    private artistSubscription!: Subscription
+   userData?: IUser
 
   //item filte
   artists: string[] = []
@@ -32,7 +35,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
   genericFilterValue: string = 'Newest released'
 
 
-  constructor(private firebaseService: FireDBService, private sharedVariablesService: SharedVariablesService) { }
+  constructor(private firebaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) { }
 
   ngOnInit() {
     initFlowbite();
@@ -168,6 +171,11 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
       })
     });
+
+    this.firebaseService.userData$.subscribe((user)=> {
+      if(user)
+      this.userData = user
+    })
   }
 
   openMobileSide() {
@@ -178,6 +186,12 @@ export class ProductsComponent implements OnInit, OnDestroy{
     this.mobileSideStatus = 'closeed';
   }
 
+//aggiungo item al carrello
+addItemOnCart(item: IRecordOnDatabase) {
+  if(this.userData != null){
+    this.purchaseService.newCartItem(item)
+  }
+}
 
 
   //---------------------------[Gestione Filtri]-------------------------

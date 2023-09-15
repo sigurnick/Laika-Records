@@ -180,12 +180,21 @@ class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-
           >{{ item.artists[0].name }}</a
         >
 
-        <a
-          routerLink="/record/{{ item.id }}"
-          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-        >
-          <span>Add to cart</span><span>{{ item.price }} €</span>
-        </a>
+       <!-- Add to cart user logged -->
+       <button
+       *ngIf="userData != null"
+         (click)="addItemOnCart(item)"
+         class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+       >
+         <span>Add to cart</span><span>{{ item.price }} €</span>
+       </button>
+
+       <!-- add to cart user not logged -->
+       <a *ngIf="userData == null" routerLink="/login"
+         class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+       >
+         <span>Add to cart</span><span>{{ item.price }} €</span>
+       </a>
       </div>
 
 
