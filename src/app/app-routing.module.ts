@@ -22,17 +22,18 @@ import { CartComponent } from './pages/cart/cart/cart.component';
 import { OrdersComponent } from './pages/dashboard/orders/orders/orders.component';
 import { ClientsComponent } from './pages/dashboard/clients/clients/clients.component';
 import { FinancesComponent } from './pages/dashboard/finances/finances/finances.component';
+import { dashboardGuard } from './pages/dashboard/dashboard.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'overview', component: OverviewComponent },
-  { path: 'database', component: DatabaseComponent },
-  { path: 'discogs', component: DiscogsComponent },
-  { path: 'orders', component: OrdersComponent },
-  { path: 'clients', component:ClientsComponent },
-  { path: 'finances', component: FinancesComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [dashboardGuard] },
+  { path: 'overview', component: OverviewComponent, canActivate: [dashboardGuard] },
+  { path: 'database', component: DatabaseComponent, canActivate: [dashboardGuard] },
+  { path: 'discogs', component: DiscogsComponent, canActivate: [dashboardGuard] },
+  { path: 'orders', component: OrdersComponent, canActivate: [dashboardGuard] },
+  { path: 'clients', component:ClientsComponent, canActivate: [dashboardGuard] },
+  { path: 'finances', component: FinancesComponent, canActivate: [dashboardGuard] },
 
   { path: 'singup', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
