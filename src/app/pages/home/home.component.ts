@@ -65,7 +65,6 @@ export class HomeComponent {
       });
       //ultimi articoli aggiunti
       this.lastAddedItems = this.lastAddedItems.slice(0,12)
-      console.log('lastItem',this.lastAddedItems);
 
       //ordina gli oggetti in base alle ultime uscite
       this.lastReleasedItems = this.items.sort((a, b) => {
@@ -81,7 +80,6 @@ export class HomeComponent {
         }
       });
       this.lastReleasedItems = this.lastReleasedItems.slice(0,12)
-      console.log('lastReleasedItem',this.lastReleasedItems);
 
 
       //ordina gli oggetti in base ai più preferiti
@@ -95,7 +93,6 @@ export class HomeComponent {
         }
       });
       this.mostFavouritedItems = this.mostFavouritedItems.slice(0,12)
-      console.log('mostFav',this.mostFavouritedItems);
       this.isLoading = true
 
 

@@ -5,7 +5,15 @@
     [class.slide-out-left]="mobileSideStatus == 'closed'"
     class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter w-full lg:max-w-[250px] lg:sticky lg:top-[120px]"
   >
-    <h1 class="font-light text-2xl mb-6">Filter</h1>
+
+  <button (click)="mobileSideStatus='closed'" class="text-left">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+    </svg>
+
+  </button>
+
+    <h1 class="font-light text-2xl mb-6 text-center">Filter</h1>
     <!-- FILTRI artist,genre,labe-->
     <div class="flex flex-col gap-2">
       <!-----------------------------------[ARTIST FILTER]----------------------------------->

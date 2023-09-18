@@ -67,7 +67,6 @@ export class DatabaseComponent implements OnInit {
         this.firebaseDatabaseService
           .addQuantityToItem(item, element)
           .subscribe((resData) => {
-            console.log(resData);
           });
       });
     }
@@ -86,7 +85,6 @@ export class DatabaseComponent implements OnInit {
           this.firebaseDatabaseService
             .addQuantityToItem(item, element)
             .subscribe((resData) => {
-              console.log(resData);
             });
         });
 
