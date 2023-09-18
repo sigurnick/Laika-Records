@@ -20,6 +20,7 @@ export class HeaderComponent {
   isScrolled = false;
 
   newWantedEvents: boolean = false;
+  newCollectedEvents: boolean = false;
   numberItemsOnCart!: number
 
   constructor(private authService: AuthService, private firebaseService: FireDBService, private renderer: Renderer2,
@@ -56,10 +57,14 @@ export class HeaderComponent {
 
     });
 
+    //controllo l' aggiunta ai preferiti
     this.sharedVariableService.getWantedEvent().subscribe((value) => {
       this.newWantedEvents = value
-      console.log(this.newWantedEvents);
 
+    })
+    //controllo l'aggiunta alla collezione
+    this.sharedVariableService.getCollectedEvent().subscribe((value)=>{
+      this.newCollectedEvents = value
     })
   }
 

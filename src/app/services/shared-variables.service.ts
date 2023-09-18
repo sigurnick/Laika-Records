@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedVariablesService {
 
   private newWantedEvent$ = new BehaviorSubject<boolean>(false); //evento aggiunto item a wanted
+  private newCollectedEvent$ = new BehaviorSubject<boolean>(false); //evento aggiunto alla collezione
   private artistName$ = new BehaviorSubject<string>('');
   private searchText$ = new BehaviorSubject<string>('');
 
@@ -36,6 +37,17 @@ export class SharedVariablesService {
   updateWantedEvent(newValue:boolean) {
     this.newWantedEvent$.next(newValue)
   }
+
+
+ //prendo newCollectedEvent
+ getCollectedEvent() {
+  return this.newCollectedEvent$.asObservable();
+}
+
+//modifico newCollectedEvent
+updateCollecteddEvent(newValue:boolean) {
+  this.newCollectedEvent$.next(newValue)
+}
 
    //salva la ricerca
    updateSearchText(artist:string) {

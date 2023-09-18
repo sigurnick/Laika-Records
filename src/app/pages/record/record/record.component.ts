@@ -156,6 +156,12 @@ export class RecordComponent {
 
 
         if (data) {
+
+          this.sharedVariablesService.updateCollecteddEvent(true)
+          setTimeout(() => this.sharedVariablesService.updateCollecteddEvent(false),
+             800)
+
+
           //aumento il contatore collected del record
           this.record.collected++
           this.record.genres.forEach((genre) => {
