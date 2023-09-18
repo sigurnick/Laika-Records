@@ -74,8 +74,6 @@ export class RegisterComponent implements OnInit {
 
       this.authService.singup(this.form.value).subscribe(
         (resData) => {
-
-
           //inserisco i dati utendi nel db
           this.firedbService
             .writeUserData(

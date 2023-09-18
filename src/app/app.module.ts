@@ -33,6 +33,9 @@ import { SearchbarComponent } from './components/searchbar/searchbar/searchbar.c
 import { ProductsComponent } from './pages/products/products/products.component';
 import { AboutComponent } from './pages/about/about/about.component';
 import { CartComponent } from './pages/cart/cart/cart.component';
+import { OrdersComponent } from './pages/dashboard/orders/orders/orders.component';
+import { ClientsComponent } from './pages/dashboard/clients/clients/clients.component';
+import { FinancesComponent } from './pages/dashboard/finances/finances/finances.component';
 
 
 
@@ -60,7 +63,10 @@ import { CartComponent } from './pages/cart/cart/cart.component';
     SearchbarComponent,
     ProductsComponent,
     AboutComponent,
-    CartComponent
+    CartComponent,
+    OrdersComponent,
+    ClientsComponent,
+    FinancesComponent
   ],
   imports: [
     BrowserModule,

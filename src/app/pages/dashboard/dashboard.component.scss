@@ -33,9 +33,7 @@ $height: calc(100vh - #{$topbar-height});
 
 @media (min-width: 1024px) {
 
-  .dashboardRoutlet{
-    height: $height;
-    }
+
 
   .topbar {
     height: var(--topbar-height);

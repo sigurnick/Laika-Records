@@ -46,18 +46,8 @@ export class HeaderComponent {
               console.log(this.numberItemsOnCart);
 
             })
-          }
-          if (this.userData?.isAdmin) {
-            this.isAdminLogged = true;
-          }
-        })
-      } else {
-        this.isLogged = false;
-      }
 
-    });
-
-    //controllo l' aggiunta ai preferiti
+             //controllo l' aggiunta ai preferiti
     this.sharedVariableService.getWantedEvent().subscribe((value) => {
       this.newWantedEvents = value
 
@@ -66,6 +56,20 @@ export class HeaderComponent {
     this.sharedVariableService.getCollectedEvent().subscribe((value)=>{
       this.newCollectedEvents = value
     })
+          }
+          if (this.userData?.isAdmin) {
+            this.isAdminLogged = true;
+          } else {
+            this.isAdminLogged = false;
+          }
+        })
+      } else {
+        this.isLogged = false;
+      }
+
+    });
+
+
   }
 
   openMenu() {

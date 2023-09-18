@@ -43,9 +43,11 @@ export class LoginComponent {
           if(userData.isAdmin == true) {
             //se l'utente è un admid lo porto alla dashboard
            this.router.navigate(['/database'])
+          } else {
+            //altrimenti lo porto alla home
+            this.router.navigate(['/home'])
           }
                 this.isLoading = false
-                this.router.navigate(['/home'])
         },
         (error) => {
           console.log(error);

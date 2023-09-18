@@ -19,6 +19,9 @@ import { CollectionsComponent } from './pages/profile/collections/collections/co
 import { ProductsComponent } from './pages/products/products/products.component';
 import { AboutComponent } from './pages/about/about/about.component';
 import { CartComponent } from './pages/cart/cart/cart.component';
+import { OrdersComponent } from './pages/dashboard/orders/orders/orders.component';
+import { ClientsComponent } from './pages/dashboard/clients/clients/clients.component';
+import { FinancesComponent } from './pages/dashboard/finances/finances/finances.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,9 +30,9 @@ const routes: Routes = [
   { path: 'overview', component: OverviewComponent },
   { path: 'database', component: DatabaseComponent },
   { path: 'discogs', component: DiscogsComponent },
-  { path: 'orders', component: DatabaseComponent },
-  { path: 'clients', component: DatabaseComponent },
-  { path: 'finances', component: DatabaseComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'clients', component:ClientsComponent },
+  { path: 'finances', component: FinancesComponent },
 
   { path: 'singup', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
