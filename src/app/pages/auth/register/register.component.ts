@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
     if (this.form.valid) {
       this.isLoading = true;
 
-      this.authService.singup(this.form.value).subscribe(
+      this.authService.signup(this.form.value).subscribe(
         (resData) => {
           //inserisco i dati utendi nel db
           this.firedbService

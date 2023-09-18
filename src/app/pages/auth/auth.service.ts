@@ -47,7 +47,7 @@ export class AuthService {
 
 
   //----------------------SingUp]--------------------
-  singup(data: IRegister) {
+  signup(data: IRegister) {
     data.returnSecureToken = true;
     return this.http
       .post<IAuthResponseData>(this.singupUrl, data)
