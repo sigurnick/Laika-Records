@@ -60,13 +60,16 @@
           Password
         </h2>
         <p class="font-semibold">********</p>
+
+        <!-- alert -->
+        <p *ngIf="showUpdatePasswordAlert" class="text-red-500 mt-2">{{updatePasswordError}} </p>
       </div>
       <button
       data-modal-target="editPasswordModal" data-modal-toggle="editPasswordModal"
       class="font-medium text-orange-300">Edit</button>
     </div>
     <hr class="border-bottom-4 border-black mt-1" />
-    <button class="text-orange-300 text-left font-medium">
+    <button (click)="deleteAccount()" class="text-orange-300 text-left font-medium">
       Delete account
     </button>
   </div>

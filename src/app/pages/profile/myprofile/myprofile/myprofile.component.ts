@@ -22,6 +22,9 @@ export class MyprofileComponent {
   nameUser!:string
   surnameUser!:string
 
+  showUpdatePasswordAlert: boolean = false
+  updatePasswordError: string = ''
+
 
   constructor(private authService: AuthService, private router: Router, private firebaseService: FireDBService) { }
 
@@ -65,9 +68,28 @@ export class MyprofileComponent {
   editPasswordFormSubmit(form: NgForm) {
 
 if(form.value.newPassword.length >= 6){
-  this.firebaseService.updatePassword(form.value.password)
+  this.authService.updatePassword(this.userAuth,form.value.newPassword).subscribe((resData)=> {
+
+
+  })
+} else {
+  this.updatePasswordError = 'Password must contain at least 6 characters'
+  this.showUpdatePasswordAlert = true
+  setInterval(()=>{
+  this.showUpdatePasswordAlert = false
+  },4000)
 }
   }
+
+  //delete account
+  deleteAccount() {
+    this.authService.deleteAccount(this.userAuth).subscribe((resData)=> {
+      console.log(resData);
+      this.router.navigate(['/home']);
+
+    })
+  }
+
 
   goBack() {
     this.router.navigate([`/profile/${this.id}`]);
