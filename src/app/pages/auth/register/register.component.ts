@@ -98,6 +98,8 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
         }
       );
+    } else {
+      this.error = 'Input not valid'
     }
   }
 }

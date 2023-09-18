@@ -75,10 +75,11 @@ export class AuthService {
 
         this.authSubject.next(data);//invio lo user al subject
         localStorage.setItem('accessData', JSON.stringify(data));//salvo lo user per poterlo recuperare se si ricarica la pagina
-
-
-        this.autoLogout(+data.expiresIn);//un metodo per il logout automatico
+      }),
+      catchError( error => {
+        return throwError(error)
       })
+
     )
 
   }
@@ -93,15 +94,6 @@ export class AuthService {
     this.router.navigate(['/login']); //redirect al login
   }
 
-
-  //---------------------------------------------
-  autoLogout(expDate: number) {
-    expDate = expDate * 1000; //converto in millisecondi
-    this.autoLogoutTimer = setTimeout(() => {
-      //avvio un timer che fa logout allo scadere del tempo
-      this.logout();
-    }, expDate);
-  }
   //------------------------------------------------------------------
 
    //-----------------[Controllo al load della pagina]----------------
@@ -116,12 +108,5 @@ export class AuthService {
     //se nessun return viene eseguito proseguo
     this.authSubject.next(accessData);//invio i dati dell'utente al behaviorsubject
 }
-}
-function getDatabase() {
-  throw new Error('Function not implemented.');
-}
-
-function ref(db: void, arg1: string): any {
-  throw new Error('Function not implemented.');
 }
 

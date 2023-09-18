@@ -29,8 +29,6 @@ export class LoginComponent {
   //login
   submitForm(form:NgForm) {
 
-
-
     this.isLoading = true
     let dataLogin:ILogin = {...this.form.value}
     dataLogin.returnSecureToken = true
@@ -38,21 +36,26 @@ export class LoginComponent {
 
     this.authService.login(dataLogin).subscribe((data)=>{
 
-
-
       if(data) {
-        this.firebaseService.getUserData(data.localId,data.idToken).subscribe((userData)=>{
-          if(userData.isAdmin == true) {
-      this.router.navigate(['/database'])
+        this.firebaseService.getUserData(data.localId,data.idToken).subscribe(
+          (userData)=>{
 
+          if(userData.isAdmin == true) {
+            //se l'utente è un admid lo porto alla dashboard
+           this.router.navigate(['/database'])
           }
+                this.isLoading = false
+                this.router.navigate(['/home'])
+        },
+        (error) => {
+          console.log(error);
+          this.error = error
+          console.log(this.error);
+          this.isLoading = false
 
         })
       }
 
-
-      this.isLoading = false
-      this.router.navigate(['/home'])
     })
 
 

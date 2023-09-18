@@ -16,6 +16,17 @@
           placeholder="Email"
           class="border-2 p-1 w-full focus:outline-none focus:border-gray-900  rounded-md focus:ring-0"
         />
+
+        <!-- Validazione email -->
+        <div
+        class="text-red-500"
+        *ngIf="
+          form.get('email')?.hasError('email') &&
+          form.get('email')?.dirty
+        "
+      >
+        Email not valid
+      </div>
       </div>
     </div>
 
@@ -120,11 +131,11 @@
       <!-- Errori nella registrazione -->
       <div
         *ngIf="error"
-        class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mt-4"
+        class=" text-red-500 p-2 pt-6  text-left"
         role="alert"
       >
-        <p class="font-bold">Attenction</p>
-        <p>{{ error }}</p>
+      {{ error }}
+
       </div>
     </div>
 
