@@ -31,7 +31,6 @@ export class MyprofileComponent {
     this.authService.user$.subscribe((user) => {
       if (user)
         this.userAuth = user;
-      console.log(this.userAuth);
 
     })
 
@@ -42,7 +41,6 @@ export class MyprofileComponent {
         this.userData = user;
       this.nameUser = user.name
       this.surnameUser = user.surname
-      console.log(this.userData);
       }
 
     })
@@ -53,7 +51,6 @@ export class MyprofileComponent {
 
 
     this.firebaseService.writeUserData(this.userData.userId, this.userAuth.idToken,this.userData.email, form.value.name, form.value.surname).subscribe((resData)=>{
-      console.log(resData);
 
       if(resData){
          //prendo nuovamente i dati dell'utente dal db
@@ -66,7 +63,6 @@ export class MyprofileComponent {
 
   // edit password
   editPasswordFormSubmit(form: NgForm) {
-    console.log(form);
 
 if(form.value.newPassword.length >= 6){
   this.firebaseService.updatePassword(form.value.password)
