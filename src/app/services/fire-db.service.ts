@@ -62,7 +62,7 @@ export class FireDBService {
     );
   }
 
-  //update password user //! Da sistemare
+  //update password user
   updatePassword(newPassword: string) {
     const auth = getAuth();
     const user = auth.currentUser;

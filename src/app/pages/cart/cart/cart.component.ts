@@ -53,7 +53,7 @@ export class CartComponent {
   }
 
   removeItem(index: number) {
-    this.cartItems.splice(index, 1)
+    this.cartItems.splice(index, 0)
     this.updatePrice()
     this.purchaseService.removeItemOnCart(index)
   }

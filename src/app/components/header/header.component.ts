@@ -43,7 +43,6 @@ export class HeaderComponent {
           if(userData) {
             this.purchaseService.getNumberItemsOnCart().subscribe((number)=> {
               this.numberItemsOnCart = number
-              console.log(this.numberItemsOnCart);
 
             })
 
