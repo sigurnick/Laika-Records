@@ -1,5 +1,5 @@
 <!-- Searchbar -->
-<form
+<form *ngIf="showSearchBar == true"
 class="p-3 max-w-[1400px] mx-auto"
  (ngSubmit)="searchOnSubmit()"
 
