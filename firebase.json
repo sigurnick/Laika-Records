@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/laika-records",
+    "source": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
