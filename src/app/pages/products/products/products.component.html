@@ -6,7 +6,7 @@
     class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter w-full lg:max-w-[250px] lg:sticky lg:top-[120px]"
   >
 
-  <button (click)="mobileSideStatus='closed'" class="text-left">
+  <button (click)="mobileSideStatus='closed'" class="text-left lg:hidden">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
     </svg>
@@ -302,7 +302,7 @@
         <a
           (click)="filterArtist(item.artists[0].name)"
           routerLink="/record/{{ item.id }}"
-          class="font-light hover:underline text-lg"
+          class="font-light hover:underline truncate text-lg"
           >{{ item.artists[0].name }}</a
         >
 
