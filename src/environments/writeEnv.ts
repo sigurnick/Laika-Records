@@ -21,7 +21,7 @@ const setEnv = () => {
 
     discogs_api_key: ${process.env['discogs_api_key']}
     discogs_api_secret: ${process.env['discogs_api_secret']}
-
+    paypall_client_id: ${process.env['paypall_client_id']}
 
   production: true,
 };

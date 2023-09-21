@@ -114,7 +114,7 @@
     </div>
 
     <!-- Sommario ordine -->
-    <div class="w-full">
+    <div *ngIf="totalOrderCorstString.length > 0" class="w-8/12">
       <div class="bg-black text-white flex justify-between px-2 py-1 mb-3">
         ORDER SUMMARY
       </div>
@@ -138,11 +138,10 @@
           <div>€{{ totalOrderCost }}</div>
         </div>
       </div>
-      <button
-        class="w-full h-12 bg-black py-2 px-4 text-white rounded hover:bg-coolBlack transition-colors duration-300 mt-4"
-      >
-        CHECKOUT
-      </button>
+
+      <div class="mt-4" id="paypallButtons">
+
+      </div>
     </div>
   </div>
 </div>
