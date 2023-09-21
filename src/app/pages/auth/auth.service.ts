@@ -24,7 +24,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   // apiKey= firebaseConfig.apiKey
-  apiKey = environment.apiKeyFire
+  apiKey = environment.firebaseConfig.apiKey
   singupUrl: string =
     `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
   loginUrl: string =

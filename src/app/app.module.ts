@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideDatabase, getDatabase } from '@angular/fire/database';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +26,6 @@ import { DiscogsComponent } from './pages/dashboard/discogs/discogs/discogs.comp
 import { AddItemModalComponent } from './components/add-item-modal/add-item-modal.component'
 import { RecordComponent } from './pages/record/record/record.component';
 import { SeparateArrayStringPipe } from './pipes/separate-array-string.pipe';
-import { environment } from 'src/environments/environment';
 import { CollectionsComponent } from './pages/profile/collections/collections/collections.component';
 import { SearchbarComponent } from './components/searchbar/searchbar/searchbar.component';
 import { ProductsComponent } from './pages/products/products/products.component';
@@ -36,6 +34,7 @@ import { CartComponent } from './pages/cart/cart/cart.component';
 import { OrdersComponent } from './pages/dashboard/orders/orders/orders.component';
 import { ClientsComponent } from './pages/dashboard/clients/clients/clients.component';
 import { FinancesComponent } from './pages/dashboard/finances/finances/finances.component';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -75,7 +74,7 @@ import { FinancesComponent } from './pages/dashboard/finances/finances/finances.
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    provideFirebaseApp(()=> initializeApp(environment.firebase)),
+    provideFirebaseApp(()=> initializeApp(environment.firebaseConfig)),
     provideStorage(()=> getStorage()),
     provideAuth(() => getAuth()),
 

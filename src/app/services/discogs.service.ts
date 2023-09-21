@@ -1,8 +1,9 @@
+import { discogsConfig } from './../../environments/discogs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { discogsConfig } from 'src/environments/discogs';
 import { IBarcodeDiscogsRes } from '../interfaces/barcodeDiscogsRes';
 import { IRecordInfo} from '../interfaces/record-id-res';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,16 @@ import { IRecordInfo} from '../interfaces/record-id-res';
 export class DiscogsService {
 
   //discogs key/url
-  discogsKey: string = discogsConfig.api_key;
-  discogsSecret: string = discogsConfig.api_secret;
 
 
-  constructor(private http:HttpClient) { }
+  // discogsKey: string = discogsConfig.api_key;
+  // discogsSecret: string = discogsConfig.api_secret;
+  discogsKey!: string
+  discogsSecret!: string
+
+
+  constructor(private http:HttpClient) {
+  }
 
    //---------------------------[Gestione Discogs API]-------------------------
 

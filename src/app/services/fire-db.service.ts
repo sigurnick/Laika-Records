@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { tap } from 'rxjs/internal/operators/tap';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { Observable, forkJoin, mergeMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -20,13 +19,12 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 })
 export class FireDBService {
   //firebase key/url
-  fireKey: string = environment.apiKeyFire;
+  fireKey: string = environment.firebaseConfig.apiKey;
   urlUsers: string =
     'https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/users';
   urlItems: string = `https://laika-records-default-rtdb.europe-west1.firebasedatabase.app/items`;
 
   //variabili gestione utenti
-  private jwtHelper: JwtHelperService = new JwtHelperService();
   private authSubject = new BehaviorSubject<null | IUser>(null); //null = utente non loggato
   userData$ = this.authSubject.asObservable(); //dati utente loggato
 
