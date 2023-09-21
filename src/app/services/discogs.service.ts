@@ -1,4 +1,4 @@
-import { discogsConfig } from './../../environments/discogs';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IBarcodeDiscogsRes } from '../interfaces/barcodeDiscogsRes';
@@ -13,10 +13,9 @@ export class DiscogsService {
   //discogs key/url
 
 
-  // discogsKey: string = discogsConfig.api_key;
-  // discogsSecret: string = discogsConfig.api_secret;
-  discogsKey!: string
-  discogsSecret!: string
+  discogsKey: string = environment.discogs_api_key
+  discogsSecret: string = environment.discogs_api_secret
+
 
 
   constructor(private http:HttpClient) {
