@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sigurnick/Laika-Records">
-    <img src="src/assets/LaikaRecords-logo.jpg" alt="Logo" width="200" >
+    <img src="src/assets/LaikaRecords-logo.jpg" alt="Logo" width="400" >
   </a>
 
 
@@ -31,9 +31,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+<br>
 <div align="center">
  <a href="https://github.com/sigurnick/Laika-Records">
-    <img src="src/assets/Record Page.png" alt="recordpage" width="400" >
+    <img src="src/assets/Record Page.png" alt="recordpage" width="600" >
   </a>
 </div>
 
