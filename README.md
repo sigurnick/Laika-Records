@@ -9,8 +9,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/sigurnick/Laika-Records">
-    <img src="assets/LaikaRecords-logo.jpg" alt="Logo" width="200" height="80">
+    <!-- <img src="assets/LaikaRecords-logo.jpg" alt="Logo" width="200" height="80"> -->
+  ![Alt text](https://github.com/sigurnick/Laika-Records)
   </a>
+
 
   <h3 align="center">Laika Records</h3>
 
@@ -98,7 +100,7 @@ Fake Paypall trial account:
 
 Nicolas Mastropietro -  nicolas94.m@gmail.com
 
-Linkedin profile: [![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/nicolas-mastropietro-front-end-web-developer/]
+Linkedin profile: https://www.linkedin.com/in/nicolas-mastropietro-front-end-web-developer/
 
 Project Link: [https://github.com/sigurnick/Laika-Records](https://github.com/sigurnick/Laika-Records)
 
