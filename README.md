@@ -10,9 +10,9 @@
 <div align="center">
   <a href="https://github.com/sigurnick/Laika-Records">
     <!-- <img src="assets/LaikaRecords-logo.jpg" alt="Logo" width="200" height="80"> -->
-  ![Alt text](https://github.com/sigurnick/Laika-Records)
   </a>
 
+  ![Alt text](https://github.com/sigurnick/Laika-Records)
 
   <h3 align="center">Laika Records</h3>
 
