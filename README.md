@@ -9,10 +9,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/sigurnick/Laika-Records">
-    <!-- <img src="assets/LaikaRecords-logo.jpg" alt="Logo" width="200" height="80"> -->
+    <img src="src/assets/LaikaRecords-logo.jpg" alt="Logo" width="200" >
   </a>
 
-  ![Alt text](https://github.com/sigurnick/Laika-Records)
+
 
   <h3 align="center">Laika Records</h3>
 
@@ -33,7 +33,7 @@
 
 <div align="center">
  <a href="https://github.com/sigurnick/Laika-Records">
-    <img src="assets/Record Page.png" alt="recordpage" width="400" >
+    <img src="src/assets/Record Page.png" alt="recordpage" width="400" >
   </a>
 </div>
 
