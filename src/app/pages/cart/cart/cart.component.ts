@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { IRecordOnCart } from 'src/app/interfaces/recordOnCart';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 import { render } from 'creditcardpayments/creditCardPayments'
+import { FireDBService } from 'src/app/services/fire-db.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -16,35 +18,38 @@ export class CartComponent {
   totalItemsPrice: number = 0
   shippingCost: number = 7
   totalOrderCost!: number
-  totalOrderCorstString:string = ""
+  totalOrderCorstString: string = ""
 
+  @ViewChild('paypallButtons', { static: false }) paypallButtonsElement!: ElementRef;
+  totalOrderCostUpdated = new EventEmitter<string>();
 
-  constructor(private purchaseService: PurchaseService, private sharedVariablesService: SharedVariablesService) {
+  constructor(private purchaseService: PurchaseService, private sharedVariablesService: SharedVariablesService, private firebaseService: FireDBService) {
 
   }
 
   ngOnInit() {
-
-
     initFlowbite();
     this.cartItems = this.purchaseService.getCartItems()
     this.updatePrice()
 
-
   }
 
   ngAfterViewInit() {
-// paypall buttons
-render(
-  {
-    id: "#paypallButtons",
-    currency: "EUR",
-    value: this.totalOrderCorstString,
-    onApprove: (details) => {
-      alert("Transition successful")
-    }
-  }
-)
+
+    // paypall buttons
+    render(
+      {
+        id: "#paypallButtons",
+        currency: "EUR",
+        value: this.totalOrderCorstString,
+        onApprove: (details) => {
+          alert("Transition successful")
+          this.orderComplete()
+        }
+      }
+    )
+    console.log(this.paypallButtonsElement);
+
   }
   //manda ad artist
   sendArtistName(artist: string) {
@@ -80,7 +85,9 @@ render(
     this.updatePrice()
   }
 
+  //aggiorna il prezo totale dell' ordine
   updatePrice() {
+
     this.totalItemsPrice = 0
     this.cartItems.forEach((item) => {
       this.totalItemsPrice = +this.totalItemsPrice + (+item.item.price * item.quantity)
@@ -92,5 +99,29 @@ render(
       this.totalOrderCost = +this.shippingCost + +this.totalItemsPrice
     }
     this.totalOrderCorstString = this.totalOrderCost.toString()
+
+  }
+
+
+  orderComplete() {
+    //cambio la quantità di ogni oggetto nel database
+    this.cartItems.forEach((item) => {
+      let quantity = 0
+      if (item.item.quantity - item.quantity > 0) {
+        quantity = item.item.quantity - item.quantity
+      }
+
+      item.item.genres.forEach((genre) => {
+        this.firebaseService.updateItemQuantity(item.item, quantity, genre).subscribe((resdata) => {
+          console.log(resdata);
+
+        })
+      })
+    })
+
+    //svuoto il local storage e il carrello
+    this.cartItems = []
+    localStorage.removeItem('userCart')
+    this.purchaseService.emptyCart()
   }
 }

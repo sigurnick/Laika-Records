@@ -70,4 +70,9 @@ export class PurchaseService {
     this.numberItemsOnCart$.next(this.cartItems.length)
   }
 
+  emptyCart() {
+    this.cartItems = []
+    this.numberItemsOnCart$.next(0)
+  }
+
 }

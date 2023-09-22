@@ -239,6 +239,13 @@ export class FireDBService {
     return this.http.delete<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`);
   }
 
+ //modifica la quantità di un oggetto nel database
+ updateItemQuantity(item: IRecordOnDatabase, newQuantity: number, genre:string) {
+  item.quantity = newQuantity;
+
+  return this.http.put<IRecordOnDatabase>(`${this.urlItems}/${genre}/${item.id}.json`, item);
+ }
+
 
   //salva un array di immagini nello storage e ritorna le url
    uploadImages(files: File[], item: IRecordOnDatabase): Observable<string[]> {
