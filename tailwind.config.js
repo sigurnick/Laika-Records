@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     "./src/**/*.{html,ts}",
     "./node_modules/flowbite/**/*.js",
@@ -18,6 +21,7 @@ module.exports = {
         backgroundSlate: "rgba(250,249,247)",
         xgray: "#dfe3ee",
       },
+
     },
   },
   plugins: [require('flowbite/plugin'),
