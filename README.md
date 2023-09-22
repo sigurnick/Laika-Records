@@ -34,7 +34,7 @@
 <br>
 <div align="center">
  <a href="https://github.com/sigurnick/Laika-Records">
-    <img src="src/assets/Record Page.png" alt="recordpage" width="600" >
+    <img src="src/assets/Record_Page.png" alt="recordpage" width="600" >
   </a>
 </div>
 
