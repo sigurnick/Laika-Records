@@ -1,29 +1,7 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
 
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -31,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sigurnick/Laika-Records">
-    <img src="assets/LaikaRecords-logo.jpg" alt="Logo" width="200" >
+    <img src="assets/LaikaRecords-logo.jpg" alt="Logo" width="200" height="80">
   </a>
 
   <h3 align="center">Laika Records</h3>
@@ -48,34 +26,6 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -85,12 +35,12 @@
   </a>
 </div>
 
+This is my first web app developed completely independently used to graduate from Epicode's Front end web developer course.
 
 This project was born out of my passion for music.
+Inspired by the courageous spirit of Laika, the first living creature to journey into space, we aim to explore uncharted musical territories. Our mission is to blend the timeless charm of vinyl with the convenience of modern technology, making the vinyl experience more accessible and enjoyable for everyone. :grin: :star:  :rocket:
 
-Laika Records is not just another vinyl store; it's a passion project born out of a deep love for music. Inspired by the courageous spirit of Laika, the first living creature to journey into space, we aim to explore uncharted musical territories. Our mission is to blend the timeless charm of vinyl with the convenience of modern technology, making the vinyl experience more accessible and enjoyable for everyone. :smile:
-
-
+This project is used for demonstration purposes only.
 
 
 ### Built With
@@ -148,9 +98,7 @@ Fake Paypall trial account:
 
 Nicolas Mastropietro -  nicolas94.m@gmail.com
 
- * <a href="https://www.linkedin.com/in/nicolas-mastropietro-front-end-web-developer/">
-     ![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white) 
-  </a>
+Linkedin profile: [![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/nicolas-mastropietro-front-end-web-developer/]
 
 Project Link: [https://github.com/sigurnick/Laika-Records](https://github.com/sigurnick/Laika-Records)
 
