@@ -9,11 +9,14 @@ import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } fro
 })
 export class AboutComponent {
 
-  @ViewChild('section2') section2Element!: ElementRef;
+
+  @ViewChild('audio') audio!: ElementRef;
+
 
   private observer!: IntersectionObserver;
   isOnSection2:boolean = false;
   private isScrollingEnabled = true;
+  isAudioMuted:boolean = false;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
@@ -66,6 +69,18 @@ scrollToSection1() {
   const section1 = this.elementRef.nativeElement.querySelector('#section1'); //riferimento section2
   section1.scrollIntoView({ behavior: 'smooth' }); //scroll to section
 
+}
+
+muteAudio() {
+  const audioElement: HTMLAudioElement = this.audio.nativeElement;
+    audioElement.muted = true;
+    this.isAudioMuted = true;
+}
+
+unmuteAudio() {
+  const audioElement: HTMLAudioElement = this.audio.nativeElement;
+  audioElement.muted = false;
+  this.isAudioMuted = false
 }
 
 }
