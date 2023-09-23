@@ -1,6 +1,29 @@
-.slide-in-left-title {
-  -webkit-animation: slide-in-left-title 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
-	        animation: slide-in-left-title 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+
+.wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: start;
+
+}
+
+wraper section:nth-child(1) {
+
+}
+
+
+
+
+
+
+.slide-in-bottom-title {
+  transform: translate(-50%, -50%);
+	-webkit-animation: slide-in-bottom-title 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s both;
+	        animation: slide-in-bottom-title 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s both;
 }
 
 
@@ -24,43 +47,41 @@
 
 
 
-/**
- * ----------------------------------------
- * animation slide-in-left-title
- * ----------------------------------------
- */
- @-webkit-keyframes slide-in-left-title {
+//---------------------------[Animations]-------------------------
+
+
+// animation slide-in-bottom-title
+
+@-webkit-keyframes slide-in-bottom-title {
   0% {
-    -webkit-transform: translateX(-60px);
-            transform: translateX(-60px);
+    -webkit-transform: translateY(40px);
+            transform: translateY(40px);
     opacity: 0;
+
   }
   100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
     opacity: 1;
   }
 }
-@keyframes slide-in-left-title {
+@keyframes slide-in-bottom-title {
   0% {
-    -webkit-transform: translateX(-60px);
-            transform: translateX(-60px);
+    -webkit-transform: translateY(40px);
+            transform: translateY(40px);
     opacity: 0;
+
   }
   100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
     opacity: 1;
+
   }
 }
 
 
-
-/**
- * ----------------------------------------
- * animation slide-in-bottom
- * ----------------------------------------
- */
+// animation slide-in-bottom
  @-webkit-keyframes slide-in-bottom {
   0% {
     -webkit-transform: translateY(250px);
@@ -77,7 +98,6 @@
     z-index: 11;
   }
 }
-
 
 @keyframes slide-in-bottom {
   0% {
@@ -99,18 +119,7 @@
 
 
 
-
-
-
-
-
-
-
-/**
- * ----------------------------------------
- * animation slide-in-left
- * ----------------------------------------
- */
+//  animation slide-in-left
  @-webkit-keyframes slide-in-left {
   0% {
     -webkit-transform: translateX(-250px);
@@ -138,11 +147,8 @@
 
 
 
-/**
- * ----------------------------------------
- * animation slide-in-right
- * ----------------------------------------
- */
+// animation slide-in-right
+
  @-webkit-keyframes slide-in-right {
   0% {
     -webkit-transform: translateX(500px);

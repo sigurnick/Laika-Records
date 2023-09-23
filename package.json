@@ -25,6 +25,7 @@
     "creditcardpayments": "^1.0.3",
     "dotenv": "^16.3.1",
     "flowbite": "^1.8.1",
+    "intersection-observer": "^0.12.2",
     "preline": "^1.9.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
