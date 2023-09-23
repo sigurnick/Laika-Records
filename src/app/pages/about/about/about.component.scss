@@ -1,21 +1,4 @@
 
-.wrapper {
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-}
-
-section {
-  height: 100vh;
-  scroll-snap-align: start;
-
-}
-
-wraper section:nth-child(1) {
-
-}
-
-
 
 
 
@@ -172,4 +155,28 @@ wraper section:nth-child(1) {
             transform: translateX(0);
     opacity: 1;
   }
+}
+
+
+
+@media (min-width: 768px) {
+
+::-webkit-scrollbar {
+  display: none; /* Nasconde la scrollbar del browser */
+}
+
+.wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: start;
+
+}
+
+
+
 }
