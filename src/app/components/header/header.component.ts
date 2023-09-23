@@ -5,6 +5,7 @@ import { IUser } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/pages/auth/auth.service';
 import { FireDBService } from 'src/app/services/fire-db.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -23,8 +24,30 @@ export class HeaderComponent {
   newCollectedEvents: boolean = false;
   numberItemsOnCart!: number
 
-  constructor(private authService: AuthService, private firebaseService: FireDBService, private renderer: Renderer2,
-    private el: ElementRef, private sharedVariableService: SharedVariablesService, private purchaseService: PurchaseService) { }
+  isAboutPage: boolean = false;
+  routerEvents: any;
+
+  constructor(
+    private authService: AuthService,
+    private firebaseService: FireDBService,
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private sharedVariableService: SharedVariablesService,
+    private purchaseService: PurchaseService,
+    private router: Router) {
+      this.routerEvents = this.router.events.subscribe(
+        (event: any) => {
+          if (event instanceof NavigationEnd) {
+
+            if (event.url === '/about') {
+              this.isAboutPage = true;
+            } else {
+             this.isAboutPage = false;
+            }
+          }
+        }
+      )
+    }
 
   ngOnInit(): void {
 
@@ -40,21 +63,21 @@ export class HeaderComponent {
         //prendo dati utente
         this.firebaseService.userData$.subscribe((userData) => {
           this.userData = userData;
-          if(userData) {
-            this.purchaseService.getNumberItemsOnCart().subscribe((number)=> {
+          if (userData) {
+            this.purchaseService.getNumberItemsOnCart().subscribe((number) => {
               this.numberItemsOnCart = number
 
             })
 
-             //controllo l' aggiunta ai preferiti
-    this.sharedVariableService.getWantedEvent().subscribe((value) => {
-      this.newWantedEvents = value
+            //controllo l' aggiunta ai preferiti
+            this.sharedVariableService.getWantedEvent().subscribe((value) => {
+              this.newWantedEvents = value
 
-    })
-    //controllo l'aggiunta alla collezione
-    this.sharedVariableService.getCollectedEvent().subscribe((value)=>{
-      this.newCollectedEvents = value
-    })
+            })
+            //controllo l'aggiunta alla collezione
+            this.sharedVariableService.getCollectedEvent().subscribe((value) => {
+              this.newCollectedEvents = value
+            })
           }
           if (this.userData?.isAdmin) {
             this.isAdminLogged = true;
