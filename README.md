@@ -19,7 +19,7 @@
   <p align="center">
     My first web application project!
     <br />
-    <a href="https://laika-records.web.app/home"><strong>View Live</strong></a>
+    <a href="https://laika-records.firebaseapp.com"><strong>View Live</strong></a>
     <br />
     <br />
    
@@ -40,8 +40,7 @@
 <br>
 This is my first web app developed completely independently used to graduate from Epicode's Front end web developer course.
 
-This project was born out of my passion for music.
-Inspired by the courageous spirit of Laika, the first living creature to journey into space, we aim to explore uncharted musical territories. Our mission is to blend the timeless charm of vinyl with the convenience of modern technology, making the vinyl experience more accessible and enjoyable for everyone. :grin: :star:  :rocket:
+This project was born out of my passion for music. Inspired by the courageous spirit of Laika, the first living creature to journey into space, I aim to explore uncharted musical territories. My mission is to blend the timeless charm of vinyl with the convenience of modern technology, making the vinyl experience more accessible and enjoyable for everyone. :grin: :star:  :rocket:
 
 This project is used for demonstration purposes only.
 
@@ -99,12 +98,13 @@ Fake Paypall trial account:
 <!-- CONTACT -->
 ## Contact
 
-Nicolas Mastropietro -  nicolas94.m@gmail.com
+* Nicolas Mastropietro -  nicolas94.m@gmail.com
 
-Linkedin profile: https://www.linkedin.com/in/nicolas-mastropietro-front-end-web-developer/
+* Linkedin profile: [https://www.linkedin.com/in/nicolas-mastropietro-front-end-web-developer/](https://www.linkedin.com/in/nicolas-mastropietro-front-end-web-developer/)
 
-Project Link: [https://github.com/sigurnick/Laika-Records](https://github.com/sigurnick/Laika-Records)
+* Project Link: [https://github.com/sigurnick/Laika-Records](https://github.com/sigurnick/Laika-Records)
 
+* Live: [https://laika-records.firebaseapp.com/home](https://laika-records.firebaseapp.com/home)
 
 
 

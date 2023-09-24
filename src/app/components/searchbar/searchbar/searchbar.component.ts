@@ -19,7 +19,7 @@ export class SearchbarComponent implements OnInit {
       (event: any) => {
         if (event instanceof NavigationEnd) {
 
-          if (event.url === '/login' || event.url === '/lregister' || event.url === '/about') {
+          if (event.url === '/login' || event.url === '/register' || event.url === '/about') {
             this.showSearchBar = false;
           } else {
             this.showSearchBar = true

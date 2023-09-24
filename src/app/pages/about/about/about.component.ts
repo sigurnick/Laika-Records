@@ -13,9 +13,9 @@ export class AboutComponent {
   @ViewChild('audio') audio!: ElementRef;
 
 
-  private observer!: IntersectionObserver;
+
   isOnSection2:boolean = false;
-  private isScrollingEnabled = true;
+  isOnSection3:boolean = false;
   isAudioMuted:boolean = false;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
@@ -55,10 +55,12 @@ export class AboutComponent {
 scrollToSection2() {
   const section2 = this.elementRef.nativeElement.querySelector('#section2'); //riferimento section2
   section2.scrollIntoView({ behavior: 'smooth' }); //scroll to section
+  this.isOnSection2 = true;
 
 }
 
 scrollToSection3() {
+  this.isOnSection3 = true
   const section3 = this.elementRef.nativeElement.querySelector('#section3'); //riferimento section3
   section3.scrollIntoView({ behavior: 'smooth' }); //scroll to section
 

@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'clients', component:ClientsComponent, canActivate: [dashboardGuard] },
   { path: 'finances', component: FinancesComponent, canActivate: [dashboardGuard] },
 
-  { path: 'singup', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
   {
