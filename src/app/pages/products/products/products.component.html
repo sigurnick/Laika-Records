@@ -3,7 +3,7 @@
   <aside
     [class.slide-in-left]="mobileSideStatus == 'open'"
     [class.slide-out-left]="mobileSideStatus == 'closed'"
-    class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter w-full lg:max-w-[250px] lg:sticky lg:top-[120px]"
+    class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter w-full lg:max-w-[250px] lg:sticky lg:top-[120px] dark:bg-black dark:text-white"
   >
 
   <button (click)="mobileSideStatus='closed'" class="text-left lg:hidden">
@@ -22,7 +22,7 @@
         id="dropdownSearchArtistsButton"
         data-dropdown-toggle="dropdownSearchArtists"
         data-dropdown-placement="bottom"
-        class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-md px-5 py-2.5 w-full flex justify-between items-center hover:border-black focus:border-black"
+        class="text-black bg-white border-2 border-[rgb(0,0,0,0.3)] font-medium rounded-md px-5 py-2.5 w-full flex justify-between items-center hover:border-black focus:border-black "
         type="button"
       >
         <span>{{ artistFilterValue }}</span>
@@ -201,7 +201,7 @@
 
       <button
         (click)="resetFilter()"
-        class="bg-black text-white font-light px-4 py-2 w-full rounded hover:bg-coolBlack transition-colors"
+        class="bg-black text-white font-light px-4 py-2 w-full rounded hover:bg-coolBlack transition-colors dark:bg-white dark:text-black"
       >
         Reset
       </button>
@@ -271,7 +271,7 @@
     <div class="mx-2 grid grid-cols-1 mb-12 gap-1 lg:hidden">
       <button
         (click)="openMobileSide()"
-        class="bg-black text-white font-light px-4 py-2 w-full max-w-[180px] mx-auto sm:max-w-full"
+        class="bg-black text-white font-light px-4 py-2 w-full max-w-[180px] mx-auto sm:max-w-full dark:bg-white dark:text-black"
       >
         Filter
       </button>

@@ -1,4 +1,4 @@
-<div class="px-5 py-3 max-w-[1400px] mx-auto mt-10 w-full">
+<div class="px-5 py-3 max-w-[1400px] mx-auto mt-10 w-full full-height">
 
 
   <!-----------------------------------[Nav Profile Mobile]----------------------------------->
@@ -14,7 +14,7 @@
       <!-- My Orders -->
       <a
         (click)="openRoute()"
-        class="flex items-center gap-4 p-2"
+        class="flex items-center gap-4 p-2 dark:hover:text-slate-200"
         routerLink="/profile/{{ id }}/orders"
       >
         <svg
@@ -38,7 +38,7 @@
        <!-- Collections -->
        <a
        (click)="openRoute()"
-       class="flex items-center gap-4 p-2"
+       class="flex items-center gap-4 p-2 dark:hover:text-slate-300"
        routerLink="/profile/{{ id }}/collection"
      >
      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
@@ -52,7 +52,7 @@
       <!-- Favourites -->
       <a
         (click)="openRoute()"
-        class="flex items-center gap-4 p-2"
+        class="flex items-center gap-4 p-2 dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/wanted"
       >
         <svg
@@ -76,7 +76,7 @@
       <!-- Profile -->
       <a
         (click)="openRoute()"
-        class="flex items-center gap-4 p-2"
+        class="flex items-center gap-4 p-2 dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/editprofile"
       >
         <svg
@@ -100,7 +100,7 @@
       <!-- Address -->
       <a
         (click)="openRoute()"
-        class="flex items-center gap-4 p-2"
+        class="flex items-center gap-4 p-2 dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/address"
       >
         <svg
@@ -129,7 +129,7 @@
       <!-- Payment -->
       <a
         (click)="openRoute()"
-        class="flex items-center gap-4 p-2"
+        class="flex items-center gap-4 p-2 dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/payment"
       >
         <svg
@@ -154,7 +154,7 @@
       <a
         (click)="openRoute()"
         (click)="logOut()"
-        class="flex items-center gap-4 p-2 mt-16"
+        class="flex items-center gap-4 p-2 mt-16 dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/payment"
       >
         <svg
@@ -197,7 +197,7 @@
       <!-- My Orders -->
       <a
 
-        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white"
+        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/orders"
         routerLinkActive="profileNavActive"
       >
@@ -238,7 +238,7 @@
       <!-- Favourites -->
       <a
 
-        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white"
+        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/wanted"
         routerLinkActive="profileNavActive"
 
@@ -265,7 +265,7 @@
       <!-- Profile -->
       <a
 
-        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white"
+        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/editprofile"
         routerLinkActive="profileNavActive"
       >
@@ -290,7 +290,7 @@
       <!-- Address -->
       <a
 
-        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white"
+        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/address"
         routerLinkActive="profileNavActive"
       >
@@ -320,7 +320,7 @@
       <!-- Payment -->
       <a
 
-        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white"
+        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/payment"
         routerLinkActive="profileNavActive"
       >
@@ -345,7 +345,7 @@
       <!-- Logout -->
       <button
         (click)="logOut()"
-        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white"
+        class="flex items-center gap-2 py-2 px-4 text-center rounded-md hover:bg-black hover:text-white dark:hover:text-slate-300"
         routerLink="/profile/{{ id }}/payment"
 
       >

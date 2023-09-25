@@ -26,6 +26,7 @@ export class HeaderComponent {
 
   isAboutPage: boolean = false;
   routerEvents: any;
+  isDarkMode: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -50,6 +51,16 @@ export class HeaderComponent {
     }
 
   ngOnInit(): void {
+
+
+    //controllo il tema nel lcoalstorage
+    if(localStorage.getItem('theme') === 'dark') {
+      this.activateDarkMode()
+    } else {
+      this.activateLightMode()
+    }
+
+
 
     //controllo se l'utente è loggato
     this.authService.isLoggedIn$.subscribe((res) => {
@@ -121,6 +132,19 @@ export class HeaderComponent {
 
       this.renderer.removeClass(this.el.nativeElement, 'scrolled');
     }
+  }
+
+
+  activateDarkMode() {
+    this.isDarkMode = true;
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('theme', 'dark')
+  }
+
+  activateLightMode() {
+    this.isDarkMode= false;
+    document.documentElement.classList.remove('dark')
+    localStorage.setItem('theme', 'light')
   }
 
 }

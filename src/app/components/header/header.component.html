@@ -1,13 +1,13 @@
 <header *ngIf="isAboutPage == false" [ngClass]="{ scrolled: isScrolled }"
-class="headerTop z-50 h-[80px] bg-white">
+class="headerTop z-50 h-[80px] bg-white dark:bg-black">
 
   <div class="p-3 max-w-[1400px] mx-auto">
 
 
     <!-- TOP Header -->
     <div class="flex justify-between items-center">
-      <!-- Logo e Navbar -->
-      <div class="flex items-center gap-16">
+      <!-- Logo e Navbar Light mode-->
+      <div *ngIf="isDarkMode==false" class="flex items-center gap-16">
         <a routerLink="/home">
           <img src="assets/LaikaRecords-logo.jpg" alt="logo" class="w-[250px]" />
 
@@ -19,34 +19,84 @@ class="headerTop z-50 h-[80px] bg-white">
           <a
             routerLink="/home"
             routerLinkActive="linkActive"
-            class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
+            class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black dark:text-white"
             >Home</a
           >
 
           <a
             routerLink="/products"
             routerLinkActive="linkActive"
-            class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
+            class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black dark:text-white"
             >Products</a
           >
 
           <a
           routerLink="/about"
           routerLinkActive="linkActive"
-          class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black"
+          class="hidden md:block text-xl font-light text-gray-600 tracking-wider hover:text-black dark:text-white"
+          >About</a
+        >
+        </nav>
+      </div>
+
+       <!-- Logo e Navbar Dark mode-->
+       <div *ngIf="isDarkMode==true" class="flex items-center ">
+        <a routerLink="/home">
+          <img src="assets/laikawhite.png" alt="logo" class="w-[340px] ml-[-30px]" />
+
+        </a>
+
+        <nav class="flex items-center gap-3">
+
+
+          <a
+            routerLink="/home"
+            routerLinkActive="linkActiveDarkMode"
+            class="hidden md:block text-xl font-light tracking-wider hover:text-slate-200 text-white"
+            >Home</a
+          >
+
+          <a
+            routerLink="/products"
+            routerLinkActive="linkActiveDarkMode"
+            class="hidden md:block text-xl font-light tracking-wider hover:text-slate-200 text-white"
+            >Products</a
+          >
+
+          <a
+          routerLink="/about"
+          routerLinkActive="linkActiveDarkMode"
+          class="hidden md:block text-xl font-light tracking-wider hover:text-slate-200 text-white"
           >About</a
         >
         </nav>
       </div>
 
       <!-- Right Icons -->
-      <ul class="flex items-start gap-3" >
+      <ul class="flex items-center gap-3" >
 
+   <!-- Sun darkmode-->
+   <li   class="flex items-center">
+    <button (click)="activateDarkMode()"
+      ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+      </svg>
+    </button>
+  </li>
 
+   <!-- Moon darkmode-->
+   <li   class="flex items-center">
+    <button (click)="activateLightMode()"
+      ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+      </svg>
+
+    </button>
+  </li>
 
 
         <!-- wanted  logged-->
-        <li  *ngIf="userData" class="hidden md:inline-block">
+        <li  *ngIf="userData" class="hidden md:flex items-center">
           <a  routerLink="/profile/{{userData.userId}}/wanted"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +117,7 @@ class="headerTop z-50 h-[80px] bg-white">
         </li>
 
         <!-- wanted not logged-->
-        <li *ngIf="!userData" class="hidden md:inline-block">
+        <li *ngIf="!userData" class="hidden md:flex items-center">
           <a  routerLink="/login"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +138,7 @@ class="headerTop z-50 h-[80px] bg-white">
 
 
         <!-- collection loged-->
-        <li *ngIf="userData" class="hidden md:inline-block">
+        <li *ngIf="userData" class="hidden md:flex items-center">
           <a  routerLink="/profile/{{userData.userId}}/collection"
             ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 hover:stroke-blue-500 "
             [class.collectionFill]="newCollectedEvents">
@@ -98,7 +148,7 @@ class="headerTop z-50 h-[80px] bg-white">
           </a>
         </li>
         <!-- collection not logged -->
-        <li *ngIf="!userData" class="hidden md:inline-block">
+        <li *ngIf="!userData" class="hidden md:flex items-center">
           <a  routerLink="/login"
             ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 hover:stroke-blue-500 ">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
@@ -116,7 +166,7 @@ class="headerTop z-50 h-[80px] bg-white">
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="rgb(55 65 81)"
+              stroke="currentColor"
               class="w-7 h-7 hover:stroke-orange-600"
             >
               <path
@@ -125,7 +175,7 @@ class="headerTop z-50 h-[80px] bg-white">
                 d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
               />
             </svg>
-            <span *ngIf="numberItemsOnCart != null" class="absolute bottom-[-5px] right-[-5px] bg-black  text-white text-sm px-1.5 rounded-full ">{{numberItemsOnCart}}</span>
+            <span *ngIf="numberItemsOnCart != null" class="absolute bottom-[-5px] right-[-5px] bg-black  text-white text-sm px-1.5 rounded-full dark:bg-coolBlack">{{numberItemsOnCart}}</span>
           </a>
         </li>
 
@@ -176,8 +226,8 @@ class="headerTop z-50 h-[80px] bg-white">
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="rgb(55 65 81)"
-              class="w-7 h-7 hover:stroke-black"
+              stroke="currentColor"
+              class="w-7 h-7 hover:stroke-black dark:hover:stroke-slate-200"
             >
               <path
                 stroke-linecap="round"

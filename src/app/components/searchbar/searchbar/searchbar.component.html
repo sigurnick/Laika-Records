@@ -1,6 +1,6 @@
 <!-- Searchbar -->
 <form *ngIf="showSearchBar == true"
-class="p-3 max-w-[1400px] mx-auto"
+class="p-3 max-w-[1400px] mx-auto dark:bg-black"
  (ngSubmit)="searchOnSubmit()"
 
 >
@@ -8,7 +8,7 @@ class="p-3 max-w-[1400px] mx-auto"
    <input
      type="search"
      id="searchInput"
-     class="block w-full 0 h-10 border-0 border-b-2 border-b-[rgb(0,0,0,0.3)] focus:ring-0 focus:outline-none focus:border-black tracking-wider text-lg pl-2.5"
+     class="block w-full 0 h-10 border-0 border-b-2 border-b-[rgb(0,0,0,0.3)] focus:ring-0 focus:outline-none focus:border-black tracking-wider text-lg pl-2.5 dark:text-white dark:border-b-white dark:bg-black"
      placeholder="Search artists or products..."
      required
      name="searchInput"
@@ -16,7 +16,7 @@ class="p-3 max-w-[1400px] mx-auto"
      (input)="onInputChange()"
    />
 
-   <button type="submit" class="text-xgray absolute right-2.5 bottom-2.5" [ngClass]="{'invisible': isInputUsed}">
+   <button type="submit" class="text-xgray absolute right-2.5 bottom-2.5 dark:text-white" [ngClass]="{'invisible': isInputUsed}">
      <svg
        xmlns="http://www.w3.org/2000/svg"
        fill="none"

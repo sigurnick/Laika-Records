@@ -34,7 +34,7 @@
       >
         <div
         *ngFor="let item of wanted; index as i"
-        class="mb-4 flex justify-start items-center gap-4 bg-slate-200 rounded shadow relative hover:bg-slate-300 hover:scale-110 hover:z-10 hover:text-xl transition-all"
+        class="mb-4 flex justify-start items-center gap-4 bg-slate-200 rounded shadow relative hover:bg-slate-300 hover:scale-110 hover:z-10 hover:text-xl transition-all dark:bg-[rgb(0,15,43)]"
         >
         <!-- album cover -->
           <a
@@ -69,7 +69,8 @@
 
           </div>
 
-          <button (click)="removeFromWanted(item,i)" class="absolute right-2 top-2 md:text-lg text-red-500 hover:text-gray-500  hover:bg-slate-300 hover:scale-110 hover:z-10 hover:text-xl transition-all"><i class="fa-solid fa-heart"></i></button>
+          <button (click)="removeFromWanted(item,i)" class="absolute right-2 top-2 md:text-lg text-red-500 hover:text-gray-500   hover:scale-110 hover:z-10 hover:text-xl transition-all
+          "><i class="fa-solid fa-heart"></i></button>
 
         </div>
       </div>

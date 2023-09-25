@@ -1,4 +1,4 @@
-<div class="px-3 py-3 max-w-[1400px] mx-auto my-1 lg:mt-8">
+<div class="px-3 py-3 max-w-[1400px] mx-auto my-1 lg:mt-8 full-height">
 
   <!--  RECORD COVER - INFO -->
   <div
@@ -120,7 +120,7 @@
         <button *ngIf="record.quantity"
         (click)="showMessageToLogIn()"
         (click)="addItemOnCart(record)"
-          class="w-full h-12 bg-black py-2 px-4 text-white rounded-md max-w-xs hover:bg-coolBlack transition-colors duration-300"
+          class="w-full h-12 bg-black py-2 px-4 text-white rounded-md max-w-xs hover:bg-coolBlack transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-white dark:hover:border-2"
         >
           Add to cart
         </button>
@@ -144,7 +144,7 @@
 
     class="w-full h-12 border-2 py-1 border-red-500 rounded-md flex justify-center items-center text-black max-w-[156px] md:max-w-[80px]
      hover:bg-red-500 hover:text-white hover:border-red-700
-     transition-colors  duration-300"
+     transition-colors  duration-300  dark:bg-white dark:text-black dark:hover:bg-red-500 dark:hover:text-white dark:hover:border-red-700"
   >
   <i class="fa-regular fa-heart text-xl"></i>
   </button>
@@ -157,7 +157,7 @@
 
       class="w-full h-12 border-2 py-1 border-red-700 rounded-md flex justify-center items-center text-white max-w-[156px] md:max-w-[80px] bg-red-500
        hover:bg-white hover:text-black hover:border-red-500
-       transition-colors duration-300"
+       transition-colors duration-300 dark:hover:bg-black dark:hover:text-white"
     >
     <i class="fa-regular fa-heart text-xl"></i>
     </button>
@@ -168,7 +168,7 @@
   (click)="addRecordToCollectionList()"
   (click)="showMessageToLogIn()"
     *ngIf="isColectedRecord == false"
-    class="w-full h-12 border-2 py-1 border-blue-500 rounded-md flex justify-center items-center text-black max-w-[156px] md:max-w-[80px]  hover:bg-blue-500 hover:text-white hover:border-blue-700 transition-colors duration-300"
+    class="w-full h-12 border-2 py-1 border-blue-500 rounded-md flex justify-center items-center text-black max-w-[156px] md:max-w-[80px]  hover:bg-blue-500 hover:text-white hover:border-blue-700 transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-blue-500 dark:hover:text-white dark:hover:border-blue-700"
   >
   <i class="fa-regular fa-bookmark text-xl"></i>
 
@@ -178,7 +178,7 @@
    <button
    (click)="removeRecordFromCollectionList()"
    *ngIf="isColectedRecord == true"
-   class="w-full h-12 border-2 py-1 border-blue-700 rounded-md flex justify-center items-center text-white  bg-blue-500  hover:bg-white hover:text-black hover:border-blue-500 transition-colors duration-300 max-w-[156px] md:max-w-[80px]"
+   class="w-full h-12 border-2 py-1 border-blue-700 rounded-md flex justify-center items-center text-white  bg-blue-500  hover:bg-white hover:text-black hover:border-blue-500 transition-colors duration-300 max-w-[156px] md:max-w-[80px] dark:hover:bg-black dark:hover:text-white "
  >
  <i class="fa-regular fa-bookmark text-xl"></i>
 
