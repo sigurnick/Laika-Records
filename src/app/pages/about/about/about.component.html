@@ -3,6 +3,7 @@
   <!-- Section 1 -->
   <section #section1 id="section1" class="w-full h-[100vh] relative section">
 
+
     <!-- audio button -->
     <button *ngIf="isAudioMuted == false" (click)="muteAudio()" class="absolute top-8 right-8 ">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
@@ -18,7 +19,7 @@
     </button>
 
 
-    <audio id="audio" #audio controls autoplay class="invisible ">
+    <audio id="audio" #audio controls autoplay volume="0.1" class="invisible " >
       <source src="assets/Reflection.mp3" type="audio/mp3">
       Il tuo browser non supporta la riproduzione audio.
     </audio>
