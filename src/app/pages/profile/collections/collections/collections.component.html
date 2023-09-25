@@ -39,30 +39,30 @@
         <!-- album cover -->
           <a
             routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-            class="max-w-[80px] basis-1/4"
+            class="max-w-[80px] w-full "
           >
             <img
               *ngIf="item.imgUrl"
               src="{{ item.imgUrl[0] }}"
               alt="record cover"
-              class="rounded-sm"
+              class="rounded-sm w-full"
             />
 
           </a>
 
 
-          <div class="flex flex-col basis-3/4 ">
+          <div class="flex flex-col  ">
 
             <a
 
               routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-              class="font-light lg:text-lg  truncate "
+              class="font-light lg:text-lg line-clamp-2 "
               >{{ item.title }}
             </a>
 
             <a
               routerLink="/record/{{ item.id }}"
-              class="lg:text-lg  truncate "
+              class="lg:text-lg   "
               >{{ item.artists[0].name }}</a
             >
 
