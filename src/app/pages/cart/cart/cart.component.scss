@@ -1,8 +1,10 @@
-
+.full-height-cart {
+  height: 100vh;
+}
 
 @media (min-width: 1024px) {
   .full-height-cart {
-    height: calc(100vh - 95px);
+    height: calc(100vh - 80px);
   }
 
 }

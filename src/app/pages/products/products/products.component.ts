@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/pages/auth/auth.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
@@ -6,6 +7,7 @@ import { IUser } from 'src/app/interfaces/user';
 import { FireDBService } from 'src/app/services/fire-db.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
+import { IAuthResponseData } from '../../auth/interfaces/auth-responde-data';
 
 @Component({
   selector: 'app-products',
@@ -21,6 +23,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   isFilterActive: boolean = false
   private artistSubscription!: Subscription
   userData?: IUser
+  userAuth?: IAuthResponseData
 
   //item filte
   artists: string[] = []
@@ -38,7 +41,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   itemAddedTocart!: IRecordOnDatabase
 
 
-  constructor(private firebaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) { }
+  constructor(private firebaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService, private authService: AuthService) { }
 
   ngOnInit() {
     initFlowbite();
@@ -175,9 +178,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
       })
     });
 
-    this.firebaseService.userData$.subscribe((user) => {
-      if (user)
-        this.userData = user
+    this.authService.user$.subscribe((user)=> {
+      if(user)
+      this.userAuth = user
     })
   }
 
@@ -191,7 +194,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   //aggiungo item al carrello
   addItemOnCart(item: IRecordOnDatabase) {
-    if(this.userData != null){
+
+
+    if(this.userAuth!= null){
       this.purchaseService.newCartItem(item)
 
       this.itemAddedTocart = item

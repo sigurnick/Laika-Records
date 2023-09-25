@@ -5,6 +5,8 @@ import { FireDBService } from 'src/app/services/fire-db.service';
 import { initFlowbite } from 'flowbite';
 import { IUser } from 'src/app/interfaces/user';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { IAuthResponseData } from '../auth/interfaces/auth-responde-data';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -23,10 +25,11 @@ export class HomeComponent {
   mostSoldItems: IRecordOnDatabase[] = [];
   isLoading: boolean = false;
   userData!: IUser
+  userAuth?:IAuthResponseData
   itemAddedToCartEvent: boolean = false;
   itemAddedTocart!: IRecordOnDatabase
 
-  constructor(private firebaseDatabaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) { }
+  constructor(private firebaseDatabaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService, private authService: AuthService) { }
 
   ngOnInit() {
     initFlowbite();
@@ -105,11 +108,16 @@ export class HomeComponent {
       if(user)
       this.userData = user;
     })
+
+    this.authService.user$.subscribe((user)=>{
+      if(user)
+      this.userAuth = user
+    })
   }
 
 //aggiungo item al carrello
 addItemOnCart(item: IRecordOnDatabase) {
-  if(this.userData != null){
+  if(this.userAuth != null){
     this.purchaseService.newCartItem(item)
 
     this.itemAddedTocart = item

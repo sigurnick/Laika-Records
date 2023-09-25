@@ -1,10 +1,10 @@
 
-<div class="full-height-cart">
+<div class="">
 
-  <div class="bg-black text-white text-center text-sm p-1 mt-6">
+  <div class="bg-black text-white text-center text-sm p-1 mt-6 dark:bg-white dark:text-black">
     FREE SHIPPING ABOVE 99€
   </div>
-  <div class="px-3 py-3 max-w-[1400px] mx-auto mt-1 lg:mt-8">
+  <div class="px-3 py-3 max-w-[1400px] mx-auto mt-1 lg:mt-8 full-height-cart">
     <h1 class="font-light text-2xl">SHOPPING BAG</h1>
 
     <div *ngIf="cartItems.length == 0" class="text-xl mt-8">
@@ -14,7 +14,7 @@
     <div *ngIf="cartItems.length > 0" class="flex flex-col gap-8 lg:flex-row lg:justify-center mt-8">
       <!-- Items -->
       <div class="w-full" >
-        <div class="bg-black text-white flex justify-between px-2 py-1 mb-3">
+        <div class="bg-black text-white flex justify-between px-2 py-1 mb-3 dark:bg-white dark:text-black">
           <div *ngIf="cartItems.length > 1">{{ cartItems.length }} ITEMS</div>
           <div *ngIf="cartItems.length == 1">{{ cartItems.length }} ITEM</div>
 
@@ -118,7 +118,7 @@
 
       <!-- Sommario ordine -->
       <div *ngIf="totalOrderCorstString.length > 0" class="w-full lg:w-8/12">
-        <div class="bg-black text-white flex justify-between px-2 py-1 mb-3">
+        <div class="bg-black text-white flex justify-between px-2 py-1 mb-3 dark:bg-white dark:text-black">
           ORDER SUMMARY
         </div>
 
@@ -140,13 +140,17 @@
             <div>SUBTOTAL:</div>
             <div>€{{ totalOrderCost }}</div>
           </div>
+
+
+        </div>
+        <div  class="mt-6 w-full " id="paypallButtons">
         </div>
 
 
 
 
-        <div  class="mt-6 w-full" id="paypallButtons">
-        </div>
+
+
       </div>
 
     </div>

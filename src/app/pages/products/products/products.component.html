@@ -201,7 +201,7 @@
 
       <button
         (click)="resetFilter()"
-        class="bg-black text-white font-light px-4 py-2 w-full rounded hover:bg-coolBlack transition-colors dark:bg-white dark:text-black"
+        class="bg-black text-white font-light px-4 py-2 w-full rounded hover:bg-coolBlack transition-colors  dark:bg-white dark:text-black dark:border-2 dark:border-white dark:hover:bg-black dark:hover:text-white "
       >
         Reset
       </button>
@@ -271,7 +271,7 @@
     <div class="mx-2 grid grid-cols-1 mb-12 gap-1 lg:hidden">
       <button
         (click)="openMobileSide()"
-        class="bg-black text-white font-light px-4 py-2 w-full max-w-[180px] mx-auto sm:max-w-full dark:bg-white dark:text-black"
+        class="bg-black text-white font-light px-4 py-2 w-full max-w-[180px] mx-auto sm:max-w-full dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-white dark:hover:border-2"
       >
         Filter
       </button>
@@ -308,7 +308,7 @@
 
         <!-- Add to cart user logged -->
         <button
-          *ngIf="userData != null"
+          *ngIf="userAuth != null"
           (click)="addItemOnCart(item)"
           class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
         >
@@ -317,7 +317,7 @@
 
         <!-- add to cart user not logged -->
         <a
-          *ngIf="userData == null"
+          *ngIf="userAuth == null"
           routerLink="/login"
           class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
         >

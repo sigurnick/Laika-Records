@@ -1,4 +1,4 @@
-<div class="px-3 py-3 max-w-[1400px] mx-auto my-1 lg:mt-8 full-height">
+<div class="px-3 py-3 max-w-[1400px] mx-auto my-1 lg:mt-8 ">
 
   <!--  RECORD COVER - INFO -->
   <div
@@ -82,7 +82,7 @@
         </div>
       </div>
 
-      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
+      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200" />
 
       <!-- Record info -->
       <div>
@@ -110,7 +110,7 @@
         </div>
       </div>
 
-      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
+      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200" />
 
 
       <!-- -----Button user logged BUY COLLECTED WANTED---- -->
@@ -196,14 +196,14 @@
 
       <!--  -->
 
-      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
+      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200" />
     </div>
   </div>
 
   <!-- RECORD TRACKLIST -->
-  <div *ngIf="record" class="mx-auto px-5 my-6 lg:px-10 lg:max-w-[1550px] text-lg">
+  <div *ngIf="record" class="mx-auto px-5 my-6 lg:px-10 lg:max-w-[1550px] text-lg dark:bg-black">
     <div class="text-lg mb-4">Tracklist</div>
-    <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
+    <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200" />
 
     <div *ngFor="let track of record.tracklist">
       <div *ngIf="track.type_ == 'track'">
@@ -219,7 +219,7 @@
 
           <div>{{ track.duration }}</div>
         </div>
-        <hr class="border-bottom-[1px] border-[rgba(0,0,0,0.3)]" />
+        <hr class="border-bottom-[1px] border-[rgba(0,0,0,0.3)] dark:border-slate-200" />
       </div>
     </div>
   </div>

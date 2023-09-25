@@ -89,7 +89,8 @@ Fake Paypall trial account:
     - [x] Add profile info edit and delete function
 - [x] Add search bar to search Artist and Records
 - [x] Add Cart page with smart Paypall buttons
-- [ ] Add About page
+- [x] Add About page
+- [x] Add Dark mode
 - [ ] Add Footer
 
 
@@ -105,6 +106,12 @@ Fake Paypall trial account:
 * Project Link: [https://github.com/sigurnick/Laika-Records](https://github.com/sigurnick/Laika-Records)
 
 * Live: [https://laika-records.firebaseapp.com/home](https://laika-records.firebaseapp.com/home)
+
+
+## Contributors
+
+* About page pictures: <a href="https://www.freepik.com/free-vector/night-ocean-landscape-full-moon-stars-shine_17740155.htm#query=cartoon space background&position=3&from_view=keyword&track=ais">Images by upklyak</a> on Freepik
+
 
 
 
