@@ -27,6 +27,9 @@ export class RecordComponent {
   isWantedRecord: boolean = false
   isColectedRecord: boolean = false
   showMessageLogIn: boolean = false
+  itemAddedToCartEvent: boolean = false;
+  itemAddedTocart!: IRecordOnDatabase
+
   constructor(private actRouter: ActivatedRoute, private firebaseService: FireDBService, private authService: AuthService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) {
     initFlowbite();
   }
@@ -203,8 +206,15 @@ export class RecordComponent {
 
   //aggiungo item al carrello
   addItemOnCart(item: IRecordOnDatabase) {
-    if (this.userAuth != null) {
+    if(this.userData != null){
       this.purchaseService.newCartItem(item)
+
+      this.itemAddedTocart = item
+      this.itemAddedToCartEvent = true;
+
+      setTimeout(()=> {
+        this.itemAddedToCartEvent = false;
+      }, 3000)
     }
   }
 

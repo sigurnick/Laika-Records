@@ -34,6 +34,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   labelFilterValue: string = 'Label'
   genericFilterValue: string = 'Newest released'
 
+  itemAddedToCartEvent: boolean = false;
+  itemAddedTocart!: IRecordOnDatabase
+
 
   constructor(private firebaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) { }
 
@@ -188,8 +191,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   //aggiungo item al carrello
   addItemOnCart(item: IRecordOnDatabase) {
-    if (this.userData != null) {
+    if(this.userData != null){
       this.purchaseService.newCartItem(item)
+
+      this.itemAddedTocart = item
+      this.itemAddedToCartEvent = true;
+
+      setTimeout(()=> {
+        this.itemAddedToCartEvent = false;
+      }, 3000)
     }
   }
 

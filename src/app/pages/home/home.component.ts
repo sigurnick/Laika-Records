@@ -23,6 +23,8 @@ export class HomeComponent {
   mostSoldItems: IRecordOnDatabase[] = [];
   isLoading: boolean = false;
   userData!: IUser
+  itemAddedToCartEvent: boolean = false;
+  itemAddedTocart!: IRecordOnDatabase
 
   constructor(private firebaseDatabaseService: FireDBService, private sharedVariablesService: SharedVariablesService, private purchaseService: PurchaseService) { }
 
@@ -109,6 +111,13 @@ export class HomeComponent {
 addItemOnCart(item: IRecordOnDatabase) {
   if(this.userData != null){
     this.purchaseService.newCartItem(item)
+
+    this.itemAddedTocart = item
+    this.itemAddedToCartEvent = true;
+
+    setTimeout(()=> {
+      this.itemAddedToCartEvent = false;
+    }, 3000)
   }
 }
 
