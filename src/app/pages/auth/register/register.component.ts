@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.minLength(6),
         ]),
+        privacy: this.fb.control(false,[Validators.pattern('true')])
       },
       {
         Validators: this.passwordMatchValidator,
@@ -98,7 +99,7 @@ export class RegisterComponent implements OnInit {
       );
       this.form.reset();
     } else {
-      this.error = 'Input not valid'
+      this.error = 'Error'
       this.form.reset();
       this.isLoading = false;
     }

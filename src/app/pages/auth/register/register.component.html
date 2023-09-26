@@ -89,7 +89,7 @@
     </div>
     <!-- --------cognome -->
     <div>
-      <label for="name" class="mb-1 block text-lg font-light"
+      <label for="surname" class="mb-1 block text-lg font-light"
         >Surname <span class="font-extralight">- optional</span></label
       >
       <input
@@ -98,6 +98,15 @@
         placeholder="Surname"
         class="border-2 p-1 w-full focus:outline-none focus:border-gray-900 rounded-md focus:ring-0  dark:text-black"
       />
+    </div>
+
+    <!-- Privacy -->
+    <div class="flex items-center gap-2 px-1 mt-1">
+      <input
+      type="checkbox"
+      formControlName="privacy"
+      class=" focus:ring-0 active:bg-black selection:bg-black accent-">
+      <label class="hover:underline" for="privacy"><a href="https://www.privacypolicygenerator.info/live.php?token=Dn6OvE1et5QTpmld6c7uoiiBygEYQ7Xc">Acept our privacy policy</a> </label>
     </div>
 
     <!----------- Register button --------- -->
