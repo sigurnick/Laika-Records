@@ -10,9 +10,7 @@ html{
 
 
 
-.full-height {
-  height: calc(100vh - 174px)
-}
+
 
 #circleG{
 	width:94px;
@@ -126,4 +124,11 @@ html{
 	}
 
 	100%{}
+}
+
+
+@media (min-width: 768px) {
+  .full-height {
+    height: calc(100vh - 174px)
+  }
 }

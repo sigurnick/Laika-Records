@@ -3,7 +3,7 @@
   <aside
     [class.slide-in-left]="mobileSideStatus == 'open'"
     [class.slide-out-left]="mobileSideStatus == 'closed'"
-    class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter w-full lg:max-w-[250px] lg:sticky lg:top-[120px] dark:bg-black dark:text-white"
+    class="hidden px-2 lg:flex flex-col bg-white z-50 asideFilter w-full lg:max-w-[250px] lg:sticky lg:top-[120px] dark:bg-black dark:text-white transition-colors duration-700"
   >
 
   <button (click)="mobileSideStatus='closed'" class="text-left lg:hidden">

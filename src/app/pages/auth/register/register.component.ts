@@ -102,7 +102,6 @@ export class RegisterComponent implements OnInit {
 
     } else {
       this.error = 'Error'
-      this.form.reset();
       this.isLoading = false;
     }
   }
