@@ -75,6 +75,8 @@ export class RegisterComponent implements OnInit {
 
       this.authService.signup(this.form.value).subscribe(
         (resData) => {
+          console.log('dati auth',resData);
+
           //inserisco i dati utendi nel db
           this.firedbService
             .writeUserData(
@@ -85,7 +87,7 @@ export class RegisterComponent implements OnInit {
               this.form.value.surname
             )
             .subscribe((res) => {
-              console.log(res);
+              console.log('dati db',res);
               this.form.reset();
               this.isLoading = false;
               this.router.navigate(['/login']);
@@ -97,7 +99,7 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
         }
       );
-      this.form.reset();
+
     } else {
       this.error = 'Error'
       this.form.reset();
