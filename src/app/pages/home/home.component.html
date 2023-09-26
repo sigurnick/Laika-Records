@@ -1,362 +1,363 @@
+<!-- Carousel -->
+<div id="default-carousel" class="relative w-full" data-carousel="slide">
+  <!-- Carousel wrapper -->
+  <div
+    class="relative h-[200px] overflow-hidden md:h-[260px] lg:h-[380px] xl:h-[400] 2xl:h-[440px] min-[2030px]:h-[520px] min-[2800px]:h-[620px] min-[3200px]:h-[680px] min-[3800px]:h-[740px]"
+  >
+    <!-- Item 1 -->
+    <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
+      <a routerLink="/record/Rock/26926316">
+        <img
+          src="assets/Banners/thenationalbanners4.png"
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        />
+      </a>
+    </div>
+    <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
+      <a routerLink="/record/Rock/27940218">
+        <img
+          src="assets/Banners/olivia2.png"
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        />
+      </a>
+    </div>
+    <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
+      <a routerLink="/record/Electronic/28131088">
+        <img
+          src="assets/Banners/sigurrosbannerfinal2.png"
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        />
+      </a>
+    </div>
+    <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
+      <a routerLink="/record/Rock/26621405">
+        <img
+          src="assets/Banners/therecordbannerfinal.png"
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        />
+      </a>
+    </div>
+    <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
+      <a routerLink="/record/Rock/27940218">
+        <img
+          src="assets/Banners/olivia2.png"
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        />
+      </a>
+    </div>
+  </div>
+  <!-- Slider indicators -->
+  <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="true"
+      aria-label="Slide 1"
+      data-carousel-slide-to="0"
+    ></button>
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="false"
+      aria-label="Slide 2"
+      data-carousel-slide-to="1"
+    ></button>
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="false"
+      aria-label="Slide 3"
+      data-carousel-slide-to="2"
+    ></button>
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="false"
+      aria-label="Slide 4"
+      data-carousel-slide-to="3"
+    ></button>
+    <button
+      type="button"
+      class="w-3 h-3 rounded-full"
+      aria-current="false"
+      aria-label="Slide 5"
+      data-carousel-slide-to="4"
+    ></button>
+  </div>
+  <!-- Slider controls -->
+  <button
+    type="button"
+    class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+    data-carousel-prev
+  >
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60"
+    >
+      <svg
+        class="w-4 h-4 text-white dark:text-gray-800"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 6 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 1 1 5l4 4"
+        />
+      </svg>
+      <span class="sr-only">Previous</span>
+    </span>
+  </button>
+  <button
+    type="button"
+    class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+    data-carousel-next
+  >
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60"
+    >
+      <svg
+        class="w-4 h-4 text-white dark:text-gray-800"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 6 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 9 4-4-4-4"
+        />
+      </svg>
+      <span class="sr-only">Next</span>
+    </span>
+  </button>
+</div>
 
+<!-- Spinner -->
+<div class="pt-56 mx-auto" *ngIf="isLoading == false" id="circleG">
+  <div id="circleG_1" class="circleG"></div>
+  <div id="circleG_2" class="circleG"></div>
+  <div id="circleG_3" class="circleG"></div>
+</div>
 
-  <!-- Carousel -->
-  <div  id="default-carousel" class="relative w-full" data-carousel="slide">
-    <!-- Carousel wrapper -->
+<!-- MAIN -->
+<main class="px-3 py-3 max-w-[1400px] mx-auto mt-8" *ngIf="isLoading">
+  <div></div>
+  <!-- Last released records -->
+  <div class="mb-20" *ngIf="lastReleasedItems">
+    <h1 class="text-2xl tracking-wider mb-6 dark:text-white">NEW RELEASES</h1>
     <div
-      class="relative h-[200px] overflow-hidden md:h-[260px] lg:h-[380px] xl:h-[400] 2xl:h-[440px] min-[2030px]:h-[520px] min-[2800px]:h-[620px] min-[3200px]:h-[680px] min-[3800px]:h-[740px]"
+      class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"
     >
-      <!-- Item 1 -->
-      <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
-        <a routerLink="/record/Rock/26926316">
+      <div
+        *ngFor="let item of lastReleasedItems; index as i"
+        class="mb-4 mx-auto flex flex-col gap-1 max-w-[145px] sm:max-w-[190px] md:max-w-[170px] lg:max-w-[230px] xl:max-w-[190px] min-[1400px]:max-w-[210px]"
+      >
+        <a
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="relative"
+          (mouseover)="showHeart(i)"
+          (mouseout)="hideHeart(i)"
+        >
           <img
-            src="assets/Banners/thenationalbanners4.png"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-            alt="..."
+            *ngIf="item.imgUrl"
+            src="{{ item.imgUrl[0] }}"
+            alt="record cover"
+            class="rounded imgHeart"
           />
         </a>
-      </div>
-      <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
-        <a routerLink="/record/Rock/27940218">
-          <img
-            src="assets/Banners/olivia2.png"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-            alt="..."
-          />
-        </a>
-      </div>
-      <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
-        <a routerLink="/record/Electronic/28131088">
-          <img
-            src="assets/Banners/sigurrosbannerfinal2.png"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-            alt="..."
-          />
-        </a>
-      </div>
-      <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
-        <a routerLink="/record/Rock/26621405">
-          <img
-            src="assets/Banners/therecordbannerfinal.png"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-            alt="..."
-          />
-        </a>
-      </div>
-      <div class="hidden duration-[1500ms] ease-in-out" data-carousel-item>
-        <a routerLink="/record/Rock/27940218">
-          <img
-            src="assets/Banners/olivia2.png"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-            alt="..."
-          />
+
+        <a
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.title }}</a
+        >
+        <a
+          (click)="sendArtistName(item.artists[0].name)"
+          routerLink="/products"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.artists[0].name }}</a
+        >
+
+        <!-- Add to cart user logged -->
+        <button
+          *ngIf="userAuth != null"
+          (click)="addItemOnCart(item)"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </button>
+
+        <!-- add to cart user not logged -->
+        <a
+          *ngIf="userAuth == null"
+          routerLink="/login"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
         </a>
       </div>
     </div>
-    <!-- Slider indicators -->
-    <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-      <button
-        type="button"
-        class="w-3 h-3 rounded-full"
-        aria-current="true"
-        aria-label="Slide 1"
-        data-carousel-slide-to="0"
-      ></button>
-      <button
-        type="button"
-        class="w-3 h-3 rounded-full"
-        aria-current="false"
-        aria-label="Slide 2"
-        data-carousel-slide-to="1"
-      ></button>
-      <button
-        type="button"
-        class="w-3 h-3 rounded-full"
-        aria-current="false"
-        aria-label="Slide 3"
-        data-carousel-slide-to="2"
-      ></button>
-      <button
-        type="button"
-        class="w-3 h-3 rounded-full"
-        aria-current="false"
-        aria-label="Slide 4"
-        data-carousel-slide-to="3"
-      ></button>
-      <button
-        type="button"
-        class="w-3 h-3 rounded-full"
-        aria-current="false"
-        aria-label="Slide 5"
-        data-carousel-slide-to="4"
-      ></button>
-    </div>
-    <!-- Slider controls -->
-    <button
-      type="button"
-      class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-      data-carousel-prev
-    >
-      <span
-        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60"
-      >
-        <svg
-          class="w-4 h-4 text-white dark:text-gray-800"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 6 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 1 1 5l4 4"
-          />
-        </svg>
-        <span class="sr-only">Previous</span>
-      </span>
-    </button>
-    <button
-      type="button"
-      class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-      data-carousel-next
-    >
-      <span
-        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60"
-      >
-        <svg
-          class="w-4 h-4 text-white dark:text-gray-800"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 6 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m1 9 4-4-4-4"
-          />
-        </svg>
-        <span class="sr-only">Next</span>
-      </span>
-    </button>
   </div>
 
-  <!-- Spinner -->
-  <div class="pt-56 mx-auto" *ngIf="isLoading == false" id="circleG">
-    <div id="circleG_1" class="circleG"></div>
-    <div id="circleG_2" class="circleG"></div>
-    <div id="circleG_3" class="circleG"></div>
+  <!-- Last records added -->
+  <div class="mb-20" *ngIf="lastAddedItems">
+    <h1 class="text-2xl tracking-wider mb-6">LAST ADDED</h1>
+    <div
+      class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"
+    >
+      <div
+        *ngFor="let item of lastAddedItems; index as i"
+        class="mb-4 mx-auto flex flex-col gap-1 max-w-[145px] sm:max-w-[190px] md:max-w-[170px] lg:max-w-[230px] xl:max-w-[190px] min-[1400px]:max-w-[210px]"
+      >
+        <a
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="relative"
+          (mouseover)="showHeart(i)"
+          (mouseout)="hideHeart(i)"
+        >
+          <img
+            *ngIf="item.imgUrl"
+            src="{{ item.imgUrl[0] }}"
+            alt="record cover"
+            class="rounded-sm imgHeart"
+          />
+        </a>
+
+        <a
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.title }}</a
+        >
+
+        <a
+          (click)="sendArtistName(item.artists[0].name)"
+          routerLink="/products"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.artists[0].name }}</a
+        >
+
+        <!-- Add to cart user logged -->
+        <button
+          *ngIf="userAuth != null"
+          (click)="addItemOnCart(item)"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </button>
+
+        <!-- add to cart user not logged -->
+        <a
+          *ngIf="userAuth == null"
+          routerLink="/login"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </a>
+      </div>
+    </div>
   </div>
 
-  <!-- MAIN -->
-  <main class="px-3 py-3 max-w-[1400px] mx-auto mt-8" *ngIf="isLoading">
-    <div></div>
-    <!-- Last released records -->
-    <div class="mb-20" *ngIf="lastReleasedItems">
-      <h1 class="text-2xl tracking-wider mb-6 dark:text-white">NEW RELEASES</h1>
+  <!-- Most wanted -->
+  <div class="mb-20" *ngIf="mostFavouritedItems">
+    <h1 class="text-2xl tracking-wider mb-6">MOST WANTED</h1>
+    <div
+      class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"
+    >
       <div
-        class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"
+        *ngFor="let item of mostFavouritedItems; index as i"
+        class="mb-4 mx-auto flex flex-col gap-1 max-w-[145px] sm:max-w-[190px] md:max-w-[180px] lg:max-w-[230px] xl:max-w-[190px] min-[1400px]:max-w-[210px]"
       >
-        <div
-          *ngFor="let item of lastReleasedItems; index as i"
-          class="mb-4 mx-auto flex flex-col gap-1 max-w-[145px] sm:max-w-[190px] md:max-w-[170px] lg:max-w-[230px] xl:max-w-[190px] min-[1400px]:max-w-[210px]"
+        <a
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="relative"
+          (mouseover)="showHeart(i)"
+          (mouseout)="hideHeart(i)"
         >
-          <a
-            routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-            class="relative"
-            (mouseover)="showHeart(i)"
-            (mouseout)="hideHeart(i)"
-          >
-            <img
-              *ngIf="item.imgUrl"
-              src="{{ item.imgUrl[0] }}"
-              alt="record cover"
-              class="rounded imgHeart"
-            />
-          </a>
+          <img
+            *ngIf="item.imgUrl"
+            src="{{ item.imgUrl[0] }}"
+            alt="record cover"
+            class="rounded-sm imgHeart"
+          />
+        </a>
 
-          <a
-            routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-            class="font-light hover:underline truncate text-lg"
-            >{{ item.title }}</a
-          >
-          <a
-            (click)="sendArtistName(item.artists[0].name)"
-            routerLink="/products"
-            class="font-light hover:underline truncate text-lg"
-            >{{ item.artists[0].name }}</a
-          >
+        <a
+          routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.title }}</a
+        >
 
-          <!-- Add to cart user logged -->
-          <button
-            *ngIf="userAuth != null"
-            (click)="addItemOnCart(item)"
-            class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-          >
-            <span>Add to cart</span><span>{{ item.price }} €</span>
-          </button>
+        <a
+          (click)="sendArtistName(item.artists[0].name)"
+          routerLink="/products"
+          class="font-light hover:underline truncate text-lg"
+          >{{ item.artists[0].name }}</a
+        >
 
-          <!-- add to cart user not logged -->
-          <a
-            *ngIf="userAuth == null"
-            routerLink="/login"
-            class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-          >
-            <span>Add to cart</span><span>{{ item.price }} €</span>
-          </a>
-        </div>
+        <!-- Add to cart user logged -->
+        <button
+          *ngIf="userAuth != null"
+          (click)="addItemOnCart(item)"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </button>
+
+        <!-- add to cart user not logged -->
+        <a
+          *ngIf="userAuth == null"
+          routerLink="/login"
+          class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
+        >
+          <span>Add to cart</span><span>{{ item.price }} €</span>
+        </a>
       </div>
     </div>
+  </div>
 
-    <!-- Last records added -->
-    <div class="mb-20" *ngIf="lastAddedItems">
-      <h1 class="text-2xl tracking-wider mb-6">LAST ADDED</h1>
-      <div
-        class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"
-      >
-        <div
-          *ngFor="let item of lastAddedItems; index as i"
-          class="mb-4 mx-auto flex flex-col gap-1 max-w-[145px] sm:max-w-[190px] md:max-w-[170px] lg:max-w-[230px] xl:max-w-[190px] min-[1400px]:max-w-[210px]"
-        >
-          <a
-            routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-            class="relative"
-            (mouseover)="showHeart(i)"
-            (mouseout)="hideHeart(i)"
-          >
-            <img
-              *ngIf="item.imgUrl"
-              src="{{ item.imgUrl[0] }}"
-              alt="record cover"
-              class="rounded-sm imgHeart"
-            />
-          </a>
-
-          <a
-            routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-            class="font-light hover:underline truncate text-lg"
-            >{{ item.title }}</a
-          >
-
-          <a
-            (click)="sendArtistName(item.artists[0].name)"
-            routerLink="/products"
-            class="font-light hover:underline truncate text-lg"
-            >{{ item.artists[0].name }}</a
-          >
-
-          <!-- Add to cart user logged -->
-          <button
-            *ngIf="userAuth != null"
-            (click)="addItemOnCart(item)"
-            class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-          >
-            <span>Add to cart</span><span>{{ item.price }} €</span>
-          </button>
-
-          <!-- add to cart user not logged -->
-          <a
-            *ngIf="userAuth == null"
-            routerLink="/login"
-            class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-          >
-            <span>Add to cart</span><span>{{ item.price }} €</span>
-          </a>
-        </div>
+  <!-- Item added to cart CARD -->
+  <div class="relative">
+    <div
+      *ngIf="itemAddedTocart && itemAddedToCartEvent"
+      class="bg-white border-2 rounded-lg shadow-lg z-10 fixed w-8/12  bottom-2 right-2 md:right-6 md:bottom-6 md:w-full md:max-w-[400px] h-40 p-4 flex flex-col justify-center gap-3"
+    >
+      <div class="font-semibold text-lg mx-auto dark:text-black">
+        Item added to cart
       </div>
-    </div>
+      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
 
-    <!-- Most wanted -->
-    <div class="mb-20" *ngIf="mostFavouritedItems">
-      <h1 class="text-2xl tracking-wider mb-6">MOST WANTED</h1>
-      <div
-        class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"
-      >
-        <div
-          *ngFor="let item of mostFavouritedItems; index as i"
-          class="mb-4 mx-auto flex flex-col gap-1 max-w-[145px] sm:max-w-[190px] md:max-w-[180px] lg:max-w-[230px] xl:max-w-[190px] min-[1400px]:max-w-[210px]"
-        >
-          <a
-            routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-            class="relative"
-            (mouseover)="showHeart(i)"
-            (mouseout)="hideHeart(i)"
-          >
-            <img
-              *ngIf="item.imgUrl"
-              src="{{ item.imgUrl[0] }}"
-              alt="record cover"
-              class="rounded-sm imgHeart"
-            />
-          </a>
-
-          <a
-            routerLink="/record/{{ item.genres[0] }}/{{ item.id }}"
-            class="font-light hover:underline truncate text-lg"
-            >{{ item.title }}</a
-          >
-
-          <a
-            (click)="sendArtistName(item.artists[0].name)"
-            routerLink="/products"
-            class="font-light hover:underline truncate text-lg"
-            >{{ item.artists[0].name }}</a
-          >
-
-          <!-- Add to cart user logged -->
-          <button
-            *ngIf="userAuth != null"
-            (click)="addItemOnCart(item)"
-            class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-          >
-            <span>Add to cart</span><span>{{ item.price }} €</span>
-          </button>
-
-          <!-- add to cart user not logged -->
-          <a
-            *ngIf="userAuth == null"
-            routerLink="/login"
-            class="font-light underline-offset-8 decoration-coolBlack border-b-2 flex justify-between hover:border-b-coolBlack mt-2 text-lg"
-          >
-            <span>Add to cart</span><span>{{ item.price }} €</span>
-          </a>
+      <div class="mb-4 flex justify-start items-center gap-4">
+        <!-- album cover -->
+        <div class="max-w-[80px] w-full">
+          <img
+            src="{{ itemAddedTocart.imgUrl }}"
+            alt="record cover"
+            class="rounded-sm w-full"
+          />
         </div>
-      </div>
-    </div>
 
-    <!-- Item added to cart CARD -->
-    <div class="relative">
-      <div
-        *ngIf="itemAddedTocart && itemAddedToCartEvent"
-        class="bg-white border-2 rounded-lg shadow-lg z-10 fixed right-6 bottom-6 w-full max-w-[400px] h-40 p-4 flex flex-col justify-center gap-3"
-      >
-        <div class="font-semibold text-lg mx-auto dark:text-black">Item added to cart</div>
-        <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
-
-        <div class="mb-4 flex justify-start items-center gap-4">
-          <!-- album cover -->
-          <div class="max-w-[80px] w-full">
-            <img
-              src="{{ itemAddedTocart.imgUrl }}"
-              alt="record cover"
-              class="rounded-sm w-full"
-            />
+        <div class="flex flex-col">
+          <div class="font-light lg:text-lg line-clamp-2 dark:text-black">
+            {{ itemAddedTocart.title }}
           </div>
 
-          <div class="flex flex-col">
-            <div class="font-light lg:text-lg line-clamp-2 dark:text-black">
-              {{ itemAddedTocart.title }}
-            </div>
-
-            <div class="lg:text-lg dark:text-black">{{ itemAddedTocart.artists[0].name }}</div>
+          <div class="lg:text-lg dark:text-black">
+            {{ itemAddedTocart.artists[0].name }}
           </div>
         </div>
       </div>
     </div>
-  </main>
-
+  </div>
+</main>

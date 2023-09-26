@@ -1,228 +1,267 @@
+<div class="px-3 py-3 max-w-[1400px] mx-auto my-1 lg:mt-8">
+  <!--  RECORD COVER - INFO -->
+  <div
+    *ngIf="record"
+    class="flex flex-col lg:flex-row md:justify-center md:gap-10 mx-auto lg:p-8 lg:items-start"
+  >
+    <!-- Record Image -->
 
-
-  <div class="px-3 py-3 max-w-[1400px] mx-auto my-1 lg:mt-8">
-
-    <!--  RECORD COVER - INFO -->
+    <!-- Solo un immagine -->
     <div
-      *ngIf="record"
-      class="flex flex-col lg:flex-row md:justify-center md:gap-10 mx-auto lg:p-8 lg:items-start"
+      *ngIf="record.imgUrl && record.imgUrl.length == 1"
+      class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded-sm"
     >
+      <img src="{{ record.imgUrl[0] }}" alt="Record image" />
+    </div>
 
-  <!-- Record Image -->
-
-        <!-- Solo un immagine -->
-        <div  *ngIf="(record.imgUrl) && (record.imgUrl.length == 1)"
-          class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded-sm"
-        >
-          <img
-
-            src="{{ record.imgUrl[0] }}"
-            alt="Record image"
-          />
-      </div>
-
-      <!-- Più immagini -->
-      <div *ngIf="(record.imgUrl) && (record.imgUrl.length > 1)" class="flex flex-col ">
-        <div
-        class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded min-h[500px] md:h-[600px] flex justify-center items-center "
+    <!-- Più immagini -->
+    <div
+      *ngIf="record.imgUrl && record.imgUrl.length > 1"
+      class="flex flex-col"
+    >
+      <div
+        class="mx-auto max-w-[70%] lg:max-w-[600px] min-[1600px]:max-w[750px] rounded min-h[500px] md:h-[600px] flex justify-center items-center"
       >
         <img
-        class="object-cover md:max-h-[600px]"
+          class="object-cover md:max-h-[600px]"
           src="{{ currentPreviewImg }}"
           alt="Record image"
         />
-    </div>
-    <!-- Preview immagini -->
-    <div class="flex items-center justify-center gap-2">
-     <button (click)="changePreview(img)" *ngFor="let img of record.imgUrl" class="w-2/12 h-2/12">
-       <img src="{{img}}" alt="" class="object-scale-down h-48 w-96 rounded">
-     </button>
-
-    </div>
       </div>
+      <!-- Preview immagini -->
+      <div class="flex items-center justify-center gap-2">
+        <button
+          (click)="changePreview(img)"
+          *ngFor="let img of record.imgUrl"
+          class="w-2/12 h-2/12"
+        >
+          <img
+            src="{{ img }}"
+            alt=""
+            class="object-scale-down h-48 w-96 rounded"
+          />
+        </button>
+      </div>
+    </div>
 
-      <!-- Record Data -->
-      <div
-        class="px-4 mt-6 w-full max-w-[750px] flex flex-col justify-start gap-4 lg:gap-8 lg:pt-6 xl:gap-12 xl:pt-0 2xl:gap-16"
-      >
-        <!-- Title - Artist - Year released -->
-        <div>
-          <h1 class="text-3xl md:text-4xl font-semibold">{{ record.title }}</h1>
-          <a
+    <!-- Record Data -->
+    <div
+      class="px-4 mt-6 w-full max-w-[750px] flex flex-col justify-start gap-4 lg:gap-8 lg:pt-6 xl:gap-12 xl:pt-0 2xl:gap-16"
+    >
+      <!-- Title - Artist - Year released -->
+      <div>
+        <h1 class="text-3xl md:text-4xl font-semibold">{{ record.title }}</h1>
+        <a
           (click)="sendArtistName(record.artists[0].name)"
           routerLink="/products"
           class="underline text-2xl md:text-3xl"
-            ><h2>{{ record.artists[0].name }}</h2></a
+          ><h2>{{ record.artists[0].name }}</h2></a
+        >
+
+        <div class="flex justify-between items-center">
+          <div class="mt-4 font-semibold text-lg">€{{ record.price }}</div>
+          <!-- Record in stock -->
+          <div
+            *ngIf="record.quantity && record.quantity > 0"
+            class="flex items-center gap-1 text-lg"
           >
-
-          <div class="flex justify-between items-center ">
-            <div class="mt-4 font-semibold text-lg">€{{ record.price }}</div>
-            <!-- Record in stock -->
             <div
-              *ngIf="record.quantity && record.quantity > 0"
-              class="flex items-center gap-1 text-lg"
+              class="w-4 h-4 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"
+            ></div>
+            <span *ngIf="record.quantity > 5"
+              >{{ record.quantity }} in stock</span
             >
-              <div
-                class="w-4 h-4 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"
-              ></div>
-              <span *ngIf="record.quantity >5">{{record.quantity}} in stock</span>
-              <span *ngIf="record.quantity <= 5"
-                >Only {{ record.quantity }} left</span
-              >
-            </div>
+            <span *ngIf="record.quantity <= 5"
+              >Only {{ record.quantity }} left</span
+            >
+          </div>
 
-            <!-- Record out stock -->
+          <!-- Record out stock -->
+          <div
+            *ngIf="record.quantity == 0"
+            class="flex items-center gap-1 text-lg"
+          >
             <div
-              *ngIf="record.quantity == 0"
-              class="flex items-center gap-1 text-lg"
-            >
-              <div
-                class="w-4 h-4 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"
-              ></div>
-              <span>Out of stock</span>
-            </div>
+              class="w-4 h-4 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"
+            ></div>
+            <span>Out of stock</span>
           </div>
         </div>
+      </div>
 
-        <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200" />
+      <hr
+        class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200"
+      />
 
-        <!-- Record info -->
-        <div>
-          <div class="text-lg">
-            <span class="font-semibold">Released: </span
-            >{{ record.released_formatted }}
-          </div>
-          <div class="text-lg">
-            <span class="font-semibold">Format: </span
-            >{{ record.formats[0].name }} {{ record.formats[0].qty }}x{{
-              record.formats[0].descriptions | separateArrayString
-            }}
-          </div>
-          <div class="text-lg">
-            <span class="font-semibold">Genre: </span>{{ record.genres }}
-            <span *ngIf="record.styles.length > 0"
-              >| {{ record.styles | separateArrayString }}</span
-            >
-          </div>
-          <div class="text-lg">
-            <span class="font-semibold">Barcode: </span>{{ record.barcode }}
-          </div>
-          <div class="text-lg">
-            <span class="font-semibold">Label: </span>{{ record.labels[0].name}}
-          </div>
+      <!-- Record info -->
+      <div>
+        <div class="text-lg">
+          <span class="font-semibold">Released: </span
+          >{{ record.released_formatted }}
         </div>
+        <div class="text-lg">
+          <span class="font-semibold">Format: </span
+          >{{ record.formats[0].name }} {{ record.formats[0].qty }}x{{
+            record.formats[0].descriptions | separateArrayString
+          }}
+        </div>
+        <div class="text-lg">
+          <span class="font-semibold">Genre: </span>{{ record.genres }}
+          <span *ngIf="record.styles.length > 0"
+            >| {{ record.styles | separateArrayString }}</span
+          >
+        </div>
+        <div class="text-lg">
+          <span class="font-semibold">Barcode: </span>{{ record.barcode }}
+        </div>
+        <div class="text-lg">
+          <span class="font-semibold">Label: </span>{{ record.labels[0].name }}
+        </div>
+      </div>
 
-        <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200" />
+      <hr
+        class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200"
+      />
 
-
-        <!-- -----Button user logged BUY COLLECTED WANTED---- -->
-        <div class="flex flex-col gap-1 justify-center items-center text-lg md:flex-row">
-
-          <!-- Add to cart button -->
-          <button *ngIf="record.quantity"
+      <!-- -----Button user logged BUY COLLECTED WANTED---- -->
+      <div
+        class="flex flex-col gap-1 justify-center items-center text-lg md:flex-row"
+      >
+        <!-- Add to cart button -->
+        <button
+          *ngIf="record.quantity"
           (click)="showMessageToLogIn()"
           (click)="addItemOnCart(record)"
-            class="w-full h-12 bg-black py-2 px-4 text-white rounded-md max-w-xs border-2 border-black hover:bg-white hover:text-black  transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-white dark:hover:border-2"
+          class="w-full h-12 bg-black py-2 px-4 text-white rounded-md max-w-xs border-2 border-black hover:bg-white hover:text-black transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-white dark:hover:border-2"
+        >
+          Add to cart
+        </button>
+
+        <!-- Add to cart button if out of stock -->
+        <button
+          *ngIf="record.quantity == 0"
+          disabled
+          class="w-full h-12 bg-coolBlack py-2 px-4 text-white rounded-md max-w-xs"
+        >
+          Add to cart
+        </button>
+
+        <div class="w-full md:max-w-[160px] flex justify-center gap-1">
+          <!-- Add to wanted button -->
+          <button
+            *ngIf="isWantedRecord == false"
+            (click)="addRecordToWantedList()"
+            (click)="showMessageToLogIn()"
+            class="w-full h-12 border-2 py-1 border-red-500 rounded-md flex justify-center items-center text-black max-w-[156px] md:max-w-[80px] hover:bg-red-500 hover:text-white hover:border-red-700 transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-red-500 dark:hover:text-white dark:hover:border-red-700"
           >
-            Add to cart
+            <i class="fa-regular fa-heart text-xl"></i>
           </button>
 
+          <!-- Remove to wanted button -->
+          <button
+            *ngIf="isWantedRecord == true"
+            (click)="removeRecordFromWantedList()"
+            class="w-full h-12 border-2 py-1 border-red-700 rounded-md flex justify-center items-center text-white max-w-[156px] md:max-w-[80px] bg-red-500 hover:bg-white hover:text-black hover:border-red-500 transition-colors duration-300 dark:hover:bg-black dark:hover:text-white"
+          >
+            <i class="fa-regular fa-heart text-xl"></i>
+          </button>
 
-           <!-- Add to cart button if out of stock -->
-           <button *ngIf="record.quantity == 0"
-           disabled
-             class="w-full h-12 bg-coolBlack py-2 px-4 text-white rounded-md max-w-xs"
-           >
-             Add to cart
-           </button>
+          <!-- Add to collection button -->
+          <button
+            (click)="addRecordToCollectionList()"
+            (click)="showMessageToLogIn()"
+            *ngIf="isColectedRecord == false"
+            class="w-full h-12 border-2 py-1 border-blue-500 rounded-md flex justify-center items-center text-black max-w-[156px] md:max-w-[80px] hover:bg-blue-500 hover:text-white hover:border-blue-700 transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-blue-500 dark:hover:text-white dark:hover:border-blue-700"
+          >
+            <i class="fa-regular fa-bookmark text-xl"></i>
+          </button>
 
-  <div class="w-full md:max-w-[160px] flex justify-center gap-1">
+          <!-- Remove to collection button -->
+          <button
+            (click)="removeRecordFromCollectionList()"
+            *ngIf="isColectedRecord == true"
+            class="w-full h-12 border-2 py-1 border-blue-700 rounded-md flex justify-center items-center text-white bg-blue-500 hover:bg-white hover:text-black hover:border-blue-500 transition-colors duration-300 max-w-[156px] md:max-w-[80px] dark:hover:bg-black dark:hover:text-white"
+          >
+            <i class="fa-regular fa-bookmark text-xl"></i>
+          </button>
+        </div>
+      </div>
 
-    <!-- Add to wanted button -->
-    <button
-    *ngIf="isWantedRecord == false"
-    (click)="addRecordToWantedList()"
-    (click)="showMessageToLogIn()"
-
-      class="w-full h-12 border-2 py-1 border-red-500 rounded-md flex justify-center items-center text-black max-w-[156px] md:max-w-[80px]
-       hover:bg-red-500 hover:text-white hover:border-red-700
-       transition-colors  duration-300  dark:bg-white dark:text-black dark:hover:bg-red-500 dark:hover:text-white dark:hover:border-red-700"
-    >
-    <i class="fa-regular fa-heart text-xl"></i>
-    </button>
-
-      <!-- Remove to wanted button -->
-      <button
-      *ngIf="isWantedRecord == true"
-      (click)="removeRecordFromWantedList()"
-
-
-        class="w-full h-12 border-2 py-1 border-red-700 rounded-md flex justify-center items-center text-white max-w-[156px] md:max-w-[80px] bg-red-500
-         hover:bg-white hover:text-black hover:border-red-500
-         transition-colors duration-300 dark:hover:bg-black dark:hover:text-white"
+      <div
+        *ngIf="showMessageLogIn == true"
+        class="text-black font-light text-center bg-slate-200 p-2 rounded lg:mt-[-30px] mx-auto w-6/12"
       >
-      <i class="fa-regular fa-heart text-xl"></i>
-      </button>
+        Please log in first
+      </div>
 
-
-    <!-- Add to collection button -->
-    <button
-    (click)="addRecordToCollectionList()"
-    (click)="showMessageToLogIn()"
-      *ngIf="isColectedRecord == false"
-      class="w-full h-12 border-2 py-1 border-blue-500 rounded-md flex justify-center items-center text-black max-w-[156px] md:max-w-[80px]  hover:bg-blue-500 hover:text-white hover:border-blue-700 transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-blue-500 dark:hover:text-white dark:hover:border-blue-700"
-    >
-    <i class="fa-regular fa-bookmark text-xl"></i>
-
-    </button>
-
-     <!-- Remove to collection button -->
-     <button
-     (click)="removeRecordFromCollectionList()"
-     *ngIf="isColectedRecord == true"
-     class="w-full h-12 border-2 py-1 border-blue-700 rounded-md flex justify-center items-center text-white  bg-blue-500  hover:bg-white hover:text-black hover:border-blue-500 transition-colors duration-300 max-w-[156px] md:max-w-[80px] dark:hover:bg-black dark:hover:text-white "
-   >
-   <i class="fa-regular fa-bookmark text-xl"></i>
-
-   </button>
+      <hr
+        class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200"
+      />
+    </div>
   </div>
 
+  <!-- RECORD TRACKLIST -->
+  <div
+    *ngIf="record"
+    class="mx-auto px-5 my-6 lg:px-10 lg:max-w-[1550px] text-lg"
+  >
+    <div class="text-lg mb-4">Tracklist</div>
+    <hr
+      class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200"
+    />
 
-        </div>
-
-
-    <div *ngIf="showMessageLogIn == true" class="text-black font-light text-center bg-slate-200 p-2 rounded lg:mt-[-30px] mx-auto w-6/12">Please log in first</div>
-
-
-        <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200" />
-      </div>
-    </div>
-
-    <!-- RECORD TRACKLIST -->
-    <div *ngIf="record" class="mx-auto px-5 my-6 lg:px-10 lg:max-w-[1550px] text-lg">
-      <div class="text-lg mb-4">Tracklist</div>
-      <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)] dark:border-slate-200" />
-
-      <div *ngFor="let track of record.tracklist">
-        <div *ngIf="track.type_ == 'track'">
-          <div class="flex justify-between">
-            <div class="flex justify-start">
-              <div class="mr-6">{{ track.position }}</div
-              ><div class="mr-2">{{ track.title }}</div>
-              <!-- <div>
+    <div *ngFor="let track of record.tracklist">
+      <div *ngIf="track.type_ == 'track'">
+        <div class="flex justify-between">
+          <div class="flex justify-start">
+            <div class="mr-6">{{ track.position }}</div>
+            <div class="mr-2">{{ track.title }}</div>
+            <!-- <div>
 
                 <a *ngFor="let artist of track.extraartists"  class="text-sm font-light hover:underline hidden lg:inline-block line-clamp-1"> - {{artist.name}} </a>
               </div> -->
-            </div>
-
-            <div>{{ track.duration }}</div>
           </div>
-          <hr class="border-bottom-[1px] border-[rgba(0,0,0,0.3)] dark:border-slate-200" />
+
+          <div>{{ track.duration }}</div>
+        </div>
+        <hr
+          class="border-bottom-[1px] border-[rgba(0,0,0,0.3)] dark:border-slate-200"
+        />
+      </div>
+    </div>
+  </div>
+
+ <!-- Item added to cart CARD -->
+ <div class="relative">
+  <div
+    *ngIf="itemAddedTocart && itemAddedToCartEvent"
+    class="bg-white border-2 rounded-lg shadow-lg z-10 fixed w-8/12  bottom-2 right-2 md:right-6 md:bottom-6 md:w-full md:max-w-[400px] h-40 p-4 flex flex-col justify-center gap-3"
+  >
+    <div class="font-semibold text-lg mx-auto dark:text-black">
+      Item added to cart
+    </div>
+    <hr class="border-bottom-[1px] border-[rgb(0,0,0,0.3)]" />
+
+    <div class="mb-4 flex justify-start items-center gap-4">
+      <!-- album cover -->
+      <div class="max-w-[45px] md:max-w-[80px] w-full">
+        <img
+          src="{{ itemAddedTocart.imgUrl }}"
+          alt="record cover"
+          class="rounded-sm w-full"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <div class="font-light lg:text-lg line-clamp-2 dark:text-black">
+          {{ itemAddedTocart.title }}
+        </div>
+
+        <div class="lg:text-lg dark:text-black">
+          {{ itemAddedTocart.artists[0].name }}
         </div>
       </div>
     </div>
-
   </div>
-
-
-
+</div>
+</div>
