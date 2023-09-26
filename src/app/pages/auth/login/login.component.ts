@@ -48,17 +48,17 @@ export class LoginComponent {
             this.router.navigate(['/home'])
           }
                 this.isLoading = false
-        },
-        (error) => {
-          console.log(error);
-          this.error = error
-          console.log(this.error);
-          this.isLoading = false
-
         })
       }
 
+    },
+    (error) => {
+
+      this.error = 'Error'
+      this.isLoading = false
+
     })
+
 
 
 

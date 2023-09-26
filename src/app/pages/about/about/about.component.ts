@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 
 
@@ -7,7 +7,7 @@ import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } fro
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent {
+export class AboutComponent implements AfterViewInit{
 
 
   @ViewChild('audio') audio!: ElementRef;
@@ -18,9 +18,14 @@ export class AboutComponent {
   isOnSection3:boolean = false;
   isAudioMuted:boolean = false;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2){ }
 
 
+
+ngAfterViewInit() {
+  const audioElement: HTMLAudioElement = this.audio.nativeElement;
+  audioElement.volume = 0.2
+}
 
 scrollToSection2() {
   const section2 = this.elementRef.nativeElement.querySelector('#section2'); //riferimento section2
@@ -47,6 +52,8 @@ muteAudio() {
   const audioElement: HTMLAudioElement = this.audio.nativeElement;
     audioElement.muted = true;
     this.isAudioMuted = true;
+
+
 }
 
 unmuteAudio() {

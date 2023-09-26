@@ -1,5 +1,5 @@
 <!-- Carousel -->
-<div id="default-carousel" class="relative w-full" data-carousel="slide">
+<div  id="default-carousel" class="relative w-full" data-carousel="slide">
   <!-- Carousel wrapper -->
   <div
     class="relative h-[200px] overflow-hidden md:h-[260px] lg:h-[380px] xl:h-[400] 2xl:h-[440px] min-[2030px]:h-[520px] min-[2800px]:h-[620px] min-[3200px]:h-[680px] min-[3800px]:h-[740px]"
@@ -152,10 +152,10 @@
 </div>
 
 <!-- MAIN -->
-<main class="px-3 py-3 max-w-[1400px] mx-auto mt-8">
+<main class="px-3 py-3 max-w-[1400px] mx-auto mt-8" *ngIf="isLoading">
   <div></div>
   <!-- Last released records -->
-  <div class="mb-20" *ngIf="lastReleasedItems && isLoading">
+  <div class="mb-20" *ngIf="lastReleasedItems">
     <h1 class="text-2xl tracking-wider mb-6 dark:text-white">NEW RELEASES</h1>
     <div
       class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"
@@ -212,7 +212,7 @@
   </div>
 
   <!-- Last records added -->
-  <div class="mb-20" *ngIf="lastAddedItems && isLoading">
+  <div class="mb-20" *ngIf="lastAddedItems">
     <h1 class="text-2xl tracking-wider mb-6">LAST ADDED</h1>
     <div
       class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"
@@ -270,7 +270,7 @@
   </div>
 
   <!-- Most wanted -->
-  <div class="mb-20" *ngIf="mostFavouritedItems && isLoading">
+  <div class="mb-20" *ngIf="mostFavouritedItems">
     <h1 class="text-2xl tracking-wider mb-6">MOST WANTED</h1>
     <div
       class="mx-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6"

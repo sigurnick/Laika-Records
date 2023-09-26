@@ -104,13 +104,13 @@
     <div class="text-center">
       <button
         (click)="submitForm()"
-        class="mt-6 mx-auto bg-black text-white py-2 px-4 flex items-center justify-center w-5/12 md:w-3/12 rounded-md hover:bg-coolBlack transition-colors dark:bg-white dark:text-black dark:border-2 dark:border-white dark:hover:bg-black dark:hover:text-white "
+        class="mt-6 mx-auto bg-black text-white py-2 px-4 flex items-center justify-center w-5/12 md:w-3/12 rounded-md border-2 border-black hover:bg-white hover:text-black transition-colors dark:bg-white dark:text-black dark:border-2 dark:border-white dark:hover:bg-black dark:hover:text-white "
       >
         <svg
           *ngIf="isLoading"
           aria-hidden="true"
           role="status"
-          class="inline w-5 h-5 mr-2 text-white animate-spin"
+          class="inline w-5 h-5 mr-2 text-white animate-spin dark:text-black"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@
       </div>
     </div>
 
-    <hr class="border-black mt-2" />
+    <hr class="border-black mt-2 dark:border-slate-200" />
 
     <div>
       Already have an account?

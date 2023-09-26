@@ -96,8 +96,11 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
         }
       );
+      this.form.reset();
     } else {
       this.error = 'Input not valid'
+      this.form.reset();
+      this.isLoading = false;
     }
   }
 }

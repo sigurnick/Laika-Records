@@ -54,11 +54,12 @@ export class HeaderComponent {
 
 
     //controllo il tema nel lcoalstorage
-    if(localStorage.getItem('theme') === 'dark') {
-      this.activateDarkMode()
-    } else {
-      this.activateLightMode()
-    }
+      if(localStorage.getItem('theme') === 'dark') {
+        this.activateDarkMode()
+      } else {
+        this.activateLightMode()
+      }
+
 
 
 
@@ -146,5 +147,7 @@ export class HeaderComponent {
     document.documentElement.classList.remove('dark')
     localStorage.setItem('theme', 'light')
   }
+
+
 
 }
