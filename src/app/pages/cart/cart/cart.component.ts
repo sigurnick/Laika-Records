@@ -6,6 +6,7 @@ import { SharedVariablesService } from 'src/app/services/shared-variables.servic
 
 import { render } from 'creditcardpayments/creditCardPayments'
 import { FireDBService } from 'src/app/services/fire-db.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,11 +20,12 @@ export class CartComponent {
   shippingCost: number = 7
   totalOrderCost!: number
   totalOrderCorstString: string = ""
+  isOrderCompleted: boolean = false
 
   @ViewChild('paypallButtons', { static: false }) paypallButtonsElement!: ElementRef;
   totalOrderCostUpdated = new EventEmitter<string>();
 
-  constructor(private purchaseService: PurchaseService, private sharedVariablesService: SharedVariablesService, private firebaseService: FireDBService) {
+  constructor(private purchaseService: PurchaseService, private sharedVariablesService: SharedVariablesService, private firebaseService: FireDBService, private router: Router) {
 
   }
 
@@ -43,8 +45,10 @@ export class CartComponent {
         currency: "EUR",
         value: this.totalOrderCorstString,
         onApprove: (details) => {
-          alert("Transition successful")
-          this.orderComplete()
+          // alert("Transition successful")
+          if(details){
+            this.orderComplete()
+          }
         }
       }
     )
@@ -123,5 +127,11 @@ export class CartComponent {
     this.cartItems = []
     localStorage.removeItem('userCart')
     this.purchaseService.emptyCart()
+
+    this.isOrderCompleted = true
+
+    setTimeout(()=> {
+      this.router.navigate(['/home']);
+    },4000)
   }
 }

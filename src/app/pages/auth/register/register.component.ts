@@ -3,11 +3,10 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Router, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { FireDBService } from 'src/app/services/fire-db.service';
 
 @Component({

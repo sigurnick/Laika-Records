@@ -7,8 +7,12 @@
   <div class="px-3 py-3 max-w-[1400px] mx-auto mt-1 lg:mt-8 ">
     <h1 class="font-light text-2xl">SHOPPING BAG</h1>
 
-    <div *ngIf="cartItems.length == 0" class="text-xl mt-8">
+    <div *ngIf="cartItems.length == 0 && isOrderCompleted==false" class="text-xl mt-8">
       Empty! Browse our store and add something in cart!
+
+    </div>
+    <div *ngIf="isOrderCompleted == true" class="flex justify-center items-center">
+      <h2 class="text-3xl">Order complete! Thank you!</h2>
     </div>
 
     <div *ngIf="cartItems.length > 0" class="flex flex-col gap-8 lg:flex-row lg:justify-center mt-8">
