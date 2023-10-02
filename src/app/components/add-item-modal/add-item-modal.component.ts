@@ -5,6 +5,7 @@ import { IRecordInfo } from 'src/app/interfaces/record-id-res';
 import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { Record } from 'src/app/models/record.model';
 import { FireDBService } from 'src/app/services/fire-db.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
   selector: 'app-add-item-modal',
@@ -18,12 +19,13 @@ export class AddItemModalComponent {
   record!: IRecordOnDatabase;
 
 
+
   @Input() recordInfo!: IRecordInfo;
   @Input() barcode!: string;
   @Input() catno!: string;
   @ViewChild('form') form!: NgForm;
 
-  constructor(private fireBaseService: FireDBService) {}
+  constructor(private fireBaseService: FireDBService, private sharedVariablesServices: SharedVariablesService) {}
 
   //mette le immagini nella variabile imgFiles
   onFilesSelected(event: any) {
@@ -39,6 +41,8 @@ export class AddItemModalComponent {
 
   //invio dati item per inserimento nel database
   submitItem(form: NgForm) {
+
+
 
     //modello record
     this.record = new Record(
@@ -81,6 +85,8 @@ if(!this.record.price){return}
           .additemintoDB(this.record, genre)
           .subscribe((res) => {
             console.log('aggiunto:', res);
+            this.sharedVariablesServices.updateItemAdded(res)
+
           });
       });
     })

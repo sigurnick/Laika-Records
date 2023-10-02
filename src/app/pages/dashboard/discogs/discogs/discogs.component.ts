@@ -5,6 +5,8 @@ import { Result } from 'src/app/interfaces/barcodeDiscogsRes';
 import { IRecordInfo } from 'src/app/interfaces/record-id-res';
 import { DiscogsService } from 'src/app/services/discogs.service';
 import { Storage } from '@angular/fire/storage';
+import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 @Component({
   selector: 'app-discogs',
   templateUrl: './discogs.component.html',
@@ -19,11 +21,24 @@ export class DiscogsComponent {
   recordInfo!: IRecordInfo;
   selectedOption: string = '';
 
+  itemAddedToDb: IRecordOnDatabase | null = null
+  showItemAddedToDb: boolean = false
 
 
-  constructor(private discogsService: DiscogsService, private storage: Storage) {}
 
-  ngOnInit() {}
+  constructor(private discogsService: DiscogsService, private storage: Storage, private sharedVariablesService: SharedVariablesService) {}
+
+  ngOnInit() {
+    this.sharedVariablesService.getItemAddedEvent().subscribe((resData)=> {
+      this.itemAddedToDb = resData
+      if(this.itemAddedToDb != null ) {
+        this,this.showItemAddedToDb = true
+        setTimeout(()=> {
+         this.showItemAddedToDb = false
+        },3000)
+      }
+    })
+  }
 
   //---------------------------[ricerca album in discogs tramite barcode o catno]-------------------------
   searchRecords(form: NgForm) {

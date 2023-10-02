@@ -1,3 +1,4 @@
+import { IRecordOnDatabase } from 'src/app/interfaces/recordOnDatabase';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,6 +9,8 @@ export class SharedVariablesService {
 
   private newWantedEvent$ = new BehaviorSubject<boolean>(false); //evento aggiunto item a wanted
   private newCollectedEvent$ = new BehaviorSubject<boolean>(false); //evento aggiunto alla collezione
+  private newItemAddedToDbEvent$ = new BehaviorSubject<IRecordOnDatabase | null>(null); //evento aggiunto al db
+
   private artistName$ = new BehaviorSubject<string>('');
   private searchText$ = new BehaviorSubject<string>('');
 
@@ -26,6 +29,14 @@ export class SharedVariablesService {
   }
 
 
+
+  getItemAddedEvent() {
+    return this.newItemAddedToDbEvent$.asObservable()
+  }
+
+  updateItemAdded(newItem:IRecordOnDatabase) {
+    this.newItemAddedToDbEvent$.next(newItem)
+  }
 
 
  //prendo newWantedEvent
